@@ -1,0 +1,26 @@
+{
+	"title": "SELECT all, one course",
+	"input": {
+		"WHERE": {
+			
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"one_dept",
+				"one_avg"
+			],
+			"ORDER": "one_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+        {
+			"sections_dept":"aanb",
+			"sections_avg":87.83
+        },
+        {
+            "sections_dept":"aanb",
+            "sections_avg":87.83
+        }
+    ]
+}

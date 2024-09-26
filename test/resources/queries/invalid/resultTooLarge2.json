@@ -1,0 +1,16 @@
+{
+   "title":"SELECT large result 2",
+   "input":{
+      "WHERE":{
+         
+      },
+      "OPTIONS":{
+         "COLUMNS":[
+            "sections_dept",
+            "sections_avg"
+         ]
+      }
+   },
+   "errorExpected":true,
+   "expected":"ResultTooLargeError"
+}

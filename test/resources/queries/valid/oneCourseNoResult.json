@@ -1,0 +1,19 @@
+{
+	"title": "No result, one course",
+	"input": {
+		"WHERE": {
+			"IS":{
+             "sections_dept":"c*"
+          }
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"one_dept",
+				"one_avg"
+			],
+			"ORDER": "one_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": []
+}
