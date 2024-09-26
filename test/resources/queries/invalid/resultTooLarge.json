@@ -1,0 +1,19 @@
+{
+    "title":"SELECT large result",
+    "input":{
+       "WHERE":{
+          "IS":{
+             "sections_dept":"c*"
+          }
+       },
+       "OPTIONS":{
+          "COLUMNS":[
+             "sections_dept",
+             "sections_avg"
+          ],
+          "ORDER":"sections_avg"
+       }
+    },
+    "errorExpected":true,
+    "expected": "ResultTooLargeError"
+}

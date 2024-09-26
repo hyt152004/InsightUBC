@@ -1,0 +1,28 @@
+{
+    "title":"Query with no result",
+    "input":{
+       "WHERE":{
+          "AND":[
+             {
+                "GT":{
+                   "sections_avg":96
+                }
+             },
+             {
+                "LT":{
+                   "sections_avg":95
+                }
+             }
+          ]
+       },
+       "OPTIONS":{
+          "COLUMNS":[
+             "sections_dept",
+             "sections_avg"
+          ],
+          "ORDER":"sections_avg"
+       }
+    },
+    "errorExpected":false,
+    "expected":[]
+ }
