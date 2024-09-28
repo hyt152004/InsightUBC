@@ -11,10 +11,6 @@ export default class DatasetProcessor {
 
 		return new Promise<InsightDataset>((resolve, reject) => {
 			//TODO: Split codes into helper functions (function cannot exceed 35 lines)
-			// Validate Dataset ID
-			if (this.invalidId(id)) {
-				reject(new InsightError("Invalid ID"));
-			}
 
 			// Load zip content
 			jszip
@@ -96,19 +92,5 @@ export default class DatasetProcessor {
 					return reject(new InsightError("Error unzipping content"));
 				});
 		});
-	}
-
-	private invalidId(id: string): boolean {
-		if (id === null) {
-			return true;
-		}
-		if (id.trim() === "") {
-			return true;
-		}
-		if (id.includes("_")) {
-			return true;
-		}
-
-		return false;
 	}
 }

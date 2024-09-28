@@ -24,6 +24,9 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.datasetMap.has(id)) {
 				return reject(new InsightError("Duplicated Id"));
 			}
+			if (this.invalidId(id)) {
+				reject(new InsightError("Invalid ID"));
+			}
 			dsProcessor
 				.addSectionsDataset(id, content, kind)
 				.then((ds) => {
@@ -38,20 +41,9 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async removeDataset(id: string): Promise<string> {
-		// TODO: Remove this once you implement the methods!
 		return new Promise<string>((resolve, reject) => {
-			if (id === null) {
-				return reject(new InsightError("Invalid ID"));
-			}
-			if (id.trim() === "") {
-				return reject(new InsightError("Invalid ID"));
-			}
-			if (id.includes("_")) {
-				return reject(new InsightError("Invalid ID"));
-			}
-
-			if (!this.datasetMap.has(id)) {
-				return reject(new NotFoundError("id not found"));
+			if (this.invalidId(id)) {
+				reject(new InsightError("Ivalid ID"));
 			}
 			// Check if dataset with id doesn't exist
 			if (!this.datasetMap.has(id)) {
@@ -69,7 +61,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
-		// TODO: Remove this once you implement the methods!
 		return new Promise<InsightDataset[]>((resolve, reject) => {
 			try {
 				let result: InsightDataset[] = [];
@@ -86,5 +77,19 @@ export default class InsightFacade implements IInsightFacade {
 				reject(new InsightError("Error while listing datasets"));
 			}
 		});
+	}
+
+	private invalidId(id: string): boolean {
+		if (id === null) {
+			return true;
+		}
+		if (id.trim() === "") {
+			return true;
+		}
+		if (id.includes("_")) {
+			return true;
+		}
+
+		return false;
 	}
 }
