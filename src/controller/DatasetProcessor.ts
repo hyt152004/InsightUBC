@@ -15,66 +15,12 @@ export default class DatasetProcessor {
 			// Load zip content
 			jszip
 				.loadAsync(content, { base64: true })
-				.then((zip) => {
-					const coursesFolder = zip.folder(/^courses\/$/);
-					const coursesList: Promise<string>[] = [];
-					let allValidSections: Section[] = [];
-
-					// Check if courses folder exists and is at root level
-					if (coursesFolder !== null) {
-						let numberOfFiles = 0;
-						zip.folder("courses")?.forEach(function (relativePath: string, file: any) {
-							numberOfFiles++;
-							coursesList.push(file.async("string"));
-						});
-
-						if (numberOfFiles === 0) {
-							return reject(new InsightError("courses folder is empty"));
-						}
-					} else {
-						return reject(new InsightError("courses folder not found"));
-					}
-
+				.then((zip) => this.pushAllSection(zip, reject))
+				.then((allSections) => {
 					// Wait until all courses are processed
-					Promise.all(coursesList)
-						.then((coursesResult) => {
-							// Validate each section of each course
-							for (const JSONfile of coursesResult) {
-								const course = JSON.parse(JSONfile);
-								for (const section of course["result"]) {
-									// If a section has missing field, it is invalid (skip it)
-									if (!section.hasOwnProperty("Course")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Title")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Professor")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Subject")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Year")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Avg")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Pass")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Fail")) {
-										continue;
-									}
-									if (!section.hasOwnProperty("Audit")) {
-										continue;
-									}
-									const validSection = new Section(section);
-									allValidSections.push(validSection);
-								}
-							}
-
+					Promise.all(allSections)
+						.then((coursesResult) => this.pushValidSection(coursesResult))
+						.then((allValidSections) => {
 							// check if the valid sections are empty AFTER all courses have been processed
 							if (allValidSections.length === 0) {
 								return reject(new InsightError("Not a single valid section found"));
@@ -85,12 +31,89 @@ export default class DatasetProcessor {
 							return resolve(ds);
 						})
 						.catch((err) => {
-							return reject(new InsightError("Error processsing courses"));
+							return err;
 						});
 				})
 				.catch((err) => {
-					return reject(new InsightError("Error unzipping content"));
+					return err;
 				});
 		});
+	}
+
+	private async pushAllSection(zip: JSZip, reject: (error: InsightError) => void): Promise<Promise<string>[]> {
+		const allSections: Promise<string>[] = [];
+		const coursesFolder = zip.folder(/^courses\/$/);
+
+		// Check if courses folder exists and is at root level
+		if (coursesFolder !== null) {
+			let numberOfFiles = 0;
+			zip.folder("courses")?.forEach(function (relativePath: string, file: any) {
+				numberOfFiles++;
+				allSections.push(file.async("string"));
+			});
+
+			if (numberOfFiles === 0) {
+				reject(new InsightError("courses folder is empty"));
+				return Promise.reject();
+			}
+		} else {
+			reject(new InsightError("courses folder not found"));
+			return Promise.reject();
+		}
+
+		return allSections;
+	}
+
+	private pushValidSection(listOfResult: string[]): Section[] {
+		const allValidSections: Section[] = [];
+
+		for (const JSONfile of listOfResult) {
+			const course = JSON.parse(JSONfile);
+			// make sure each result key exists
+			if (!course.hasOwnProperty("result")) {
+				continue;
+			}
+			for (const section of course["result"]) {
+				// If a section has missing field, it is invalid (skip it)
+				if (this.missingQueryKey(section)) {
+					continue;
+				}
+				const validSection = new Section(section);
+				allValidSections.push(validSection);
+			}
+		}
+
+		return allValidSections;
+	}
+
+	private missingQueryKey(section: any): boolean {
+		if (!section.hasOwnProperty("Course")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Title")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Professor")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Subject")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Year")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Avg")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Pass")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Fail")) {
+			return true;
+		}
+		if (!section.hasOwnProperty("Audit")) {
+			return true;
+		}
+		return false;
 	}
 }
