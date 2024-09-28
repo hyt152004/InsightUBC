@@ -11,10 +11,6 @@ export default class DatasetProcessor {
 
 		return new Promise<InsightDataset>((resolve, reject) => {
 			//TODO: Split codes into helper functions (function cannot exceed 35 lines)
-			// Validate Dataset ID
-			if (this.invalidId(id)) {
-				reject(new InsightError("Invalid ID"));
-			}
 
 			// Load zip content
 			jszip
@@ -25,10 +21,16 @@ export default class DatasetProcessor {
 					let allValidSections: Section[] = [];
 
 					// Check if courses folder exists and is at root level
-					if (coursesFolder !== null && coursesFolder.length > 0) {
+					if (coursesFolder !== null) {
+						let numberOfFiles = 0;
 						zip.folder("courses")?.forEach(function (relativePath: string, file: any) {
+							numberOfFiles++;
 							coursesList.push(file.async("string"));
 						});
+
+						if (numberOfFiles === 0) {
+							return reject(new InsightError("courses folder is empty"));
+						}
 					} else {
 						return reject(new InsightError("courses folder not found"));
 					}
@@ -40,41 +42,55 @@ export default class DatasetProcessor {
 							for (const JSONfile of coursesResult) {
 								const course = JSON.parse(JSONfile);
 								for (const section of course["result"]) {
-									// TODO: add more check cases (missing other fields)
 									// If a section has missing field, it is invalid (skip it)
+									if (!section.hasOwnProperty("Course")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Title")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Professor")) {
+										continue;
+									}
 									if (!section.hasOwnProperty("Subject")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Year")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Avg")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Pass")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Fail")) {
+										continue;
+									}
+									if (!section.hasOwnProperty("Audit")) {
 										continue;
 									}
 									const validSection = new Section(section);
 									allValidSections.push(validSection);
 								}
 							}
+
+							// check if the valid sections are empty AFTER all courses have been processed
+							if (allValidSections.length === 0) {
+								return reject(new InsightError("Not a single valid section found"));
+							}
+
+							// Return an InsightDataset with all the valid sections added AFTER all courses have been processed
+							let ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
+							return resolve(ds);
 						})
 						.catch((err) => {
-							return reject(new InsightError("error"));
+							return reject(new InsightError("Error processsing courses"));
 						});
-
-					// Return an InsightDataset with all the valid sections added 
-					let ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
-					return resolve(ds);
 				})
 				.catch((err) => {
 					return reject(new InsightError("Error unzipping content"));
 				});
 		});
-	}
-
-	private invalidId(id: string): boolean {
-		//TODO: add more check cases
-		if (id === null) {
-			return true;
-		}
-		if (id === "") {
-			return true;
-		}
-		if (id.includes("_")) {
-			return true;
-		}
-		return false;
 	}
 }
