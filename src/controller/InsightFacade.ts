@@ -1,6 +1,13 @@
 import Log from "../../util/Log";
 import DatasetProcessor from "./DatasetProcessor";
-import { IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, InsightResult } from "./IInsightFacade";
+import {
+	IInsightFacade,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightError,
+	NotFoundError,
+	InsightResult,
+} from "./IInsightFacade";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -28,23 +35,56 @@ export default class InsightFacade implements IInsightFacade {
 					return reject(new InsightError("Error when adding dataset"));
 				});
 		});
-		// throw new Error(
-		// 	`InsightFacadeImpl::addDataset() is unimplemented! - id=${id}; content=${content?.length}; kind=${kind}`
-		// );
 	}
 
 	public async removeDataset(id: string): Promise<string> {
 		// TODO: Remove this once you implement the methods!
-		throw new Error(`InsightFacadeImpl::removeDataset() is unimplemented! - id=${id};`);
+		return new Promise<string>((resolve, reject) => {
+			if (id === null) {
+				return reject(new InsightError("Invalid ID"));
+			}
+			if (id.trim() === "") {
+				return reject(new InsightError("Invalid ID"));
+			}
+			if (id.includes("_")) {
+				return reject(new InsightError("Invalid ID"));
+			}
+
+			if (!this.datasetMap.has(id)) {
+				return reject(new NotFoundError("id not found"));
+			}
+			// Check if dataset with id doesn't exist
+			if (!this.datasetMap.has(id)) {
+				return reject(new NotFoundError("id not found"));
+			}
+			this.datasetMap.delete(id);
+			resolve(id);
+		});
 	}
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		// TODO: Remove this once you implement the methods!
+
 		throw new Error(`InsightFacadeImpl::performQuery() is unimplemented! - query=${query};`);
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
 		// TODO: Remove this once you implement the methods!
-		throw new Error(`InsightFacadeImpl::listDatasets is unimplemented!`);
+		return new Promise<InsightDataset[]>((resolve, reject) => {
+			try {
+				let result: InsightDataset[] = [];
+				for (const ds of this.datasetMap.values()) {
+					const dataset: InsightDataset = {
+						id: ds.id,
+						kind: ds.kind,
+						numRows: ds.numRows,
+					};
+					result.push(dataset);
+				}
+				resolve(result);
+			} catch (err) {
+				reject(new InsightError("Error while listing datasets"));
+			}
+		});
 	}
 }
