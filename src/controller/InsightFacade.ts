@@ -1,4 +1,3 @@
-import Log from "../../util/Log";
 import DatasetProcessor from "./DatasetProcessor";
 import {
 	IInsightFacade,
@@ -8,6 +7,7 @@ import {
 	NotFoundError,
 	InsightResult,
 } from "./IInsightFacade";
+// import Log from "../../util/Log";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -31,11 +31,11 @@ export default class InsightFacade implements IInsightFacade {
 				.addSectionsDataset(id, content, kind)
 				.then((ds) => {
 					this.datasetMap.set(ds.id, ds);
-					let keys = Array.from(this.datasetMap.keys());
+					const keys = Array.from(this.datasetMap.keys());
 					return resolve(keys);
 				})
 				.catch((err) => {
-					return reject(new InsightError("Error when adding dataset"));
+					return reject(err);
 				});
 		});
 	}
@@ -63,7 +63,7 @@ export default class InsightFacade implements IInsightFacade {
 	public async listDatasets(): Promise<InsightDataset[]> {
 		return new Promise<InsightDataset[]>((resolve, reject) => {
 			try {
-				let result: InsightDataset[] = [];
+				const result: InsightDataset[] = [];
 				for (const ds of this.datasetMap.values()) {
 					const dataset: InsightDataset = {
 						id: ds.id,
@@ -74,7 +74,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				resolve(result);
 			} catch (err) {
-				reject(new InsightError("Error while listing datasets"));
+				return reject(err);
 			}
 		});
 	}
