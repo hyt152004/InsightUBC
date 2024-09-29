@@ -3,7 +3,7 @@
 	"input": {
 		"WHERE": {
 			"IS":{
-             "sections_dept":"aanb"
+             "one_dept":"aanb"
           }
 		},
 		"OPTIONS": {
@@ -17,12 +17,12 @@
 	"errorExpected": false,
 	"expected": [
         {
-			"sections_dept":"aanb",
-			"sections_avg":87.83
+			"one_dept":"aanb",
+			"one_avg":87.83
         },
         {
-            "sections_dept":"aanb",
-            "sections_avg":87.83
+            "one_dept":"aanb",
+            "one_avg":87.83
         }
     ]
 }

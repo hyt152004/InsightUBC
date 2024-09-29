@@ -1,13 +1,13 @@
 import JSZip from "jszip";
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
-import Log from "../../util/Log";
 import Section from "../model/Section";
 import SectionsDataset from "../model/SectionsDataset";
+// import Log from "../../util/Log";
 
 export default class DatasetProcessor {
 	public async addSectionsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
 		const jszip = new JSZip();
-		let fs = require("fs-extra");
+		// let fs = require("fs-extra");
 
 		return new Promise<InsightDataset>((resolve, reject) => {
 			//TODO: Split codes into helper functions (function cannot exceed 35 lines)
@@ -15,7 +15,7 @@ export default class DatasetProcessor {
 			// Load zip content
 			jszip
 				.loadAsync(content, { base64: true })
-				.then((zip) => this.pushAllSection(zip, reject))
+				.then(async (zip) => this.pushAllSection(zip, reject))
 				.then((allSections) => {
 					// Wait until all courses are processed
 					Promise.all(allSections)
@@ -27,15 +27,15 @@ export default class DatasetProcessor {
 							}
 
 							// Return an InsightDataset with all the valid sections added AFTER all courses have been processed
-							let ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
+							const ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
 							return resolve(ds);
 						})
 						.catch((err) => {
-							return err;
+							return reject(err);
 						});
 				})
 				.catch((err) => {
-					return err;
+					return reject(err);
 				});
 		});
 	}
@@ -47,7 +47,7 @@ export default class DatasetProcessor {
 		// Check if courses folder exists and is at root level
 		if (coursesFolder !== null) {
 			let numberOfFiles = 0;
-			zip.folder("courses")?.forEach(function (relativePath: string, file: any) {
+			zip.folder("courses")?.forEach(function (_relativePath: string, file: any) {
 				numberOfFiles++;
 				allSections.push(file.async("string"));
 			});
@@ -70,10 +70,10 @@ export default class DatasetProcessor {
 		for (const JSONfile of listOfResult) {
 			const course = JSON.parse(JSONfile);
 			// make sure each result key exists
-			if (!course.hasOwnProperty("result")) {
+			if (!Object.prototype.hasOwnProperty.call(course, "result")) {
 				continue;
 			}
-			for (const section of course["result"]) {
+			for (const section of course.result) {
 				// If a section has missing field, it is invalid (skip it)
 				if (this.missingQueryKey(section)) {
 					continue;
@@ -87,31 +87,31 @@ export default class DatasetProcessor {
 	}
 
 	private missingQueryKey(section: any): boolean {
-		if (!section.hasOwnProperty("Course")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Course")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Title")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Title")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Professor")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Professor")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Subject")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Subject")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Year")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Year")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Avg")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Avg")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Pass")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Pass")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Fail")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Fail")) {
 			return true;
 		}
-		if (!section.hasOwnProperty("Audit")) {
+		if (!Object.prototype.hasOwnProperty.call(section, "Audit")) {
 			return true;
 		}
 		return false;

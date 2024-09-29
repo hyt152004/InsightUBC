@@ -3,7 +3,7 @@
 	"input": {
 		"WHERE": {
 			"IS":{
-             "sections_dept":"c*"
+             "one_dept":"c*"
           }
 		},
 		"OPTIONS": {
