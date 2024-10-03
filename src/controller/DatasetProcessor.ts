@@ -7,7 +7,6 @@ import SectionsDataset from "../model/SectionsDataset";
 export default class DatasetProcessor {
 	public async addSectionsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
 		const jszip = new JSZip();
-		// let fs = require("fs-extra");
 
 		return new Promise<InsightDataset>((resolve, reject) => {
 			//TODO: Split codes into helper functions (function cannot exceed 35 lines)
@@ -28,6 +27,7 @@ export default class DatasetProcessor {
 
 							// Return an InsightDataset with all the valid sections added AFTER all courses have been processed
 							const ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
+							this.storeToDisk(ds);
 							return resolve(ds);
 						})
 						.catch((err) => {
@@ -38,6 +38,18 @@ export default class DatasetProcessor {
 					return reject(err);
 				});
 		});
+	}
+
+	private storeToDisk(ds: SectionsDataset): void {
+		const fs = require("fs-extra");
+		fs.ensureDir("./data")
+			.then(() => {
+				const sectionDataList = ds.sections.map((section) => section.getPrefixedFields(ds.id));
+				return fs.writeJson("./data/" + ds.id + ".json", sectionDataList);
+			})
+			.catch(() => {
+				return new InsightError("Error storing json file to disk");
+			});
 	}
 
 	private async pushAllSection(zip: JSZip, reject: (error: InsightError) => void): Promise<Promise<string>[]> {
