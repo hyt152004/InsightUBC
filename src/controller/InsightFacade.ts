@@ -25,7 +25,7 @@ export default class InsightFacade implements IInsightFacade {
 				return reject(new InsightError("Duplicated Id"));
 			}
 			if (this.invalidId(id)) {
-				reject(new InsightError("Invalid ID"));
+				return reject(new InsightError("Invalid ID"));
 			}
 			dsProcessor
 				.addSectionsDataset(id, content, kind)

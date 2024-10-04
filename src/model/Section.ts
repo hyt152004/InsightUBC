@@ -22,4 +22,20 @@ export default class Section {
 		this.fail = data.Fail;
 		this.audit = data.Audit;
 	}
+
+	public getPrefixedFields(id: string): Record<string, any> {
+		const prefix = id + "_";
+		return {
+			[prefix + "uuid"]: this.uuid,
+			[prefix + "id"]: this.id,
+			[prefix + "title"]: this.title,
+			[prefix + "instructor"]: this.instructor,
+			[prefix + "dept"]: this.dept,
+			[prefix + "year"]: this.year,
+			[prefix + "avg"]: this.avg,
+			[prefix + "pass"]: this.pass,
+			[prefix + "fail"]: this.fail,
+			[prefix + "audit"]: this.audit,
+		};
+	}
 }
