@@ -41,6 +41,8 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async removeDataset(id: string): Promise<string> {
+		const fs = require("fs-extra");
+
 		return new Promise<string>((resolve, reject) => {
 			if (this.invalidId(id)) {
 				reject(new InsightError("Ivalid ID"));
@@ -50,6 +52,7 @@ export default class InsightFacade implements IInsightFacade {
 				return reject(new NotFoundError("id not found"));
 			}
 			this.datasetMap.delete(id);
+			fs.remove("./data/" + id + ".json");
 			resolve(id);
 		});
 	}
