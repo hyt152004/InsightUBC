@@ -12,7 +12,7 @@ export default class QueryEngine {
 	}
 
 	public isValidQuery(query: unknown): boolean {
-		// Check if query is of type Object, Reject with InsightError if not
+		// Check if query is of type Object, Reject with InsightError If not
 		if (typeof query !== "object" || query === null) {
 			return false;
 		}
