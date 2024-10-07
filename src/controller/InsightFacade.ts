@@ -60,14 +60,19 @@ export default class InsightFacade implements IInsightFacade {
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		return new Promise<InsightResult[]>((resolve, reject) => {
-			const queryEngine = new QueryEngine();
+			const queryEngine = new QueryEngine("");
 			// Check if dataset with same id already exist
 			if (!queryEngine.isValidQuery(query)) {
 				return reject(new InsightError("Invalid Query"));
 			}
 
 			try {
-				const queryResult = queryEngine.processQuery(query, this.datasetMap);
+				const id = queryEngine.datasetID;
+				const ds = this.datasetMap.get(id);
+				if (!ds) {
+					throw new InsightError(`Dataset with ID ${id} not found.`);
+				}
+				const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
 				return resolve(queryResult);
 			} catch (err) {
 				reject(err);
