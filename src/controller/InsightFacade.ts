@@ -7,6 +7,7 @@ import {
 	NotFoundError,
 	InsightResult,
 } from "./IInsightFacade";
+import QueryEngine from "./QueryEngine";
 // import Log from "../../util/Log";
 
 /**
@@ -45,7 +46,7 @@ export default class InsightFacade implements IInsightFacade {
 
 		return new Promise<string>((resolve, reject) => {
 			if (this.invalidId(id)) {
-				reject(new InsightError("Ivalid ID"));
+				return reject(new InsightError("Ivalid ID"));
 			}
 			// Check if dataset with id doesn't exist
 			if (!this.datasetMap.has(id)) {
@@ -53,14 +54,19 @@ export default class InsightFacade implements IInsightFacade {
 			}
 			this.datasetMap.delete(id);
 			fs.remove("./data/" + id + ".json");
-			resolve(id);
+			return resolve(id);
 		});
 	}
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
-		// TODO: Remove this once you implement the methods!
-
-		throw new Error(`InsightFacadeImpl::performQuery() is unimplemented! - query=${query};`);
+		return new Promise<InsightResult[]>((resolve, reject) => {
+			const queryEngine = new QueryEngine();
+			// Check if dataset with same id already exist
+			if (!queryEngine.isValidQuery(query)) {
+				return reject(new InsightError("Invalid Query"));
+			}
+			return resolve([]);
+		});
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
@@ -75,7 +81,7 @@ export default class InsightFacade implements IInsightFacade {
 					};
 					result.push(dataset);
 				}
-				resolve(result);
+				return resolve(result);
 			} catch (err) {
 				return reject(err);
 			}
