@@ -1,5 +1,5 @@
 import { type } from "os";
-import { InsightDataset, InsightDatasetKind, InsightError, InsightResult } from "./IInsightFacade";
+import { InsightDataset, InsightDatasetKind, InsightError, InsightResult, ResultTooLargeError } from "./IInsightFacade";
 import { rejects } from "assert";
 import Section from "../model/Section";
 import SectionsDataset from "../model/SectionsDataset";
@@ -32,7 +32,6 @@ export default class QueryEngine {
 
 		// TODO: Check if all keys reference only one dataset
 
-		// TODO: AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
 		return true;
 	}
 
@@ -197,10 +196,11 @@ export default class QueryEngine {
 		for (const section of filteredSection) {
 			InsightResultList.push({ sections_dept: section["dept"], sections_avg: section["avg"] });
 		}
-		return InsightResultList;
+		if (InsightResultList.length > 5000) {
+			throw new ResultTooLargeError("Result too large");
+		}
 
-		// AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
-		return [];
+		return InsightResultList;
 	}
 	// basically handling Filter
 	private processWHERE(queryWHERE: unknown, datasetMap: Map<string, InsightDataset>): Section[] {
