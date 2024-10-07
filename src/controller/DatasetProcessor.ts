@@ -24,7 +24,12 @@ export default class DatasetProcessor {
 							}
 
 							// Return an InsightDataset with all the valid sections added AFTER all courses have been processed
-							const ds = new SectionsDataset(id, kind, allValidSections.length, allValidSections);
+							const allPrefixedSections = [];
+							for (const section of allValidSections) {
+								const prefixedSection = section.getPrefixedFields(id);
+								allPrefixedSections.push(prefixedSection as Section);
+							}
+							const ds = new SectionsDataset(id, kind, allValidSections.length, allPrefixedSections);
 							this.storeToDisk(ds);
 							return resolve(ds);
 						})
