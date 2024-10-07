@@ -6,7 +6,7 @@ import { ITestQuery } from "./controller/InsightFacade.spec";
  *
  * NOTE: this variable should _not_ be referenced from production code.
  */
-const persistDir = "./data";
+// const persistDir = "./data";
 
 /**
  * Convert a file into a base64 string.
@@ -24,7 +24,7 @@ export async function getContentFromArchives(name: string): Promise<string> {
  * Removes all files within the persistDir.
  */
 export async function clearDisk(): Promise<void> {
-	await fs.remove(persistDir);
+	// await fs.remove(persistDir);
 }
 
 /**
@@ -69,23 +69,15 @@ export function extractFileFromTestName(name: string): string {
  */
 function assertTestQuery(testQuery: any): asserts testQuery is ITestQuery {
 	if (Array.isArray(testQuery)) {
-		throw new Error(
-			"ValidationError: Test Query must be an object not an array."
-		);
+		throw new Error("ValidationError: Test Query must be an object not an array.");
 	}
 	if (!Object.hasOwn(testQuery, "input")) {
-		throw new Error(
-			"ValidationError: Test Query is missing required field 'input'."
-		);
+		throw new Error("ValidationError: Test Query is missing required field 'input'.");
 	}
 	if (!Object.hasOwn(testQuery, "expected")) {
-		throw new Error(
-			"ValidationError: Test Query is missing required field 'expected'."
-		);
+		throw new Error("ValidationError: Test Query is missing required field 'expected'.");
 	}
 	if (!Object.hasOwn(testQuery, "errorExpected")) {
-		throw new Error(
-			"ValidationError: Test Query is missing required field 'errorExpected'."
-		);
+		throw new Error("ValidationError: Test Query is missing required field 'errorExpected'.");
 	}
 }
