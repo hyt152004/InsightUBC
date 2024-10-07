@@ -9,8 +9,6 @@ export default class DatasetProcessor {
 		const jszip = new JSZip();
 
 		return new Promise<InsightDataset>((resolve, reject) => {
-			//TODO: Split codes into helper functions (function cannot exceed 35 lines)
-
 			// Load zip content
 			jszip
 				.loadAsync(content, { base64: true })

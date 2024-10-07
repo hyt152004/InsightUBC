@@ -6,7 +6,7 @@ import SectionsDataset from "../model/SectionsDataset";
 import { filter } from "jszip";
 
 export default class QueryEngine {
-	public isValidQuery(query: unknown, datasetMap: Map<string, InsightDataset>): boolean {
+	public isValidQuery(query: unknown): boolean {
 		// Check if query is of type Object, Reject with InsightError if not
 		if (typeof query !== "object" || query === null) {
 			return false;
@@ -21,30 +21,189 @@ export default class QueryEngine {
 			return false;
 		}
 
-		// TODO:check for columns
+		// Check if all keys and fields are valid inside WHERE
+		if (!this.isValidWHERE(parsedQuery.WHERE)) {
+			return false;
+		}
 
-		// try {
-		// 	const filteredSection = this.handleWHERE(parsedQuery.WHERE, datasetMap);
-		// 	const InsightResultList = [];
-		// 	for (const section of filteredSection) {
-		// 		InsightResultList.push({ sections_dept: section["dept"], sections_avg: section["avg"] });
-		// 	}
-		// 	return resolve(InsightResultList);
-		// } catch (error) {
-		// 	return reject(error);
-		// }
+		if (!this.isValidOPTIONS(parsedQuery.OPTIONS)) {
+			return false;
+		}
 
-		// // Check if all keys reference only one dataset
+		// TODO: Check if all keys reference only one dataset
 
-		// // Check if all keys and fields are valid
-
-		// // AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
-		// return resolve([{ id: 1, name: "test" }]);
+		// TODO: AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
 		return true;
 	}
 
+	private isValidWHERE(where: any): boolean {
+		const whereKeys = Object.keys(where);
+		// Check if WHERE is empty
+		if (whereKeys.length === 0) {
+			return true;
+		}
+
+		// Check if WHERE has only 1 FILTER
+		if (whereKeys.length !== 1) {
+			return false;
+		}
+
+		// Check if FILTER is a LogicComparison
+		if (whereKeys.includes("AND") || whereKeys.includes("OR")) {
+			return this.isValidLogicComparison(where);
+		}
+
+		// Check if FILTER is a MComparison
+		if (whereKeys.includes("GT") || whereKeys.includes("LT") || whereKeys.includes("EQ")) {
+			return this.isValidMComparison(where);
+		}
+
+		// Check if FILTER is a SComparision
+		if (whereKeys.includes("IS")) {
+			return this.isValidSComparison(where);
+		}
+
+		// Check if FILTER is a Negation
+		if (whereKeys.includes("NOT")) {
+			return this.isValidNegation(where);
+		}
+
+		// if whereKey doesn't match with the four options, return false
+		return false;
+	}
+
+	private isValidLogicComparison(filter: any): boolean {
+		const logic = Object.keys(filter)[0];
+		const filter_list = filter[logic];
+		for (const filter of filter_list) {
+			if (!this.isValidWHERE(filter)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private isValidMComparison(filter: any): boolean {
+		const mcomparator = Object.keys(filter)[0];
+		const mcomparison = filter[mcomparator];
+		const mkey = Object.keys(mcomparison);
+		const mkeyText = mkey[0];
+
+		if (mkey.length !== 1) {
+			return false;
+		}
+
+		const mfield = mcomparison[mkeyText];
+		if (typeof mfield != "number") {
+			return false;
+		}
+
+		// TODO: check if valid id
+
+		// Split the mkey
+		// e.g, For sections_avg, prefix = "sections", postfix = "avg"
+
+		// TODO: check for the validity of prefix when actually performing query
+		const prefix = mkeyText.split("_")[0];
+		const postfix = mkeyText.split("_")[1];
+		if (this.getValidMkey(mkeyText) == "") {
+			return false;
+		}
+
+		return true;
+	}
+
+	private isValidSComparison(filter: any): boolean {
+		const scomparator = Object.keys(filter)[0];
+		const scomparison = filter[scomparator];
+		const skey = Object.keys(scomparison);
+		const skeyText = skey[0];
+
+		if (skey.length !== 1) {
+			return false;
+		}
+
+		// TODO: check if valid id
+
+		if (this.getValidSkey(skeyText) == "") {
+			return false;
+		}
+
+		const sfield = scomparison[skeyText];
+
+		if (typeof sfield != "string") {
+			return false;
+		}
+
+		if (!this.isValidWildCard(sfield)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private isValidNegation(filter: any): boolean {
+		const notFilter = filter["NOT"];
+
+		return this.isValidWHERE(notFilter);
+	}
+
+	private isValidOPTIONS(options: any): boolean {
+		const optionsKeys = Object.keys(options);
+
+		// there must be either 1 or 2 keys
+		if (optionsKeys.length != 1 && optionsKeys.length != 2) {
+			return false;
+		}
+
+		// Check if OPTIONS contains COLUMNS
+		if (!optionsKeys.includes("COLUMNS")) {
+			return false;
+		}
+		// Check if the first element if COLUMNS
+		if (optionsKeys[0] !== "COLUMNS") {
+			return false;
+		}
+		// If there are two elements, make sure the second element is ORDER
+		if (optionsKeys.length === 2 && optionsKeys[1] !== "ORDER") {
+			return false;
+		}
+		// check the validity of each column in columns
+		const columns = options[optionsKeys[0]];
+		for (const col of columns) {
+			if (this.getValidMkey(col) == "" && this.getValidSkey(col) == "") {
+				return false;
+			}
+		}
+
+		// if ORDER exists, check the validity of each key
+		if (optionsKeys.length === 2) {
+			const orderKeys = options[optionsKeys[1]];
+			if (this.getValidMkey(orderKeys) == "" && this.getValidSkey(orderKeys) == "") {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public processQuery(query: unknown, datasetMap: Map<string, InsightDataset>): InsightResult[] {
+		const stringified = JSON.stringify(query);
+		const parsedQuery = JSON.parse(stringified);
+
+		const filteredSection = this.processWHERE(parsedQuery.WHERE, datasetMap);
+		const InsightResultList = [];
+		// TODO: Apply COLUMN and ORDER
+		for (const section of filteredSection) {
+			InsightResultList.push({ sections_dept: section["dept"], sections_avg: section["avg"] });
+		}
+		return InsightResultList;
+
+		// AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
+		return [];
+	}
 	// basically handling Filter
-	private handleWHERE(queryWHERE: unknown, datasetMap: Map<string, InsightDataset>): Section[] {
+	private processWHERE(queryWHERE: unknown, datasetMap: Map<string, InsightDataset>): Section[] {
 		if (typeof queryWHERE !== "object" || queryWHERE === null) {
 			throw new InsightError("WHERE must be an object");
 		}
@@ -53,9 +212,6 @@ export default class QueryEngine {
 		// if (topLevelKeys.length === 0) {
 		// 	return datasetMap.values();
 		// }
-		if (topLevelKeys.length !== 1) {
-			throw new InsightError("WHERE must have ONE FILTER");
-		}
 
 		const filter = topLevelKeys[0];
 
@@ -63,19 +219,16 @@ export default class QueryEngine {
 		if (filter == "AND" || filter == "OR") {
 			console.log("logic");
 		} else if (filter == "GT" || filter == "LT" || filter == "EQ") {
+			// TODO: do i have to consider when handleMComparison throws an Error?
 			return this.handleMComparison(queryWHERE, datasetMap);
 		} else if (filter == "IS") {
-			console.log("SCOMPARISION");
+			return this.handleSComparison(queryWHERE, datasetMap);
 		} else if (filter == "NOT") {
 			console.log("NEGATIOn");
 		}
 
 		throw new InsightError("filter is NOT valid");
 	}
-
-	// private handleOPTIONS() {}
-
-	// Operation Functions
 
 	// private handleLogic(queryLOGIC: unknown, datasetMap: Map<string, InsightDataset>): Map<string, InsightDataset> {}
 
@@ -85,31 +238,33 @@ export default class QueryEngine {
 			throw new InsightError("MComparator must be an object");
 		}
 		// get the Mcomparator
-		const McomparatorAsList = Object.keys(queryMComparator);
-		const Mcomparator = McomparatorAsList[0];
+		const Mcomparator = Object.keys(queryMComparator)[0];
 
 		// assign the correct type to tell Typescript that its a key:value type
-		const comparatorObj = queryMComparator as Record<string, string | number>;
+		// ex) { GT: { sections_avg: 97 } }
+		const comparatorObj = queryMComparator as Record<string, object>;
+
 		// get the mkey:number object
+		// ex) { sections_avg: 97 }
 		const McomparatorValue = comparatorObj[Mcomparator];
 
 		// get the Mkey
-		const MkeyAsList = Object.keys(McomparatorValue);
-		const Mkey = MkeyAsList[0];
-		// if Mkey is not a string OR not a valid Mkey, throw InsightError
-		if (typeof Mkey !== "string" || !this.getValidMkey(Mkey)) {
-			throw new InsightError("not a valid Mkey");
-		}
+		// ex) sections_avg
+		const Mkey = Object.keys(McomparatorValue)[0];
 
 		if (typeof McomparatorValue !== "object" || McomparatorValue === null) {
 			throw new InsightError("McomparatorValue must be an object with a valid Mkey");
 		}
 
 		const McomparatorValueObj = McomparatorValue as Record<string, number>;
+		// ex) 97
 		const MkeyValue = McomparatorValueObj[Mkey];
-		const filterSections = this.handleMComparisonFiltering(Mcomparator, Mkey, MkeyValue, datasetMap);
-
-		return filterSections;
+		try {
+			const filterSections = this.handleMComparisonFiltering(Mcomparator, Mkey, MkeyValue, datasetMap);
+			return filterSections;
+		} catch (err) {
+			throw err;
+		}
 	}
 
 	private handleMComparisonFiltering(
@@ -119,21 +274,21 @@ export default class QueryEngine {
 		datasetMap: Map<string, InsightDataset>
 	): Section[] {
 		const id: string = this.getID(Mkey);
+		// typeof ds == InsightDataset
 		const ds = datasetMap.get(id);
-		const fdsa = ds as SectionsDataset;
-		console.log(fdsa.sections);
-		const listOfSection = fdsa.sections;
 		if (!ds) {
-			console.log(`Dataset with ID ${id} not found.`);
+			throw new InsightError(`Dataset with ID ${id} not found.`);
 		}
 
-		const filteredSections: Section[] = [];
-		for (const section of listOfSection) {
-			// const sectionValue = section as Section;
-			// const sectionKeyValue = sectionValue[Mkey];
-			// console.log(sectionValue["Section"]);
+		// typeof dsSectionsDataset == SectionsDataset
+		const dsSectionsDataset = ds as SectionsDataset;
+		const sections = dsSectionsDataset.sections;
 
+		const filteredSections: Section[] = [];
+		for (const section of sections) {
+			// ex) avg, pass, fail
 			const MkeyField = this.getValidMkey(Mkey);
+
 			if (MkeyField == "") {
 				throw new InsightError("Invalid Mkey");
 			}
@@ -145,17 +300,114 @@ export default class QueryEngine {
 					if (sectionValue == MkeyValue) {
 						filteredSections.push(section);
 					}
+					break;
 				}
 				case "GT": {
 					if (sectionValue > MkeyValue) {
 						filteredSections.push(section);
 					}
+					break;
 				}
-				// case "LT":
-				// 	return sectionValue < MkeyValue;
+				case "GT": {
+					if (sectionValue < MkeyValue) {
+						filteredSections.push(section);
+					}
+					break;
+				}
 				default:
 					console.error(`Invalid comparator: ${Mcomparator}`);
-				// return false;
+			}
+		}
+		return filteredSections;
+	}
+
+	private handleSComparison(querySComparator: unknown, datasetMap: Map<string, InsightDataset>): Section[] {
+		// need this check to call Object.keys
+		if (typeof querySComparator !== "object" || querySComparator === null) {
+			throw new InsightError("SComparator must be an object");
+		}
+		// get the SComparator
+		const SComparator = Object.keys(querySComparator)[0];
+
+		// assign the correct type to tell Typescript that its a key:value type
+		// ex) { IS: { sections_dept: 'cpsc' } }
+		const comparatorObj = querySComparator as Record<string, object>;
+
+		// get the skey:inputstring object
+		// ex) { sections_dept: 'cpsc' }
+		const ScomparatorValue = comparatorObj[SComparator];
+
+		// get the Skey
+		// ex) sections_dept
+		const Skey = Object.keys(ScomparatorValue)[0];
+
+		if (typeof ScomparatorValue !== "object" || ScomparatorValue === null) {
+			throw new InsightError("ScomparatorValue must be an object with a valid Skey");
+		}
+
+		const ScomparatorValueObj = ScomparatorValue as Record<string, string>;
+		// ex) cpsc
+		const SkeyValue = ScomparatorValueObj[Skey];
+		console.log(SkeyValue);
+
+		try {
+			const filterSections = this.handleSComparisonFiltering(Skey, SkeyValue, datasetMap);
+			return filterSections;
+		} catch (err) {
+			throw err;
+		}
+	}
+
+	private handleSComparisonFiltering(
+		Skey: string,
+		SkeyValue: string,
+		datasetMap: Map<string, InsightDataset>
+	): Section[] {
+		const id: string = this.getID(Skey);
+		// typeof ds == InsightDataset
+		const ds = datasetMap.get(id);
+		if (!ds) {
+			throw new InsightError(`Dataset with ID ${id} not found.`);
+		}
+
+		// typeof dsSectionsDataset == SectionsDataset
+		const dsSectionsDataset = ds as SectionsDataset;
+		const sections = dsSectionsDataset.sections;
+
+		const filteredSections: Section[] = [];
+		for (const section of sections) {
+			// ex) dept, id, instructor
+			const SkeyField = this.getValidSkey(Skey);
+
+			if (SkeyField == "") {
+				throw new InsightError("Invalid Mkey");
+			}
+
+			const sectionValue = section[SkeyField];
+
+			// Check if sectionValue contains SkeyValue
+			if (SkeyValue[0] == "*" && SkeyValue[SkeyValue.length - 1] == "*") {
+				const inputstring = SkeyValue.substring(0, SkeyValue.length - 1);
+				if (sectionValue.includes(inputstring)) {
+					filteredSections.push(section);
+				}
+				continue;
+			}
+			// Check if sectionValue starts with SkeyValue
+			if (SkeyValue[SkeyValue.length - 1] == "*") {
+				const inputstring = SkeyValue.substring(1);
+				if (sectionValue.startsWith(inputstring)) {
+					filteredSections.push(section);
+				}
+				continue;
+			}
+			// Check if sectionValue ends with SkeyValue
+			if (SkeyValue[0] == "*") {
+				const inputstring = SkeyValue.substring(0, SkeyValue.length - 1);
+				if (sectionValue.endsWith(inputstring)) {
+					filteredSections.push(section);
+				}
+				continue;
 			}
 		}
 		return filteredSections;
@@ -178,6 +430,7 @@ export default class QueryEngine {
 	}
 
 	private getValidMkey(Mkey: String) {
+		// TODO: check if id is valid first
 		let underscoreIndex = 0;
 		for (let i = 0; i < Mkey.length; i++) {
 			const char: string = Mkey[i];
@@ -194,6 +447,8 @@ export default class QueryEngine {
 	}
 
 	private getValidSkey(Skey: String) {
+		// TODO: check if id is valid first
+
 		let underscoreIndex = 0;
 		for (let i = 0; i < Skey.length; i++) {
 			const char: string = Skey[i];
