@@ -7,6 +7,7 @@ import {
 	NotFoundError,
 	InsightResult,
 } from "./IInsightFacade";
+import QueryValidator from "./QueryValidator";
 import QueryEngine from "./QueryEngine";
 // import Log from "../../util/Log";
 
@@ -60,18 +61,19 @@ export default class InsightFacade implements IInsightFacade {
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		return new Promise<InsightResult[]>((resolve, reject) => {
-			const queryEngine = new QueryEngine("");
+			const queryValidator = new QueryValidator("");
 			// Check if dataset with same id already exist
-			if (!queryEngine.isValidQuery(query)) {
+			if (!queryValidator.isValidQuery(query)) {
 				return reject(new InsightError("Invalid Query"));
 			}
 
 			try {
-				const id = queryEngine.datasetID;
+				const id = queryValidator.datasetID;
 				const ds = this.datasetMap.get(id);
 				if (!ds) {
 					throw new InsightError(`Dataset with ID ${id} not found.`);
 				}
+				const queryEngine = new QueryEngine(id);
 				const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
 				return resolve(queryResult);
 			} catch (err) {
