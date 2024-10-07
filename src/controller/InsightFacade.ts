@@ -46,7 +46,7 @@ export default class InsightFacade implements IInsightFacade {
 
 		return new Promise<string>((resolve, reject) => {
 			if (this.invalidId(id)) {
-				return reject(new InsightError("Ivalid ID"));
+				reject(new InsightError("Ivalid ID"));
 			}
 			// Check if dataset with id doesn't exist
 			if (!this.datasetMap.has(id)) {
@@ -54,7 +54,7 @@ export default class InsightFacade implements IInsightFacade {
 			}
 			this.datasetMap.delete(id);
 			fs.remove("./data/" + id + ".json");
-			return resolve(id);
+			resolve(id);
 		});
 	}
 
@@ -65,7 +65,13 @@ export default class InsightFacade implements IInsightFacade {
 			if (!queryEngine.isValidQuery(query)) {
 				return reject(new InsightError("Invalid Query"));
 			}
-			return resolve([]);
+
+			try {
+				const queryResult = queryEngine.processQuery(query, this.datasetMap);
+				return resolve(queryResult);
+			} catch (err) {
+				reject(err);
+			}
 		});
 	}
 
@@ -81,7 +87,7 @@ export default class InsightFacade implements IInsightFacade {
 					};
 					result.push(dataset);
 				}
-				return resolve(result);
+				resolve(result);
 			} catch (err) {
 				return reject(err);
 			}
