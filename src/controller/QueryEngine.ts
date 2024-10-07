@@ -475,8 +475,4 @@ export default class QueryEngine {
 		}
 		return key.substring(0, underscoreIndex);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 572e54d04b4990344996bb79a866dc5d7b6b6847
