@@ -7,6 +7,7 @@ import {
 	NotFoundError,
 	InsightResult,
 } from "./IInsightFacade";
+import QueryEngine from "./QueryEngine";
 // import Log from "../../util/Log";
 
 /**
@@ -58,9 +59,22 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
-		// TODO: Remove this once you implement the methods!
+		return new Promise<InsightResult[]>((resolve, reject) => {
+			const dsProcessor = new QueryEngine();
 
-		throw new Error(`InsightFacadeImpl::performQuery() is unimplemented! - query=${query};`);
+			if (!dsProcessor.isValidQuery) {
+				reject(new InsightError("Invalid Query"));
+			}
+
+			// dsProcessor
+			// 	.isValidQuery(query, this.datasetMap)
+			// 	.then((listOfInsightResult) => {
+			// 		return resolve(listOfInsightResult);
+			// 	})
+			// 	.catch((err) => {
+			// 		return reject(err);
+			// 	});
+		});
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
