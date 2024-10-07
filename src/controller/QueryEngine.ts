@@ -1,5 +1,6 @@
 import { InsightDataset, InsightError, InsightResult, ResultTooLargeError } from "./IInsightFacade";
 import Section from "../model/Section";
+import { log } from "console";
 
 export default class QueryEngine {
 	public datasetID: string;
@@ -11,7 +12,7 @@ export default class QueryEngine {
 	}
 
 	public isValidQuery(query: unknown): boolean {
-		// Check if query is of type Object, Reject with InsightError if not
+		// Check if query is of type Object, Reject with InsightError If not
 		if (typeof query !== "object" || query === null) {
 			return false;
 		}
@@ -33,6 +34,8 @@ export default class QueryEngine {
 		if (!this.isValidWHERE(parsedQuery.WHERE) || !this.isValidOPTIONS(parsedQuery.OPTIONS)) {
 			return false;
 		}
+
+		// TODO: Check if all keys reference only one dataset
 
 		return true;
 	}
@@ -198,7 +201,7 @@ export default class QueryEngine {
 
 		// IF WHERE has FILTER, pass on current entries to the filter helper
 		if (filter === "AND" || filter === "OR") {
-			// console.log("logic");
+			return this.handleLogic(queryWHERE, filteredResult);
 		} else if (filter === "GT" || filter === "LT" || filter === "EQ") {
 			// TODO: do i have to consider when handleMComparison throws an Error?
 			return this.handleMComparison(queryWHERE, filteredResult);
@@ -207,20 +210,21 @@ export default class QueryEngine {
 		} else if (filter === "NOT") {
 			return this.handleNegation(queryWHERE, filteredResult);
 		}
-
-		throw new InsightError("filter is NOT valid");
+		throw new InsightError(`filter, ${filter}, is NOT valid`);
 	}
 
 	private processOPTION(queryOPTION: any, filteredResult: any): Section[] {
 		const columnKeys = queryOPTION.COLUMNS;
+		let result: Section[] = [];
 
 		for (const section of filteredResult) {
-			for (const key of Object.keys(section)) {
-				if (!columnKeys.includes(key)) {
-					delete section[key];
-				}
+			const reorderedSection: Section = {} as Section;
+			for (const key of columnKeys) {
+				reorderedSection[key as keyof Section] = section[key];
 			}
+			result.push(reorderedSection);
 		}
+		filteredResult = result;
 
 		if (queryOPTION.ORDER !== null) {
 			filteredResult = this.processORDER(queryOPTION.ORDER, filteredResult);
@@ -246,7 +250,33 @@ export default class QueryEngine {
 		return filteredResult;
 	}
 
-	// private handleLogic(queryLOGIC: unknown, datasetMap: Map<string, InsightDataset>): Map<string, InsightDataset> {}
+	private handleLogic(queryLOGIC: any, filteredResult: any): Section[] {
+		const logic = Object.keys(queryLOGIC)[0];
+		const filterList = queryLOGIC[logic];
+		let result: Section[] = [];
+
+		// Case AND
+		if (logic === "AND") {
+			for (const filter of filterList) {
+				filteredResult = this.processWHERE(filter, filteredResult);
+			}
+			result = filteredResult;
+		}
+
+		// Case OR
+		else {
+			// create a huge list of all sections that match each filter
+			let filteredOR: Section[] = [];
+
+			for (const filter of filterList) {
+				filteredOR = filteredOR.concat(this.processWHERE(filter, filteredResult));
+			}
+
+			result = Array.from(new Set(filteredOR));
+		}
+
+		return result;
+	}
 
 	private handleMComparison(queryMComparator: any, filteredResult: any): Section[] {
 		const mcomparator = Object.keys(queryMComparator)[0];
@@ -332,7 +362,8 @@ export default class QueryEngine {
 	private handleNegation(queryNegation: any, filteredResult: any): Section[] {
 		const result = [];
 		const negatedResult = this.processWHERE(queryNegation.NOT, filteredResult);
-		for (const section of this.datasetSections) {
+
+		for (const section of filteredResult) {
 			if (!negatedResult.includes(section)) {
 				result.push(section);
 			}

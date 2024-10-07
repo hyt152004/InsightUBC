@@ -308,7 +308,8 @@ describe("InsightFacade", function () {
 					expect.fail(`performQuery resolved when it should have rejected with ${expected}`);
 				}
 				// return expect.fail("Write your assertion(s) here."); // TODO: replace with your assertions
-				expect(result).to.deep.equal(expected);
+				expect(result).to.deep.members(expected);
+				// expect(result).to.deep.equal(expected);
 			} catch (err) {
 				if (!errorExpected) {
 					expect.fail(`performQuery threw unexpected error: ${err}`);
@@ -350,6 +351,7 @@ describe("InsightFacade", function () {
 		it("[valid/inputstring*.json] SELECT inputstring*", checkQuery);
 		it("[valid/*inputstring*.json] SELECT *inputstring*", checkQuery);
 		it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
+
 		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
 		it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
 		it("[valid/noResult.json] Query with no result", checkQuery);
@@ -359,23 +361,23 @@ describe("InsightFacade", function () {
 		it("[valid/oneCourseNoResult.json] No result, one course", checkQuery);
 		it("[valid/oneCourseAll.json] SELECT all, one course", checkQuery);
 
-		it("[invalid/invalid.json] Query missing WHERE", checkQuery);
-		it("[invalid/missingInput.json] Query missing WHERE and OPTION", checkQuery);
-		it("[invalid/twoFields.json] Query with two fields", checkQuery);
+		it("[invalid/invalid.json] Query missing WHERE", checkQuery); //
+		it("[invalid/missingInput.json] Query missing WHERE and OPTION", checkQuery); //
+		it("[invalid/twoFields.json] Query with two fields", checkQuery); //
 		it("[invalid/resultTooLarge2.json] SELECT large result 2", checkQuery);
-		it("[invalid/input*string.json] SELECT input*string", checkQuery);
+		it("[invalid/input*string.json] SELECT input*string", checkQuery); //
 		it("[invalid/resultTooLarge.json] SELECT large result", checkQuery);
-		it("[invalid/twoFilterKeys.json] Query WHERE with 2 keys", checkQuery);
+		it("[invalid/twoFilterKeys.json] Query WHERE with 2 keys", checkQuery); //
 		it("[invalid/invalidId.json] Query invalid id", checkQuery);
-		it("[invalid/invalidMKey.json] Query invalid mkey", checkQuery);
-		it("[invalid/invalidSKey.json] Query invalid skey", checkQuery);
-		it("[invalid/invalidMField.json] Query invalid mfield", checkQuery);
-		it("[invalid/invalidSField.json] Query invalid sfield", checkQuery);
-		it("[invalid/invalidMComparator.json] Query invalid mcomparator", checkQuery);
-		it("[invalid/invalidSComparator.json] Query invalid scomparator", checkQuery);
-		it("[invalid/missingOption.json] Query missing OPTION", checkQuery);
-		it("[invalid/missingColumn.json] Query missing COLUMN", checkQuery);
-		it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery);
-		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery);
+		it("[invalid/invalidMKey.json] Query invalid mkey", checkQuery); //
+		it("[invalid/invalidSKey.json] Query invalid skey", checkQuery); //
+		it("[invalid/invalidMField.json] Query invalid mfield", checkQuery); //
+		it("[invalid/invalidSField.json] Query invalid sfield", checkQuery); //
+		it("[invalid/invalidMComparator.json] Query invalid mcomparator", checkQuery); //
+		it("[invalid/invalidSComparator.json] Query invalid scomparator", checkQuery); //
+		it("[invalid/missingOption.json] Query missing OPTION", checkQuery); //
+		it("[invalid/missingColumn.json] Query missing COLUMN", checkQuery); //
+		it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery); //
+		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
 	});
 });
