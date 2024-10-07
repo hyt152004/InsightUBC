@@ -17,7 +17,7 @@ export default class QueryEngine {
 		const topLevelKeys = Object.keys(parsedQuery);
 
 		// Check if only WHERE and OPTIONS exists in topLevelKeys
-		if (!topLevelKeys.includes("WHERE") || !topLevelKeys.includes("OPTIONS") || topLevelKeys.length != 2) {
+		if (!topLevelKeys.includes("WHERE") || !topLevelKeys.includes("OPTIONS") || topLevelKeys.length !== 2) {
 			return false;
 		}
 
@@ -348,7 +348,6 @@ export default class QueryEngine {
 		const ScomparatorValueObj = ScomparatorValue as Record<string, string>;
 		// ex) cpsc
 		const SkeyValue = ScomparatorValueObj[Skey];
-		console.log(SkeyValue);
 
 		try {
 			const filterSections = this.handleSComparisonFiltering(Skey, SkeyValue, datasetMap);
@@ -386,34 +385,37 @@ export default class QueryEngine {
 			const sectionValue = section[SkeyField];
 
 			// Check if sectionValue contains SkeyValue
-			if (SkeyValue[0] == "*" && SkeyValue[SkeyValue.length - 1] == "*") {
-				const inputstring = SkeyValue.substring(0, SkeyValue.length - 1);
+			if (SkeyValue[0] === "*" && SkeyValue[SkeyValue.length - 1] === "*") {
+				const inputstring = SkeyValue.substring(1, SkeyValue.length - 1);
 				if (sectionValue.includes(inputstring)) {
 					filteredSections.push(section);
 				}
 				continue;
 			}
 			// Check if sectionValue starts with SkeyValue
-			if (SkeyValue[SkeyValue.length - 1] == "*") {
-				const inputstring = SkeyValue.substring(1);
+			if (SkeyValue[SkeyValue.length - 1] === "*") {
+				const inputstring = SkeyValue.substring(0, SkeyValue.length - 1);
 				if (sectionValue.startsWith(inputstring)) {
 					filteredSections.push(section);
 				}
 				continue;
 			}
 			// Check if sectionValue ends with SkeyValue
-			if (SkeyValue[0] == "*") {
-				const inputstring = SkeyValue.substring(0, SkeyValue.length - 1);
+			if (SkeyValue[0] === "*") {
+				const inputstring = SkeyValue.substring(1);
 				if (sectionValue.endsWith(inputstring)) {
 					filteredSections.push(section);
 				}
 				continue;
 			}
+
+			// Check if sectionValue === SkeyValue
+			if (sectionValue === SkeyValue) {
+				filteredSections.push(section);
+			}
 		}
 		return filteredSections;
 	}
-
-	// private handleSComparison(querySComparator: unknown, datasetMap: Map<string, InsightDataset>): Map<string, InsightDataset> {}
 
 	// private handleNegation(queryNegation: unknown, datasetMap: Map<string, InsightDataset>): Map<string, InsightDataset> {}
 
@@ -422,7 +424,7 @@ export default class QueryEngine {
 	private isValidWildCard(wildcard: String) {
 		for (let i = 1; i < wildcard.length - 1; i++) {
 			const char: string = wildcard[i];
-			if (char == "*") {
+			if (char === "*") {
 				return false;
 			}
 		}
@@ -434,13 +436,13 @@ export default class QueryEngine {
 		let underscoreIndex = 0;
 		for (let i = 0; i < Mkey.length; i++) {
 			const char: string = Mkey[i];
-			if (char == "_") {
+			if (char === "_") {
 				underscoreIndex = i;
 				break;
 			}
 		}
 		const mkey = Mkey.substring(underscoreIndex + 1);
-		if (mkey == "avg" || mkey == "pass" || mkey == "fail" || mkey == "audit" || mkey == "year") {
+		if (mkey === "avg" || mkey === "pass" || mkey === "fail" || mkey === "audit" || mkey === "year") {
 			return mkey;
 		}
 		return "";
@@ -452,13 +454,13 @@ export default class QueryEngine {
 		let underscoreIndex = 0;
 		for (let i = 0; i < Skey.length; i++) {
 			const char: string = Skey[i];
-			if (char == "_") {
+			if (char === "_") {
 				underscoreIndex = i;
 				break;
 			}
 		}
 		const skey = Skey.substring(underscoreIndex + 1);
-		if (skey == "dept" || skey == "id" || skey == "instructor" || skey == "title" || skey == "uuid") {
+		if (skey === "dept" || skey === "id" || skey === "instructor" || skey === "title" || skey == "uuid") {
 			return skey;
 		}
 		return "";
@@ -468,7 +470,7 @@ export default class QueryEngine {
 		let underscoreIndex = 0;
 		for (let i = 0; i < key.length; i++) {
 			const char: string = key[i];
-			if (char == "_") {
+			if (char === "_") {
 				underscoreIndex = i;
 				break;
 			}
