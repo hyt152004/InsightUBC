@@ -17,7 +17,7 @@ export default class DatasetProcessor {
 					// Wait until all courses are processed
 					Promise.all(allSections)
 						.then((coursesResult) => this.pushValidSection(coursesResult))
-						.then((allValidSections) => {
+						.then(async (allValidSections) => {
 							// check if the valid sections are empty AFTER all courses have been processed
 							if (allValidSections.length === 0) {
 								return reject(new InsightError("Not a single valid section found"));
@@ -26,11 +26,10 @@ export default class DatasetProcessor {
 							// Return an InsightDataset with all the valid sections added AFTER all courses have been processed
 							const allPrefixedSections = [];
 							for (const section of allValidSections) {
-								const prefixedSection = section.getPrefixedFields(id);
-								allPrefixedSections.push(prefixedSection as Section);
+								allPrefixedSections.push(section.getPrefixedFields(id) as Section);
 							}
 							const ds = new SectionsDataset(id, kind, allValidSections.length, allPrefixedSections);
-							this.storeToDisk(ds);
+							await this.storeToDisk(ds);
 							return resolve(ds);
 						})
 						.catch((err) => {
@@ -43,15 +42,15 @@ export default class DatasetProcessor {
 		});
 	}
 
-	private storeToDisk(ds: SectionsDataset): void {
+	private async storeToDisk(ds: SectionsDataset): Promise<void> {
 		const fs = require("fs-extra");
-		fs.ensureDir("./data")
-			.then(() => {
-				const sectionDataList = ds.sections.map((section) => section.getPrefixedFields(ds.id));
-				return fs.writeJson("./data/" + ds.id + ".json", sectionDataList);
+		return fs
+			.ensureDir("./data")
+			.then(async () => {
+				return Promise.resolve(fs.writeJson("./data/" + ds.id + ".json", ds.sections));
 			})
-			.catch(() => {
-				return new InsightError("Error storing json file to disk");
+			.catch(async () => {
+				return Promise.reject("Error storing json file to disk");
 			});
 	}
 
