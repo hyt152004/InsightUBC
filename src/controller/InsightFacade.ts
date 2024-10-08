@@ -20,42 +20,83 @@ export default class InsightFacade implements IInsightFacade {
 	public datasetMap: Map<string, InsightDataset> = new Map<string, InsightDataset>();
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		const fs = require("fs-extra");
+		const filePath = "./data/" + id + ".json";
+
 		return new Promise<string[]>((resolve, reject) => {
 			const dsProcessor = new DatasetProcessor();
-			// Check if dataset with same id already exist
-			if (this.datasetMap.has(id)) {
-				return reject(new InsightError("Duplicated Id"));
-			}
+
 			if (this.invalidId(id)) {
 				return reject(new InsightError("Invalid ID"));
 			}
-			dsProcessor
-				.addSectionsDataset(id, content, kind)
-				.then((ds) => {
-					this.datasetMap.set(ds.id, ds);
-					const keys = Array.from(this.datasetMap.keys());
-					return resolve(keys);
+
+			// Check if dataset already exists in memory (datasetMap)
+			if (this.datasetMap.has(id)) {
+				return reject(new InsightError("Duplicated Id (already in memory)"));
+			}
+
+			// Check if dataset already exists on disk
+			fs.pathExists(filePath)
+				.then((existsOnDisk: any) => {
+					if (existsOnDisk) {
+						return reject(new InsightError("Duplicated Id (already on disk)"));
+					}
+
+					return dsProcessor.addSectionsDataset(id, content, kind);
 				})
-				.catch((err) => {
-					return reject(err);
+				.then(async (ds: InsightDataset) => {
+					this.datasetMap.set(ds.id, ds);
+
+					// Get all dataset IDs from disk
+					return this.getAllDatasetIds();
+				})
+				.then((allDatasetIds: string[]) => {
+					return resolve(allDatasetIds);
+				})
+				.catch(() => {
+					return reject(new InsightError("Error adding dataset"));
 				});
 		});
 	}
 
 	public async removeDataset(id: string): Promise<string> {
 		const fs = require("fs-extra");
+		const filePath = "./data/" + id + ".json";
 
 		return new Promise<string>((resolve, reject) => {
 			if (this.invalidId(id)) {
-				reject(new InsightError("Ivalid ID"));
+				return reject(new InsightError("Invalid ID"));
 			}
-			// Check if dataset with id doesn't exist
+
+			// Check if the dataset exists in memory
 			if (!this.datasetMap.has(id)) {
-				return reject(new NotFoundError("id not found"));
+				// If not found in memory, check if the dataset exists on disk
+				fs.pathExists(filePath)
+					.then((existsOnDisk: any) => {
+						if (!existsOnDisk) {
+							return reject(new NotFoundError(`Dataset with id '${id}' not found in memory or disk.`));
+						}
+
+						// Delete dataset from disk
+						return fs.remove(filePath);
+					})
+					.then(() => {
+						return resolve(id);
+					})
+					.catch(() => {
+						return reject(new InsightError("Error removing dataset"));
+					});
+			} else {
+				// If found in memory, remove from memory and disk
+				this.datasetMap.delete(id);
+				fs.remove(filePath)
+					.then(() => {
+						return resolve(id);
+					})
+					.catch(() => {
+						return reject(new InsightError("Error removing dataset from disk"));
+					});
 			}
-			this.datasetMap.delete(id);
-			fs.remove("./data/" + id + ".json");
-			return resolve(id);
 		});
 	}
 
@@ -165,5 +206,15 @@ export default class InsightFacade implements IInsightFacade {
 
 		await Promise.all(readJsonPromises);
 		return result;
+	}
+
+	private async getAllDatasetIds(): Promise<string[]> {
+		const fs = require("fs-extra");
+
+		// Get datasets on disk
+		const files = await fs.readdir("./data/");
+		const allDatasetIds = files.map((file: any) => file.replace(".json", ""));
+
+		return allDatasetIds;
 	}
 }
