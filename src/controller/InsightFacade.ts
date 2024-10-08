@@ -22,41 +22,35 @@ export default class InsightFacade implements IInsightFacade {
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const fs = require("fs-extra");
 		const filePath = "./data/" + id + ".json";
+		const dsProcessor = new DatasetProcessor();
 
-		return new Promise<string[]>((resolve, reject) => {
-			const dsProcessor = new DatasetProcessor();
-
+		try {
+			// Check if the ID is valid
 			if (this.invalidId(id)) {
-				return reject(new InsightError("Invalid ID"));
+				throw new InsightError("Invalid ID");
 			}
 
-			// Check if dataset already exists in memory (datasetMap)
+			// Check if dataset already exists in memory
 			if (this.datasetMap.has(id)) {
-				return reject(new InsightError("Duplicated Id (already in memory)"));
+				throw new InsightError("Duplicated Id (already in memory)");
 			}
 
 			// Check if dataset already exists on disk
-			fs.pathExists(filePath)
-				.then((existsOnDisk: any) => {
-					if (existsOnDisk) {
-						return reject(new InsightError("Duplicated Id (already on disk)"));
-					}
+			const existsOnDisk = await fs.pathExists(filePath);
+			if (existsOnDisk) {
+				throw new InsightError("Duplicated Id (already on disk)");
+			}
 
-					return dsProcessor.addSectionsDataset(id, content, kind);
-				})
-				.then(async (ds: InsightDataset) => {
-					this.datasetMap.set(ds.id, ds);
+			// Process the dataset
+			const ds = await dsProcessor.addSectionsDataset(id, content, kind);
+			this.datasetMap.set(ds.id, ds);
 
-					// Get all dataset IDs from disk
-					return this.getAllDatasetIds();
-				})
-				.then((allDatasetIds: string[]) => {
-					return resolve(allDatasetIds);
-				})
-				.catch(() => {
-					return reject(new InsightError("Error adding dataset"));
-				});
-		});
+			// Get all dataset IDs (from both memory and disk)
+			const allDatasetIds = await this.getAllDatasetIds();
+			return allDatasetIds;
+		} catch (err) {
+			throw new InsightError(`Error adding dataset: ${err} `);
+		}
 	}
 
 	public async removeDataset(id: string): Promise<string> {
