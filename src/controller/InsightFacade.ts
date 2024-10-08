@@ -60,44 +60,55 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
-		return new Promise<InsightResult[]>((resolve, reject) => {
-			const queryValidator = new QueryValidator("");
-			// Check if dataset with same id already exist
-			if (!queryValidator.isValidQuery(query)) {
-				return reject(new InsightError("Invalid Query"));
-			}
+		const queryValidator = new QueryValidator("");
 
+		// Validate the query
+		if (!queryValidator.isValidQuery(query)) {
+			throw new InsightError("Invalid Query");
+		}
+
+		const id = queryValidator.datasetID;
+
+		// Check if the dataset exists in the map, otherwise load from disk
+		let ds = this.datasetMap.get(id);
+		if (!ds) {
+			// If the dataset doesn't exist in memory, attempt to load from disk
 			try {
-				const id = queryValidator.datasetID;
-				const ds = this.datasetMap.get(id);
+				const datasetsFromDisk = await this.readFromDisk();
+				datasetsFromDisk.forEach((dataset) => {
+					this.datasetMap.set(dataset.id, dataset);
+				});
+				ds = this.datasetMap.get(id);
 				if (!ds) {
-					throw new InsightError(`Dataset with ID ${id} not found.`);
+					throw new InsightError("Dataset with ID not found after loading from disk.");
 				}
-				const queryEngine = new QueryEngine(id);
-				const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
-				return resolve(queryResult);
 			} catch (err) {
-				reject(err);
+				return Promise.reject(err);
 			}
-		});
+		}
+
+		// Process the query using the query engine
+		const queryEngine = new QueryEngine(id);
+		const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
+		return queryResult;
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
 		return new Promise<InsightDataset[]>((resolve, reject) => {
-			try {
-				const result: InsightDataset[] = [];
-				for (const ds of this.datasetMap.values()) {
-					const dataset: InsightDataset = {
-						id: ds.id,
-						kind: ds.kind,
-						numRows: ds.numRows,
-					};
-					result.push(dataset);
-				}
-				resolve(result);
-			} catch (err) {
-				return reject(err);
-			}
+			this.readFromDisk()
+				.then((datasetsFromDisk) => {
+					// Clear the current datasetMap and load datasets from the disk
+					this.datasetMap.clear();
+
+					datasetsFromDisk.forEach((ds) => {
+						this.datasetMap.set(ds.id, ds);
+					});
+
+					return resolve(datasetsFromDisk);
+				})
+				.catch(() => {
+					return reject("Error listing datasets from disk");
+				});
 		});
 	}
 
@@ -113,5 +124,48 @@ export default class InsightFacade implements IInsightFacade {
 		}
 
 		return false;
+	}
+
+	private async readFromDisk(): Promise<InsightDataset[]> {
+		await this.checkDirectoryExists("./data/");
+		const files = await this.readDirectory("./data/");
+
+		if (files.length === 0) {
+			return [];
+		}
+
+		const datasets = await this.readJsonFiles(files);
+		return datasets;
+	}
+
+	private async checkDirectoryExists(dirPath: string): Promise<void> {
+		const fs = require("fs-extra");
+		const exists = await fs.pathExists(dirPath);
+		if (!exists) {
+			throw new InsightError(`Directory does not exist.`);
+		}
+	}
+
+	private async readDirectory(dirPath: string): Promise<string[]> {
+		const fs = require("fs-extra");
+		return await fs.readdir(dirPath);
+	}
+
+	private async readJsonFiles(files: string[]): Promise<InsightDataset[]> {
+		const fs = require("fs-extra");
+		const result: InsightDataset[] = [];
+
+		const readJsonPromises = files.map(async (file) => {
+			const jsonObj = await fs.readJson("./data/" + file);
+			const dataset: InsightDataset = {
+				id: file.replace(".json", ""),
+				kind: InsightDatasetKind.Sections,
+				numRows: jsonObj.length,
+			};
+			result.push(dataset);
+		});
+
+		await Promise.all(readJsonPromises);
+		return result;
 	}
 }
