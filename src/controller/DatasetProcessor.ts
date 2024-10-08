@@ -44,14 +44,15 @@ export default class DatasetProcessor {
 
 	private async storeToDisk(ds: SectionsDataset): Promise<void> {
 		const fs = require("fs-extra");
-		return fs
-			.ensureDir("./data")
-			.then(async () => {
-				return Promise.resolve(fs.writeJson("./data/" + ds.id + ".json", ds.sections));
-			})
-			.catch(async () => {
-				return Promise.reject("Error storing json file to disk");
-			});
+		try {
+			// Ensure the directory exists
+			await fs.ensureDir("./data");
+
+			// Write the dataset's sections to a JSON file
+			await fs.writeJson("./data/" + ds.id + ".json", ds.sections);
+		} catch (err) {
+			throw new InsightError(`Error storing json file to disk: ${err}`);
+		}
 	}
 
 	private async pushAllSection(zip: JSZip, reject: (error: InsightError) => void): Promise<Promise<string>[]> {

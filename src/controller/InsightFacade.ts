@@ -55,56 +55,54 @@ export default class InsightFacade implements IInsightFacade {
 			}
 			this.datasetMap.delete(id);
 			fs.remove("./data/" + id + ".json");
-			resolve(id);
+			return resolve(id);
 		});
 	}
 
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
-		const queryValidator = new QueryValidator("");
+		try {
+			const queryValidator = new QueryValidator("");
 
-		// Validate the query
-		if (!queryValidator.isValidQuery(query)) {
-			throw new InsightError("Invalid Query");
-		}
-
-		const id = queryValidator.datasetID;
-
-		// Check if the dataset exists in the map, otherwise load from disk
-		let ds = this.datasetMap.get(id);
-		if (!ds) {
-			// If the dataset doesn't exist in memory, attempt to load from disk
-			try {
-				const datasetsFromDisk = await this.readFromDisk();
-				datasetsFromDisk.forEach((dataset) => {
-					this.datasetMap.set(dataset.id, dataset);
-				});
-				ds = this.datasetMap.get(id);
-				if (!ds) {
-					throw new InsightError("Dataset with ID not found after loading from disk.");
-				}
-			} catch (err) {
-				return Promise.reject(err);
+			// Validate the query
+			if (!queryValidator.isValidQuery(query)) {
+				throw new InsightError("Invalid Query");
 			}
-		}
 
-		// Process the query using the query engine
-		const queryEngine = new QueryEngine(id);
-		const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
-		return queryResult;
+			const id = queryValidator.datasetID;
+
+			// Check if the dataset exists in the map, otherwise load it from disk
+			if (!this.datasetMap.has(id)) {
+				const datasetsFromDisk = await this.readFromDisk();
+				datasetsFromDisk.forEach((ds) => {
+					if (ds.id === id) {
+						this.datasetMap.set(ds.id, ds);
+					}
+				});
+
+				// If the dataset was still not found after reading from disk, throw an error
+				if (!this.datasetMap.has(id)) {
+					throw new InsightError(`Dataset with ID ${id} not found.`);
+				}
+			}
+
+			// Process the query using the query engine
+			const queryEngine = new QueryEngine(id);
+			const queryResult = queryEngine.processQuery(query, id, this.datasetMap);
+			return queryResult;
+		} catch (err) {
+			return Promise.reject(err);
+		}
 	}
 
 	public async listDatasets(): Promise<InsightDataset[]> {
 		return new Promise<InsightDataset[]>((resolve, reject) => {
 			this.readFromDisk()
 				.then((datasetsFromDisk) => {
-					// Clear the current datasetMap and load datasets from the disk
-					this.datasetMap.clear();
-
 					datasetsFromDisk.forEach((ds) => {
 						this.datasetMap.set(ds.id, ds);
 					});
 
-					return resolve(datasetsFromDisk);
+					return resolve(Array.from(this.datasetMap.values()));
 				})
 				.catch(() => {
 					return reject("Error listing datasets from disk");
