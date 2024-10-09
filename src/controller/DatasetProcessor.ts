@@ -93,6 +93,14 @@ export default class DatasetProcessor {
 				if (this.missingQueryKey(section)) {
 					continue;
 				}
+
+				// Set year to 1900 if section == "overall"
+				if (Object.prototype.hasOwnProperty.call(section, "Section")) {
+					if (section.Section === "overall") {
+						section.Year = 1900;
+					}
+				}
+
 				const validSection = new Section(section);
 				allValidSections.push(validSection);
 			}

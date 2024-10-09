@@ -360,6 +360,7 @@ describe("InsightFacade", function () {
 		it("[valid/oneCourseQuery.json] SELECT dept, one course", checkQuery);
 		it("[valid/oneCourseNoResult.json] No result, one course", checkQuery);
 		it("[valid/oneCourseAll.json] SELECT all, one course", checkQuery);
+		it("[valid/year1900.json] SELECT year = 1900", checkQuery);
 
 		it("[invalid/invalid.json] Query missing WHERE", checkQuery); //
 		it("[invalid/missingInput.json] Query missing WHERE and OPTION", checkQuery); //

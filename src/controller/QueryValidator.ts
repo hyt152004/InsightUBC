@@ -29,8 +29,6 @@ export default class QueryValidator {
 			return false;
 		}
 
-		// TODO: Check if all keys reference only one dataset
-
 		return true;
 	}
 
