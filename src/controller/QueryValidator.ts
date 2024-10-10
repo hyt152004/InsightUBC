@@ -71,6 +71,11 @@ export default class QueryValidator {
 	private isValidLogicComparison(filter: any): boolean {
 		const logic = Object.keys(filter)[0];
 		const filterList = filter[logic];
+
+		if (filterList.length === 0) {
+			return false;
+		}
+
 		for (const logicfilter of filterList) {
 			if (!this.isValidWHERE(logicfilter)) {
 				return false;

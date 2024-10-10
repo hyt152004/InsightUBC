@@ -353,6 +353,7 @@ describe("InsightFacade", function () {
 		it("[valid/oneAsterisk.json] SELECT with one asterisk", checkQuery);
 		it("[valid/twoAsterisks.json] SELECT with two asterisks", checkQuery);
 		it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
+		it("[valid/two*.json] SELECT two*", checkQuery); //
 
 		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
 		it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
@@ -382,5 +383,6 @@ describe("InsightFacade", function () {
 		it("[invalid/missingColumn.json] Query missing COLUMN", checkQuery); //
 		it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery); //
 		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
+		it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
 	});
 });
