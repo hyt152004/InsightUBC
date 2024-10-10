@@ -163,7 +163,7 @@ export default class QueryValidator {
 	// Validity Functions
 
 	private isValidWildCard(wildcard: string): boolean {
-		if (wildcard.length == 0) {
+		if (wildcard.length === 0) {
 			return false;
 		}
 
