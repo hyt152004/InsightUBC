@@ -350,6 +350,8 @@ describe("InsightFacade", function () {
 		it("[valid/*inputstring.json] SELECT *inputstring", checkQuery);
 		it("[valid/inputstring*.json] SELECT inputstring*", checkQuery);
 		it("[valid/*inputstring*.json] SELECT *inputstring*", checkQuery);
+		it("[valid/oneAsterisk.json] SELECT with one asterisk", checkQuery);
+		it("[valid/twoAsterisks.json] SELECT with two asterisks", checkQuery);
 		it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
 
 		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
