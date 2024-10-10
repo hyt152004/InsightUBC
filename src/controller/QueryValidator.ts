@@ -81,6 +81,9 @@ export default class QueryValidator {
 		}
 
 		for (const logicfilter of filterList) {
+			if (Object.keys(logicfilter).length === 0) {
+				return false;
+			}
 			if (!this.isValidWHERE(logicfilter)) {
 				return false;
 			}
@@ -154,6 +157,10 @@ export default class QueryValidator {
 			return false;
 		}
 
+		if (columns.length === 0) {
+			return false;
+		}
+
 		for (const col of columns) {
 			if (this.getValidMkey(col) === "" && this.getValidSkey(col) === "") {
 				return false;
@@ -178,7 +185,7 @@ export default class QueryValidator {
 
 	private isValidWildCard(wildcard: string): boolean {
 		if (wildcard.length === 0) {
-			return false;
+			return true;
 		}
 
 		const startsWithAsterisk = wildcard[0] === "*";

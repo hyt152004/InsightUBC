@@ -154,54 +154,6 @@ export default class QueryEngine {
 		return result;
 	}
 
-	// private handleSComparison(querySComparator: any, filteredResult: any): Section[] {
-	// 	const scomparator = Object.keys(querySComparator)[0];
-	// 	const scomparison = querySComparator[scomparator];
-	// 	const skey = Object.keys(scomparison);
-	// 	// const skeyText = skey[0];
-	// 	const sfieldValue = scomparison[skey[0]];
-	// 	const result = [];
-
-	// 	for (const section of filteredResult) {
-	// 		const sectionValue = section[skey[0]];
-
-	// 		// Check if sectionValue contains sfieldValue
-	// 		if (sfieldValue === "*" || sfieldValue === "**") {
-	// 			return filteredResult;
-	// 		}
-
-	// 		if (sfieldValue[0] === "*" && sfieldValue[sfieldValue.length - 1] === "*") {
-	// 			const inputstring = sfieldValue.substring(1, sfieldValue.length - 1);
-	// 			if (sectionValue.includes(inputstring)) {
-	// 				result.push(section);
-	// 			}
-	// 			continue;
-	// 		}
-	// 		// Check if sectionValue starts with sfieldValue
-	// 		if (sfieldValue[sfieldValue.length - 1] === "*") {
-	// 			const inputstring = sfieldValue.substring(0, sfieldValue.length - 1);
-	// 			if (sectionValue.startsWith(inputstring)) {
-	// 				result.push(section);
-	// 			}
-	// 			continue;
-	// 		}
-	// 		// Check if sectionValue ends with sfieldValue
-	// 		if (sfieldValue[0] === "*") {
-	// 			const inputstring = sfieldValue.substring(1);
-	// 			if (sectionValue.endsWith(inputstring)) {
-	// 				result.push(section);
-	// 			}
-	// 			continue;
-	// 		}
-
-	// 		// Check if sectionValue === sfieldValue
-	// 		if (sectionValue === sfieldValue) {
-	// 			result.push(section);
-	// 		}
-	// 	}
-	// 	return result;
-	// }
-
 	private handleSComparison(querySComparator: any, filteredResult: any): Section[] {
 		const scomparator = Object.keys(querySComparator)[0];
 		const scomparison = querySComparator[scomparator];
