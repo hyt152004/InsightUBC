@@ -1,19 +1,16 @@
 {
-    "title":"SELECT input*string",
-    "input":{
-       "WHERE":{
-          "IS":{
-             "sections_dept":"p*c"
-          }
-       },
-       "OPTIONS":{
-          "COLUMNS":[
-             "sections_dept",
-             "sections_avg"
-          ],
-          "ORDER":"sections_avg"
-       }
-    },
-    "errorExpected":true,
-    "expected": "InsightError"
+	"title": "SELECT input*string",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "*input*string*"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": ["sections_dept", "sections_avg"],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
 }

@@ -71,6 +71,11 @@ export default class QueryValidator {
 	private isValidLogicComparison(filter: any): boolean {
 		const logic = Object.keys(filter)[0];
 		const filterList = filter[logic];
+
+		if (filterList.length === 0) {
+			return false;
+		}
+
 		for (const logicfilter of filterList) {
 			if (!this.isValidWHERE(logicfilter)) {
 				return false;
@@ -163,12 +168,19 @@ export default class QueryValidator {
 	// Validity Functions
 
 	private isValidWildCard(wildcard: string): boolean {
-		for (let i = 1; i < wildcard.length - 1; i++) {
-			const char: string = wildcard[i];
-			if (char === "*") {
+		if (wildcard.length === 0) {
+			return false;
+		}
+
+		const startsWithAsterisk = wildcard[0] === "*";
+		const endsWithAsterisk = wildcard[wildcard.length - 1] === "*";
+
+		for (let i = startsWithAsterisk ? 1 : 0; i < (endsWithAsterisk ? wildcard.length - 1 : wildcard.length); i++) {
+			if (wildcard[i] === "*") {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
