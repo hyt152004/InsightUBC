@@ -149,6 +149,11 @@ export default class QueryValidator {
 		}
 		// check the validity of each column in columns
 		const columns = options[optionsKeys[0]];
+
+		if (!Array.isArray(columns)) {
+			return false;
+		}
+
 		for (const col of columns) {
 			if (this.getValidMkey(col) === "" && this.getValidSkey(col) === "") {
 				return false;
