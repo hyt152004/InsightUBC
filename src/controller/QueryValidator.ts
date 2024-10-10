@@ -72,6 +72,10 @@ export default class QueryValidator {
 		const logic = Object.keys(filter)[0];
 		const filterList = filter[logic];
 
+		if (!Array.isArray(filterList)) {
+			return false;
+		}
+
 		if (filterList.length === 0) {
 			return false;
 		}
@@ -206,7 +210,7 @@ export default class QueryValidator {
 		return "";
 	}
 
-	private isValidIDKey(key: any): boolean {
+	private isValidIDKey(key: string): boolean {
 		const prefix = key.split("_")[0];
 
 		if (this.datasetID === "") {
