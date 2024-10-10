@@ -354,6 +354,7 @@ describe("InsightFacade", function () {
 		it("[valid/twoAsterisks.json] SELECT with two asterisks", checkQuery);
 		it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
 
+		it("[valid/simpleOR.json] SELECT with OR", checkQuery);
 		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
 		it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
 		it("[valid/noResult.json] Query with no result", checkQuery);
