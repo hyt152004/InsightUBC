@@ -356,7 +356,9 @@ describe("InsightFacade", function () {
 		it("[valid/two*.json] SELECT two*", checkQuery); //
 
 		it("[valid/simpleOR.json] SELECT with OR", checkQuery);
+		it("[valid/complexOR.json] SELECT OR with 1 filter", checkQuery);
 		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
+		it("[valid/complexLogic.json] SELECT with complex logic", checkQuery);
 		it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
 		it("[valid/noResult.json] Query with no result", checkQuery);
 		it("[valid/doubleNegation.json] Query with double NOT", checkQuery);
@@ -385,5 +387,6 @@ describe("InsightFacade", function () {
 		it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery); //
 		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
 		it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
+		it("[invalid/invalidOR2.json] Query with invalid OR key", checkQuery);
 	});
 });
