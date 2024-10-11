@@ -1,0 +1,26 @@
+{
+	"title": "SELECT uuid",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_uuid": "101"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_uuid",
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_uuid": "101",
+			"sections_dept": "japn",
+			"sections_avg": 76.8
+		}
+	]
+}

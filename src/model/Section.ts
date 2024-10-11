@@ -11,12 +11,12 @@ export default class Section {
 	private audit: number;
 
 	constructor(data: any) {
-		this.uuid = data.id;
+		this.uuid = data.id.toString();
 		this.id = data.Course;
 		this.title = data.Title;
 		this.instructor = data.Professor;
 		this.dept = data.Subject;
-		this.year = data.Year;
+		this.year = parseInt(data.Year, 10);
 		this.avg = data.Avg;
 		this.pass = data.Pass;
 		this.fail = data.Fail;
