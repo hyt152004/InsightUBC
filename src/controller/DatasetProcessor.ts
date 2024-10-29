@@ -1,7 +1,9 @@
 import JSZip from "jszip";
+import { parse } from "parse5";
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
 import Section from "../model/Section";
 import SectionsDataset from "../model/SectionsDataset";
+
 // import Log from "../../util/Log";
 
 export default class DatasetProcessor {
@@ -40,6 +42,124 @@ export default class DatasetProcessor {
 					return reject(err);
 				});
 		});
+	}
+
+	public async addRoomsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
+		const jszip = new JSZip();
+
+		return new Promise<InsightDataset>((resolve, reject) => {
+			// Load zip content
+			jszip
+				.loadAsync(content, { base64: true })
+				.then(async (zip) => {
+					const indexFile = zip.file("index.htm");
+
+					if (!indexFile) {
+						return reject(new InsightError("index.htm file not found in the ZIP"));
+					}
+
+					const indexContent = await indexFile.async("text");
+
+					const document = parse(indexContent);
+
+					// from index.htm file we find the table
+					const table = this.findTable(document);
+
+					// using the table, we want to traverse tr
+
+					// for each tr, we want to go into the href, find the table of rooms
+					// for each room, print the name (FOR NOW)
+
+					if (!table) {
+						return reject(new InsightError("Table not found in index.htm"));
+					}
+
+					let counter = 0;
+					// Process each table row (tr)
+					for (const tr of table.childNodes) {
+						if (tr.tagName === "tbody") {
+							for (const trr of tr.childNodes) {
+								if (trr.tagName === "tr") {
+									for (const td of trr.childNodes) {
+										if (td.tagName === "td") {
+											for (const attribute of td.attrs) {
+												if (attribute.value.includes("views-field-title")) {
+													for (const a of td.childNodes) {
+														if (a.tagName === "a") {
+															for (const attrs of a.attrs) {
+																if (attrs.name === "href") {
+																	counter += 1;
+
+																	const fileInZip = zip.file(attrs.value.replace(/^\.\//, ""));
+
+																	if (fileInZip) {
+																		const fileContent = await fileInZip.async("text");
+
+																		const buildingDocument = parse(fileContent);
+
+																		const roomTable = this.findTable(buildingDocument);
+
+																		console.log(roomTable);
+
+																		// for (const tr of roomTable.childNodes) {
+																		// 	if (tr.tagName === "tbody") {
+																		// 		for (const trr of tr.childNodes) {
+																		// 			if (trr.tagName === "tr") {
+																		// 				for (const td of trr.childNodes) {
+																		// 					for (const child of td.childNodes) {
+																		// 						console.log(child.value);
+																		// 					}
+																		// 				}
+																		// 			}
+																		// 		}
+																		// 	}
+																		// }
+
+																		console.log(roomTable);
+																	} else {
+																		console.warn(`File not found in ZIP: ${attrs.value}`);
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							console.log(counter);
+							// Assuming room information is in <td> tags within <tr>
+						}
+					}
+
+					// Resolve with placeholder response for now
+					resolve({ id, kind, numRows: 0 });
+				})
+				.catch((err) => {
+					return reject(err);
+				});
+		});
+	}
+
+	private findTable(node: any): any | null {
+		if (node.tagName === "table") {
+			// console.log(node);
+
+			// TODO: think about case when there are multiple tables
+			return node;
+		}
+
+		if (node.childNodes && node.childNodes.length > 0) {
+			for (const child of node.childNodes) {
+				const result = this.findTable(child);
+				if (result) {
+					return result;
+				}
+			}
+		}
+		return null;
 	}
 
 	private async storeToDisk(ds: SectionsDataset): Promise<void> {
