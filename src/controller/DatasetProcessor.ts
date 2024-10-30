@@ -65,72 +65,42 @@ export default class DatasetProcessor {
 					// from index.htm file we find the table
 					const table = this.findTable(document);
 
-					// using the table, we want to traverse tr
-
-					// for each tr, we want to go into the href, find the table of rooms
-					// for each room, print the name (FOR NOW)
-
 					if (!table) {
 						return reject(new InsightError("Table not found in index.htm"));
 					}
 
-					let counter = 0;
-					// Process each table row (tr)
-					for (const tr of table.childNodes) {
-						if (tr.tagName === "tbody") {
-							for (const trr of tr.childNodes) {
-								if (trr.tagName === "tr") {
-									for (const td of trr.childNodes) {
-										if (td.tagName === "td") {
-											for (const attribute of td.attrs) {
-												if (attribute.value.includes("views-field-title")) {
-													for (const a of td.childNodes) {
-														if (a.tagName === "a") {
-															for (const attrs of a.attrs) {
-																if (attrs.name === "href") {
-																	counter += 1;
+					const tbodyBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes([table], "tbody");
+					const trBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(tbodyBuildingNodes, "tr");
+					const tdBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(trBuildingNodes, "td");
+					const tdTitleBuildingNodes = this.findAllInstancesThatIncludeUsingAttrs(tdBuildingNodes, "views-field-title");
 
-																	const fileInZip = zip.file(attrs.value.replace(/^\.\//, ""));
+					const aBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(tdTitleBuildingNodes, "a");
+					const attrsBuildingValues = this.findAllInstancesWithTagnameUsingAttrs(aBuildingNodes, "href");
+					for (const href of attrsBuildingValues) {
+						const fileInZip = zip.file(href.replace(/^\.\//, ""));
 
-																	if (fileInZip) {
-																		const fileContent = await fileInZip.async("text");
+						if (fileInZip) {
+							const fileContent = await fileInZip.async("text");
 
-																		const buildingDocument = parse(fileContent);
+							const buildingDocument = parse(fileContent);
 
-																		const roomTable = this.findTable(buildingDocument);
+							const roomTable = this.findTable(buildingDocument);
 
-																		console.log(roomTable);
+							if (roomTable) {
+								const tbodyRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes([roomTable], "tbody");
+								const trRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes(tbodyRoomNodes, "tr");
+								const tdRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes(trRoomNodes, "td");
 
-																		// for (const tr of roomTable.childNodes) {
-																		// 	if (tr.tagName === "tbody") {
-																		// 		for (const trr of tr.childNodes) {
-																		// 			if (trr.tagName === "tr") {
-																		// 				for (const td of trr.childNodes) {
-																		// 					for (const child of td.childNodes) {
-																		// 						console.log(child.value);
-																		// 					}
-																		// 				}
-																		// 			}
-																		// 		}
-																		// 	}
-																		// }
-
-																		console.log(roomTable);
-																	} else {
-																		console.warn(`File not found in ZIP: ${attrs.value}`);
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
+								for (const tdValue of tdRoomNodes) {
+									for (const v of tdValue.childNodes) {
+										if (v.value) {
+											console.log(v.value);
 										}
 									}
 								}
 							}
-							console.log(counter);
-							// Assuming room information is in <td> tags within <tr>
+						} else {
+							console.warn(`File not found in ZIP: ${href.value}`);
 						}
 					}
 
@@ -160,6 +130,45 @@ export default class DatasetProcessor {
 			}
 		}
 		return null;
+	}
+
+	private findAllInstancesWithTagnameUsingChildNodes(nodes: any, tagName: string) {
+		let result = [];
+		for (const node of nodes) {
+			for (const child of node.childNodes) {
+				if (child.tagName === tagName) {
+					result.push(child);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	private findAllInstancesThatIncludeUsingAttrs(nodes: any, includeString: string) {
+		let result = [];
+		for (const node of nodes) {
+			for (const child of node.href) {
+				if (child.value.includes(includeString)) {
+					result.push(node);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	private findAllInstancesWithTagnameUsingAttrs(nodes: any, includeString: string) {
+		let result = [];
+		for (const node of nodes) {
+			for (const child of node.href) {
+				if (child.name === includeString) {
+					result.push(child.value);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	private async storeToDisk(ds: SectionsDataset): Promise<void> {
