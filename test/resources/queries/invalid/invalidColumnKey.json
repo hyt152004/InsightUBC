@@ -1,18 +1,16 @@
 {
-    "title":"Query with invalid COLUMN key",
-    "input":{
+	"title": "Query with invalid COLUMN key",
+	"input": {
 		"WHERE": {
 			"GT": {
 				"sections_avg": 97
 			}
 		},
 		"OPTIONS": {
-			"COLUMNS": [
-				"sections_hi"
-			],
+			"COLUMNS": ["sections_hi"],
 			"ORDER": "sections_hi"
-        }
-    },
-    "errorExpected":true,
-    "expected":"InsightError"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
 }

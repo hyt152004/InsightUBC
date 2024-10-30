@@ -42,7 +42,15 @@ export default class InsightFacade implements IInsightFacade {
 			}
 
 			// Process the dataset
-			const ds = await dsProcessor.addSectionsDataset(id, content, kind);
+			let ds;
+			if (kind === InsightDatasetKind.Sections) {
+				ds = await dsProcessor.addSectionsDataset(id, content, kind);
+			} else if (kind === InsightDatasetKind.Rooms) {
+				ds = await dsProcessor.addRoomsDataset(id, content, kind);
+			}
+			if (!ds) {
+				throw new InsightError("Invalid InsightDatasetKind");
+			}
 			this.datasetMap.set(ds.id, ds);
 
 			// Get all dataset IDs (from both memory and disk)
