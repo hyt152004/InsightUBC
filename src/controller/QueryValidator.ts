@@ -1,5 +1,7 @@
 export default class QueryValidator {
 	public datasetID: string;
+	private transformationsKeyList = new Set();
+	private hasTransformations = false;
 
 	constructor(id: string) {
 		this.datasetID = id;
@@ -14,14 +16,29 @@ export default class QueryValidator {
 		const parsedQuery = JSON.parse(JSON.stringify(query));
 		const topLevelKeys = Object.keys(parsedQuery);
 
-		// Check if only WHERE and OPTIONS exists in topLevelKeys
-		const maxTopLevelKeys = 2;
-		if (
-			!topLevelKeys.includes("WHERE") ||
-			!topLevelKeys.includes("OPTIONS") ||
-			topLevelKeys.length !== maxTopLevelKeys
-		) {
+		// Check if topLevelKeys include WHERE and OPTIONS
+		const maxTopLevelKeys = 3;
+		if (topLevelKeys.length === maxTopLevelKeys - 1) {
+			if (!topLevelKeys.includes("WHERE") || !topLevelKeys.includes("OPTIONS")) {
+				return false;
+			}
+		} else if (topLevelKeys.length === maxTopLevelKeys) {
+			if (
+				!topLevelKeys.includes("WHERE") ||
+				!topLevelKeys.includes("OPTIONS") ||
+				!topLevelKeys.includes("TRANSFORMATIONS")
+			) {
+				return false;
+			}
+		} else {
 			return false;
+		}
+
+		if (topLevelKeys.includes("TRANSFORMATIONS")) {
+			if (!this.isValidTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS)) {
+				return false;
+			}
+			this.hasTransformations = true;
 		}
 
 		// Check if all keys and fields are valid inside WHERE
@@ -162,18 +179,18 @@ export default class QueryValidator {
 		}
 
 		for (const col of columns) {
-			if (this.getValidMkey(col) === "" && this.getValidSkey(col) === "") {
+			if (this.hasTransformations) {
+				if (!this.transformationsKeyList.has(col)) {
+					return false;
+				}
+			} else if (this.getValidMkey(col) === "" && this.getValidSkey(col) === "") {
 				return false;
 			}
 		}
 
 		// if ORDER exists, check the validity of each key
 		if (optionsKeys.length === maxOptionsKeys) {
-			const orderKeys = options[optionsKeys[1]];
-			if (this.getValidMkey(orderKeys) === "" && this.getValidSkey(orderKeys) === "") {
-				return false;
-			}
-			if (!columns.includes(orderKeys)) {
+			if (!this.isValidSort(options[optionsKeys[1]], columns)) {
 				return false;
 			}
 		}
@@ -181,7 +198,172 @@ export default class QueryValidator {
 		return true;
 	}
 
+	private isValidSort(sort: any, columns: any): boolean {
+		// Single Column
+		if (typeof sort === "string") {
+			// At this point, we are guaranteed all column keys are valid
+			if (!columns.includes(sort)) {
+				return false;
+			}
+		} else {
+			const sortKeys = Object.keys(sort);
+			if (sortKeys.length !== 2 || !sortKeys.includes("dir") || !sortKeys.includes("keys")) {
+				return false;
+			}
+
+			if (sortKeys[0] !== "dir" && sortKeys[1] !== "keys") {
+				return false;
+			}
+
+			if (sort.dir !== "UP" && sort.dir !== "DOWN") {
+				return false;
+			}
+
+			if (!Array.isArray(sort.keys)) {
+				return false;
+			}
+
+			if (sort.keys.length === 0) {
+				return false;
+			}
+
+			for (const key of sort.keys) {
+				if (!columns.includes(key)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	private isValidTRANSFORMATIONS(transformations: any): boolean {
+		const transformationsKeys = Object.keys(transformations);
+
+		const maxTransformationKeys = 2;
+		if (transformationsKeys.length !== maxTransformationKeys) {
+			return false;
+		}
+
+		// Check if TRANSFORMATIONS contains GROUP and APPLY
+		if (!transformationsKeys.includes("GROUP") || !transformationsKeys.includes("APPLY")) {
+			return false;
+		}
+
+		if (!this.isValidGROUP(transformations.GROUP) || !this.isValidAPPLY(transformations.APPLY)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private isValidGROUP(group: any): boolean {
+		if (!Array.isArray(group)) {
+			return false;
+		}
+
+		if (group.length === 0) {
+			return false;
+		}
+
+		for (const key of group) {
+			if (this.getValidMkey(key) === "" && this.getValidSkey(key) === "") {
+				return false;
+			}
+		}
+
+		// Add all group keys to transformation key list
+		for (const key of group) {
+			this.transformationsKeyList.add(key);
+		}
+
+		return true;
+	}
+
+	private isValidAPPLY(apply: any): boolean {
+		if (!Array.isArray(apply)) {
+			return false;
+		}
+
+		const applyKeys = [];
+
+		for (const applyRule of apply) {
+			// Each item in APPLY should only have 1 key
+			if (Object.keys(applyRule).length !== 1) {
+				return false;
+			}
+
+			const applyKey = Object.keys(applyRule)[0];
+
+			if (this.invalidKey(applyKey)) {
+				return false;
+			}
+			const applyBody = applyRule[applyKey];
+
+			// Each APPLY body item should only take 1 APPLYTOKEN
+			if (Object.keys(applyBody).length !== 1) {
+				return false;
+			}
+
+			const applyToken = Object.keys(applyBody)[0];
+			const applyItem = applyBody[applyToken];
+
+			if (!this.isValidApplyToken(applyToken, applyItem)) {
+				return false;
+			}
+
+			applyKeys.push(applyKey);
+		}
+
+		// If apply key list has duplicates
+		if (new Set(applyKeys).size !== applyKeys.length) {
+			return false;
+		}
+
+		// Add all applyKeys to transformation key list
+		for (const key of applyKeys) {
+			this.transformationsKeyList.add(key);
+		}
+
+		return true;
+	}
+
 	// Validity Functions
+	private invalidKey(key: string): boolean {
+		if (key === null) {
+			return true;
+		}
+		if (key.trim() === "") {
+			return true;
+		}
+		if (key.includes("_")) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private isValidApplyToken(token: string, item: string): boolean {
+		if (token !== "MAX" && token !== "MIN" && token !== "AVG" && token !== "COUNT" && token !== "SUM") {
+			return false;
+		}
+
+		// COUNT should accept all keys
+		if (token === "COUNT") {
+			if (this.getValidMkey(item) === "" && this.getValidSkey(item) === "") {
+				return false;
+			}
+		}
+
+		// MAX MIN AVG SUM should accept only numeric keys
+		if (token === "MAX" || token === "MIN" || token === "AVG" || token === "SUM") {
+			if (this.getValidMkey(item) === "") {
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 	private isValidWildCard(wildcard: string): boolean {
 		if (wildcard.length === 0) {

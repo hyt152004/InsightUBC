@@ -1,0 +1,69 @@
+{
+	"title": "valid Order with dir DOWN and keys",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"overallAvg"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"overallAvg"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept"
+			],
+			"APPLY": [
+				{
+					"overallAvg": {
+						"AVG": "sections_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "spph",
+			"overallAvg": 98.98
+		},
+		{
+			"sections_dept": "eece",
+			"overallAvg": 98.75
+		},
+		{
+			"sections_dept": "nurs",
+			"overallAvg": 98.14
+		},
+		{
+			"sections_dept": "cnps",
+			"overallAvg": 98.04
+		},
+		{
+			"sections_dept": "epse",
+			"overallAvg": 98.01
+		},
+		{
+			"sections_dept": "crwr",
+			"overallAvg": 98
+		},
+		{
+			"sections_dept": "math",
+			"overallAvg": 97.9
+		},
+		{
+			"sections_dept": "educ",
+			"overallAvg": 97.5
+		}
+	]
+}

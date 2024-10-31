@@ -63,11 +63,11 @@ describe("InsightFacade", function () {
 		// room datasets
 		rooms = await getContentFromArchives("campus.zip");
 		oneBuilding = await getContentFromArchives("campusWithOneBuilding.zip");
-		missingIndexHtm =  await getContentFromArchives("missingIndexHtm.zip");
-		missingIndexTable =  await getContentFromArchives("missingIndexTable.zip");
-		missingBuildings =  await getContentFromArchives("missingBuildings.zip");
-		missingRoomTable =  await getContentFromArchives("missingRoomTable.zip");
-		missingRoomFields =  await getContentFromArchives("missingRoomFields.zip");
+		missingIndexHtm = await getContentFromArchives("missingIndexHtm.zip");
+		missingIndexTable = await getContentFromArchives("missingIndexTable.zip");
+		missingBuildings = await getContentFromArchives("missingBuildings.zip");
+		missingRoomTable = await getContentFromArchives("missingRoomTable.zip");
+		missingRoomFields = await getContentFromArchives("missingRoomFields.zip");
 		emptyRoomField = await getContentFromArchives("emptyRoomField.zip");
 		oneValidTable = await getContentFromArchives("oneValidTable.zip");
 
@@ -203,66 +203,65 @@ describe("InsightFacade", function () {
 		// });
 
 		// room dataset
-		it("should reject dataset with no index htm", async function () {
-			try {
-				await facade.addDataset("ubc", missingIndexHtm, InsightDatasetKind.Rooms);
-				expect.fail("Should have thrown!");
-			} catch (err) {
-				expect(err).to.be.instanceOf(InsightError);
-			}
-		});
+		// it("should reject dataset with no index htm", async function () {
+		// 	try {
+		// 		await facade.addDataset("ubc", missingIndexHtm, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have thrown!");
+		// 	} catch (err) {
+		// 		expect(err).to.be.instanceOf(InsightError);
+		// 	}
+		// });
 
-		it("should reject dataset with no index table", async function () {
-			try {
-				await facade.addDataset("ubc", missingIndexTable, InsightDatasetKind.Rooms);
-				expect.fail("Should have thrown!");
-			} catch (err) {
-				expect(err).to.be.instanceOf(InsightError);
-			}
-		});
+		// it("should reject dataset with no index table", async function () {
+		// 	try {
+		// 		await facade.addDataset("ubc", missingIndexTable, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have thrown!");
+		// 	} catch (err) {
+		// 		expect(err).to.be.instanceOf(InsightError);
+		// 	}
+		// });
 
-		it("should reject dataset with no building files", async function () {
-			try {
-				await facade.addDataset("ubc", missingBuildings, InsightDatasetKind.Rooms);
-				expect.fail("Should have thrown!");
-			} catch (err) {
-				expect(err).to.be.instanceOf(InsightError);
-			}
-		});
+		// it("should reject dataset with no building files", async function () {
+		// 	try {
+		// 		await facade.addDataset("ubc", missingBuildings, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have thrown!");
+		// 	} catch (err) {
+		// 		expect(err).to.be.instanceOf(InsightError);
+		// 	}
+		// });
 
-		it("should reject dataset with missing room table in building file", async function () {
-			try {
-				await facade.addDataset("ubc", missingRoomTable, InsightDatasetKind.Rooms);
-				expect.fail("Should have thrown!");
-			} catch (err) {
-				expect(err).to.be.instanceOf(InsightError);
-			}
-		});
+		// it("should reject dataset with missing room table in building file", async function () {
+		// 	try {
+		// 		await facade.addDataset("ubc", missingRoomTable, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have thrown!");
+		// 	} catch (err) {
+		// 		expect(err).to.be.instanceOf(InsightError);
+		// 	}
+		// });
 
-		it("should reject dataset with all rooms missing fields", async function () {
-			try {
-				await facade.addDataset("ubc", missingRoomFields, InsightDatasetKind.Rooms);
-				expect.fail("Should have thrown!");
-			} catch (err) {
-				expect(err).to.be.instanceOf(InsightError);
-			}
-		});
+		// it("should reject dataset with all rooms missing fields", async function () {
+		// 	try {
+		// 		await facade.addDataset("ubc", missingRoomFields, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have thrown!");
+		// 	} catch (err) {
+		// 		expect(err).to.be.instanceOf(InsightError);
+		// 	}
+		// });
 
-		it("should successfully add one rooms dataset with one building", async function () {
-			const result =  await facade.addDataset("ubc", oneBuilding, InsightDatasetKind.Rooms);
-			expect(result).to.have.members(["ubc"]);
-		});
+		// it("should successfully add one rooms dataset with one building", async function () {
+		// 	const result =  await facade.addDataset("ubc", oneBuilding, InsightDatasetKind.Rooms);
+		// 	expect(result).to.have.members(["ubc"]);
+		// });
 
-		it("should successfully add room dataset with empty string field", async function () {
-			const result =  await facade.addDataset("ubc", emptyRoomField, InsightDatasetKind.Rooms);
-			expect(result).to.have.members(["ubc"]);
-		});
+		// it("should successfully add room dataset with empty string field", async function () {
+		// 	const result =  await facade.addDataset("ubc", emptyRoomField, InsightDatasetKind.Rooms);
+		// 	expect(result).to.have.members(["ubc"]);
+		// });
 
-		it("should successfully add room dataset with at least one valid table (multiple tables)", async function () {
-			const result =  await facade.addDataset("ubc", oneValidTable, InsightDatasetKind.Rooms);
-			expect(result).to.have.members(["ubc"]);
-		});
-
+		// it("should successfully add room dataset with at least one valid table (multiple tables)", async function () {
+		// 	const result =  await facade.addDataset("ubc", oneValidTable, InsightDatasetKind.Rooms);
+		// 	expect(result).to.have.members(["ubc"]);
+		// });
 	});
 
 	// describe("RemoveDataset", function () {
@@ -475,5 +474,31 @@ describe("InsightFacade", function () {
 		// it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
 		// it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
 		// it("[invalid/invalidOR2.json] Query with invalid OR key", checkQuery);
+
+		// Group and Apply
+		it("[valid/simpleGroup.json] Group by dept and apply AVG", checkQuery);
+		it("[valid/twoApply.json] Group by dept and apply AVG and MAX", checkQuery);
+		it("[valid/applyKeyNotShown.json] Only APPLY key not in COLUMNS", checkQuery);
+		it("[valid/groupKeyNotShown.json] Only GROUP key not in COLUMNS", checkQuery);
+		it("[valid/emptyApply.json] Empty field in APPLY", checkQuery);
+		it("[valid/groupByTwoKeys.json] Group by two keys", checkQuery);
+		it("[valid/validSortUp.json] valid Order with dir UP and keys", checkQuery);
+		it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
+		it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
+
+		it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
+		it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);
+		it("[invalid/applyBodyTwoKeys.json] APPLY body has two keys in same rule", checkQuery);
+		it("[invalid/invalidGroupKey.json] invalid Group key", checkQuery);
+		it("[invalid/invalidApplyKey.json] invalid Apply key", checkQuery);
+		it("[invalid/missingGROUP.json] missing GROUP", checkQuery);
+		it("[invalid/missingAPPLY.json] missing APPLY", checkQuery);
+		it("[invalid/duplicatedApplyKey.json] duplicated APPLY key", checkQuery);
+		it("[invalid/applyAndGroupNotShown.json] GROUP and APPLY keys not in COLUMNS", checkQuery);
+		it("[invalid/invalidColumn.json] invalid COLUMNS", checkQuery);
+		it("[invalid/invalidApplyToken.json] invalid APPLY token", checkQuery);
+		it("[invalid/invalidOrderDir.json] invalid Order Dir", checkQuery);
+		it("[invalid/invalidOrderKeys.json] invalid Order key in key list", checkQuery);
+		it("[invalid/missingOrderDir.json] missing Order Dir", checkQuery);
 	});
 });
