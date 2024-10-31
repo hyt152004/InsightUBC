@@ -143,9 +143,11 @@ export default class RoomProcessor {
 			const addressEncoded = encodeURIComponent(address);
 
 			const geolocation = await this.getGeolocation(addressEncoded);
+
 			const lat = geolocation.lat;
 			const lon = geolocation.lon;
 			this.validateType(typeof lat, "number", "lat is not a number");
+			this.validateType(typeof lon, "number", "lon is not a number");
 
 			const href = findAllInstancesWithTagnameUsingAttrs(fullnameA, "href")[0];
 			this.validateType(typeof href, "string", "href is not a string");
