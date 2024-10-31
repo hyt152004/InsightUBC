@@ -1,4 +1,5 @@
-import DatasetProcessor from "./DatasetProcessor";
+import sectionProcessor from "./SectionProcessor";
+import roomProcessor from "./RoomProcessor";
 import {
 	IInsightFacade,
 	InsightDataset,
@@ -22,7 +23,8 @@ export default class InsightFacade implements IInsightFacade {
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const fs = require("fs-extra");
 		const filePath = "./data/" + id + ".json";
-		const dsProcessor = new DatasetProcessor();
+		const sectionsProcessor = new sectionProcessor();
+		const roomsProcessor = new roomProcessor();
 
 		try {
 			// Check if the ID is valid
@@ -44,9 +46,9 @@ export default class InsightFacade implements IInsightFacade {
 			// Process the dataset
 			let ds;
 			if (kind === InsightDatasetKind.Sections) {
-				ds = await dsProcessor.addSectionsDataset(id, content, kind);
+				ds = await sectionsProcessor.addSectionsDataset(id, content, kind);
 			} else if (kind === InsightDatasetKind.Rooms) {
-				ds = await dsProcessor.addRoomsDataset(id, content, kind);
+				ds = await roomsProcessor.addRoomsDataset(id, content, kind);
 			}
 			if (!ds) {
 				throw new InsightError("Invalid InsightDatasetKind");

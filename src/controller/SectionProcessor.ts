@@ -1,12 +1,10 @@
 import JSZip from "jszip";
-import { parse } from "parse5";
+
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
 import Section from "../model/Section";
 import SectionsDataset from "../model/SectionsDataset";
 
-// import Log from "../../util/Log";
-
-export default class DatasetProcessor {
+export default class SectionProcessor {
 	public async addSectionsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
 		const jszip = new JSZip();
 
@@ -42,133 +40,6 @@ export default class DatasetProcessor {
 					return reject(err);
 				});
 		});
-	}
-
-	public async addRoomsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
-		const jszip = new JSZip();
-
-		return new Promise<InsightDataset>((resolve, reject) => {
-			// Load zip content
-			jszip
-				.loadAsync(content, { base64: true })
-				.then(async (zip) => {
-					const indexFile = zip.file("index.htm");
-
-					if (!indexFile) {
-						return reject(new InsightError("index.htm file not found in the ZIP"));
-					}
-
-					const indexContent = await indexFile.async("text");
-
-					const document = parse(indexContent);
-
-					// from index.htm file we find the table
-					const table = this.findTable(document);
-
-					if (!table) {
-						return reject(new InsightError("Table not found in index.htm"));
-					}
-
-					const tbodyBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes([table], "tbody");
-					const trBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(tbodyBuildingNodes, "tr");
-					const tdBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(trBuildingNodes, "td");
-					const tdTitleBuildingNodes = this.findAllInstancesThatIncludeUsingAttrs(tdBuildingNodes, "views-field-title");
-
-					const aBuildingNodes = this.findAllInstancesWithTagnameUsingChildNodes(tdTitleBuildingNodes, "a");
-					const attrsBuildingValues = this.findAllInstancesWithTagnameUsingAttrs(aBuildingNodes, "href");
-					for (const href of attrsBuildingValues) {
-						const fileInZip = zip.file(href.replace(/^\.\//, ""));
-
-						if (fileInZip) {
-							const fileContent = await fileInZip.async("text");
-
-							const buildingDocument = parse(fileContent);
-
-							const roomTable = this.findTable(buildingDocument);
-
-							if (roomTable) {
-								const tbodyRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes([roomTable], "tbody");
-								const trRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes(tbodyRoomNodes, "tr");
-								const tdRoomNodes = this.findAllInstancesWithTagnameUsingChildNodes(trRoomNodes, "td");
-
-								for (const tdValue of tdRoomNodes) {
-									for (const v of tdValue.childNodes) {
-										if (v.value) {
-											console.log(v.value);
-										}
-									}
-								}
-							}
-						} else {
-							console.warn(`File not found in ZIP: ${href.value}`);
-						}
-					}
-
-					// Resolve with placeholder response for now
-					resolve({ id, kind, numRows: 0 });
-				})
-				.catch((err) => {
-					return reject(err);
-				});
-		});
-	}
-
-	private findTable(node: any): any | null {
-		if (node.tagName === "table") {
-			// console.log(node);
-
-			// TODO: think about case when there are multiple tables
-			return node;
-		}
-
-		if (node.childNodes && node.childNodes.length > 0) {
-			for (const child of node.childNodes) {
-				const result = this.findTable(child);
-				if (result) {
-					return result;
-				}
-			}
-		}
-		return null;
-	}
-
-	private findAllInstancesWithTagnameUsingChildNodes(nodes: any, tagName: string) {
-		let result = [];
-		for (const node of nodes) {
-			for (const child of node.childNodes) {
-				if (child.tagName === tagName) {
-					result.push(child);
-				}
-			}
-		}
-
-		return result;
-	}
-
-	private findAllInstancesThatIncludeUsingAttrs(nodes: any, includeString: string) {
-		let result = [];
-		for (const node of nodes) {
-			for (const child of node.href) {
-				if (child.value.includes(includeString)) {
-					result.push(node);
-				}
-			}
-		}
-
-		return result;
-	}
-
-	private findAllInstancesWithTagnameUsingAttrs(nodes: any, includeString: string) {
-		let result = [];
-		for (const node of nodes) {
-			for (const child of node.href) {
-				if (child.name === includeString) {
-					result.push(child.value);
-				}
-			}
-		}
-
-		return result;
 	}
 
 	private async storeToDisk(ds: SectionsDataset): Promise<void> {
