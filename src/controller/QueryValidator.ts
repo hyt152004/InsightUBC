@@ -240,6 +240,10 @@ export default class QueryValidator {
 		if (!Array.isArray(group) || group.length === 0) {
 			return false;
 		}
+		if (this.datasetKind === "") {
+			this.datasetKind = setDatasetKindHelper(group[0]);
+		}
+
 		for (const key of group) {
 			if (this.datasetKind === "sectionKind") {
 				if (this.getValidSectionMkey(key) === "" && this.getValidSectionSkey(key) === "") {

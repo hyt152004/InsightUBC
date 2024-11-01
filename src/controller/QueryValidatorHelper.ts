@@ -125,7 +125,17 @@ export function setDatasetKindHelper(column: string): string {
 		return "roomKind";
 	} else if (column.includes("seats") || column.includes("type") || column.includes("furniture")) {
 		return "roomKind";
-	} else {
+	} else if (column.includes("avg") || column.includes("pass") || column.includes("fail") || column.includes("audit")) {
+		return "sectionKind";
+	} else if (
+		column.includes("year") ||
+		column.includes("dept") ||
+		column.includes("id") ||
+		column.includes("instructor")
+	) {
+		return "sectionKind";
+	} else if (column.includes("title") || column.includes("uuid")) {
 		return "sectionKind";
 	}
+	return "";
 }
