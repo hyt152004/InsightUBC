@@ -478,5 +478,32 @@ describe("InsightFacade", function () {
 		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
 		it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
 		it("[invalid/invalidOR2.json] Query with invalid OR key", checkQuery);
+
+		// Group and Apply
+		it("[valid/simpleGroup.json] Group by dept and apply AVG", checkQuery);
+		it("[valid/twoApply.json] Group by dept and apply AVG and MAX", checkQuery);
+		it("[valid/applyKeyNotShown.json] Only APPLY key not in COLUMNS", checkQuery);
+		it("[valid/groupKeyNotShown.json] Only GROUP key not in COLUMNS", checkQuery);
+		it("[valid/emptyApply.json] Empty field in APPLY", checkQuery);
+		it("[valid/groupByTwoKeys.json] Group by two keys", checkQuery);
+		it("[valid/validSortUp.json] valid Order with dir UP and keys", checkQuery);
+		it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
+		it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
+		it("[valid/complexRoom.json] Group and apply on Room dataset", checkQuery);
+
+		it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
+		it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);
+		it("[invalid/applyBodyTwoKeys.json] APPLY body has two keys in same rule", checkQuery);
+		it("[invalid/invalidGroupKey.json] invalid Group key", checkQuery);
+		it("[invalid/invalidApplyKey.json] invalid Apply key", checkQuery);
+		it("[invalid/missingGROUP.json] missing GROUP", checkQuery);
+		it("[invalid/missingAPPLY.json] missing APPLY", checkQuery);
+		it("[invalid/duplicatedApplyKey.json] duplicated APPLY key", checkQuery);
+		it("[invalid/applyAndGroupNotShown.json] GROUP and APPLY keys not in COLUMNS", checkQuery);
+		it("[invalid/invalidColumn.json] invalid COLUMNS", checkQuery);
+		it("[invalid/invalidApplyToken.json] invalid APPLY token", checkQuery);
+		it("[invalid/invalidOrderDir.json] invalid Order Dir", checkQuery);
+		it("[invalid/invalidOrderKeys.json] invalid Order key in key list", checkQuery);
+		it("[invalid/missingOrderDir.json] missing Order Dir", checkQuery);
 	});
 });

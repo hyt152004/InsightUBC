@@ -1,0 +1,64 @@
+{
+	"title": "Group by dept and apply SUM",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sumOfAvg"
+			],
+			"ORDER": "sumOfAvg"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept"
+			],
+			"APPLY": [
+				{
+					"sumOfAvg": {
+						"SUM": "sections_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "educ",
+			"sumOfAvg": 97.5
+		},
+		{
+			"sections_dept": "crwr",
+			"sumOfAvg": 196
+		},
+		{
+			"sections_dept": "eece",
+			"sumOfAvg": 197.5
+		},
+		{
+			"sections_dept": "spph",
+			"sumOfAvg": 197.96
+		},
+		{
+			"sections_dept": "cnps",
+			"sumOfAvg": 294.13
+		},
+		{
+			"sections_dept": "math",
+			"sumOfAvg": 783.2
+		},
+		{
+			"sections_dept": "nurs",
+			"sumOfAvg": 1177.72
+		},
+		{
+			"sections_dept": "epse",
+			"sumOfAvg": 1862.24
+		}
+	]
+}
