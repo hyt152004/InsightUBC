@@ -31,7 +31,6 @@ export default class QueryEngine {
 		if (filteredResult.length > maximumResults) {
 			throw new ResultTooLargeError("Result is greater than 5000 entries");
 		} else {
-			console.log(filteredResult)
 			return filteredResult;
 		}
 	}
