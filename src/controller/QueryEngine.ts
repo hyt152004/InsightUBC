@@ -31,10 +31,6 @@ export default class QueryEngine {
 		if (filteredResult.length > maximumResults) {
 			throw new ResultTooLargeError("Result is greater than 5000 entries");
 		} else {
-<<<<<<< HEAD
-			console.log(filteredResult);
-=======
->>>>>>> 7cc46afaee03244f58f2c825d0513eac18ca4ed2
 			return filteredResult;
 		}
 	}
@@ -236,7 +232,7 @@ export default class QueryEngine {
 						return -1;
 					} else if (a[key] < b[key]) {
 						return 1;
-					} 
+					}
 				}
 				return 0;
 			});
