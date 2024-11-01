@@ -200,12 +200,24 @@ export default class InsightFacade implements IInsightFacade {
 
 		const readJsonPromises = files.map(async (file) => {
 			const jsonObj = await fs.readJson("./data/" + file);
-			const dataset: InsightDataset = {
-				id: file.replace(".json", ""),
-				kind: InsightDatasetKind.Sections,
-				numRows: jsonObj.length,
-			};
-			result.push(dataset);
+
+			const id = file.replace(".json", "");
+
+			if (jsonObj[0].hasOwnProperty(id + "_address")) {
+				const dataset: InsightDataset = {
+					id: id,
+					kind: InsightDatasetKind.Rooms,
+					numRows: jsonObj.length,
+				};
+				result.push(dataset);
+			} else {
+				const dataset: InsightDataset = {
+					id: id,
+					kind: InsightDatasetKind.Sections,
+					numRows: jsonObj.length,
+				};
+				result.push(dataset);
+			}
 		});
 
 		await Promise.all(readJsonPromises);
