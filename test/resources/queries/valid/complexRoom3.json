@@ -1,0 +1,73 @@
+{
+	"title": "Group and apply on Room dataset and order by two keys",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"rooms_furniture": "*Tables*"
+					}
+				},
+				{
+					"GT": {
+						"rooms_seats": 300
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_href",
+				"countOfShortName",
+				"sumLon"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"sumLon",
+					"rooms_href"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_href"
+			],
+			"APPLY": [
+				{
+					"sumLon": {
+						"SUM": "rooms_lon"
+					}
+				},
+				{
+					"countOfShortName": {
+						"COUNT": "rooms_shortname"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/OSBO-A",
+			"countOfShortName": 1,
+			"sumLon": -123.24
+		},
+		{
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSC-1002",
+			"countOfShortName": 1,
+			"sumLon": -123.24
+		},
+		{
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSC-1001",
+			"countOfShortName": 1,
+			"sumLon": -123.24
+		},
+		{
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HEBB-100",
+			"countOfShortName": 1,
+			"sumLon": -123.25
+		}
+	]
+}
