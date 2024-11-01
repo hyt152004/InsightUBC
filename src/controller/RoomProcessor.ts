@@ -44,7 +44,7 @@ export default class RoomProcessor {
 						return reject(new InsightError("Table not found in index.htm"));
 					}
 
-					const allRoomsOfAllBuilding = await this.iterateEachBuildingRow(validTable, zip);
+					const allRoomsOfAllBuilding = await this.iterateEachBuildingRow(validTable, zip, id);
 					if (allRoomsOfAllBuilding.length === 0) {
 						return reject(new InsightError("Not a single valid room found"));
 					}
@@ -58,7 +58,7 @@ export default class RoomProcessor {
 		});
 	}
 
-	private async iterateEachBuildingRow(table: object, zip: JSZip): Promise<Room[]> {
+	private async iterateEachBuildingRow(table: object, zip: JSZip, id: string): Promise<Room[]> {
 		let allRoomsOfAllBuilding: Room[] = [];
 
 		const tbodyBuildingNodes = findAllInstancesWithTagnameUsingChildNodes([table], "tbody");
@@ -79,7 +79,7 @@ export default class RoomProcessor {
 						return [];
 					}
 
-					return this.generateListOfRooms(validTable, fullname, shortname, address, lat, lon, href);
+					return this.generateListOfRooms(validTable, fullname, shortname, address, lat, lon, href, id);
 				} else {
 					return [];
 				}
@@ -164,7 +164,8 @@ export default class RoomProcessor {
 		address: string,
 		lat: number,
 		lon: number,
-		href: string
+		href: string,
+		id: string
 	): Room[] {
 		const allRooms = [];
 
@@ -175,7 +176,7 @@ export default class RoomProcessor {
 				const tdRoomNodesForThisRow = findAllInstancesWithTagnameUsingChildNodes([trRoomNode], "td");
 
 				try {
-					const newRoom = this.generateRoom(tdRoomNodesForThisRow, fname, sname, address, lat, lon, href);
+					const newRoom = this.generateRoom(tdRoomNodesForThisRow, fname, sname, address, lat, lon, href, id);
 					allRooms.push(newRoom);
 				} catch {
 					// skip this room as it's missing keys
@@ -194,7 +195,8 @@ export default class RoomProcessor {
 		address: string,
 		lat: number,
 		lon: number,
-		href: string
+		href: string,
+		id: string
 	): Room {
 		const [number, seats, type, furniture] = this.extractRoomInfo(tdRoomNodesForThisRow);
 
@@ -211,8 +213,7 @@ export default class RoomProcessor {
 			furniture: furniture,
 			href: href,
 		});
-
-		return newRoom;
+		return newRoom.getPrefixedFields(id) as Room;
 	}
 
 	private extractRoomInfo(tdRoomNodesForThisRow: any): [string, number, string, string] {
@@ -257,66 +258,38 @@ export default class RoomProcessor {
 		return temp;
 	}
 
-	private async getGeolocation(encodedAddress: string): Promise<any> {
-		const OKstatus = 200;
-
-		// Check if encodedAddress is undefined or empty
-		if (!encodedAddress) {
-			return Promise.reject("Encoded address is required."); // Reject the promise with an error message
+	private async getGeolocation(address: string): Promise<any> {
+		if (!address || address.trim() === "") {
+			return Promise.reject("An address must be provided.");
 		}
 
-		const baseUrl = `http://cs310.students.cs.ubc.ca:11316/api/v1/project_team159/`;
-		const url = `${baseUrl}${encodedAddress}`;
+		const apiBaseUrl = `http://cs310.students.cs.ubc.ca:11316/api/v1/project_team159/`;
+		const requestUrl = `${apiBaseUrl}${address}`;
 
-		return new Promise((resolve, reject) => {
-			http
-				.get(url, (res) => {
-					const { statusCode } = res;
-					const contentType = res.headers["content-type"];
+		try {
+			return await new Promise((resolve, reject) => {
+				http
+					.get(requestUrl, (res) => {
+						let responseData = "";
 
-					if (!contentType) {
-						reject(new Error("No content-type received."));
-						return;
-					}
+						res.on("data", (chunk) => {
+							responseData += chunk;
+						});
 
-					if (statusCode !== OKstatus) {
-						reject(new Error("Request Failed.\n" + `Status Code: ${statusCode}`));
-						res.resume(); // Consume response data to free up memory
-						return;
-					} else if (!/^application\/json/.test(contentType)) {
-						reject(new Error("Invalid content-type.\n" + `Expected application/json but received ${contentType}`));
-						res.resume();
-						return;
-					}
-
-					this.handleResponse(res, resolve, reject);
-				})
-				.on("error", (e) => {
-					reject(new Error(`Got error: ${e.message}`));
-				});
-		});
-	}
-
-	private handleResponse(
-		res: http.IncomingMessage,
-		resolve: (value: any) => void,
-		reject: (reason?: any) => void
-	): void {
-		res.setEncoding("utf8");
-		let rawData = "";
-
-		res.on("data", (chunk) => {
-			rawData += chunk;
-		});
-
-		res.on("end", () => {
-			try {
-				const parsedData = JSON.parse(rawData);
-				resolve(parsedData);
-			} catch (e) {
-				reject(new Error("Error parsing JSON: " + e));
-			}
-		});
+						res.on("end", () => {
+							try {
+								const parsedData = JSON.parse(responseData);
+								resolve(parsedData);
+							} catch (parseError: any) {
+								reject(`Parsing error: ${parseError.message}`);
+							}
+						});
+					})
+					.on("error", (err) => reject(`Request error: ${err.message}`));
+			});
+		} catch (error) {
+			return Promise.reject(`Unexpected error: ${error}`);
+		}
 	}
 
 	private findTables(node: any): any[] {

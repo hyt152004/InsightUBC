@@ -45,6 +45,8 @@ describe("InsightFacade", function () {
 	let missingRoomFields: string;
 	let emptyRoomField: string;
 	let oneValidTable: string;
+	let invalidBuildingAddress: string;
+	let oneValidAndOneInvalidAddress: string;
 
 	before(async function () {
 		// This block runs once and loads the datasets.
@@ -70,6 +72,8 @@ describe("InsightFacade", function () {
 		missingRoomFields = await getContentFromArchives("missingRoomFields.zip");
 		emptyRoomField = await getContentFromArchives("emptyRoomField.zip");
 		oneValidTable = await getContentFromArchives("oneValidTable.zip");
+		invalidBuildingAddress = await getContentFromArchives("wrongAddress.zip");
+		oneValidAndOneInvalidAddress = await getContentFromArchives("oneValidAddress.zip");
 
 		// Just in case there is anything hanging around from a previous run of the test suite
 		await clearDisk();
@@ -250,6 +254,20 @@ describe("InsightFacade", function () {
 			} catch (err) {
 				expect(err).to.be.instanceOf(InsightError);
 			}
+		});
+
+		it("should reject dataset with invalid address aka invalid geolocation (only one building file exists)", async function () {
+			try {
+				await facade.addDataset("ubc", invalidBuildingAddress, InsightDatasetKind.Rooms);
+				expect.fail("Should have thrown!");
+			} catch (err) {
+				expect(err).to.be.instanceOf(InsightError);
+			}
+		});
+
+		it("should add dataset with one invalid address and one valid building)", async function () {
+			const result = await facade.addDataset("ubc", oneValidAndOneInvalidAddress, InsightDatasetKind.Rooms);
+			expect(result).to.have.members(["ubc"]);
 		});
 
 		it("should successfully add one rooms dataset with one building", async function () {
