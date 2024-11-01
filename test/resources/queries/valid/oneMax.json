@@ -1,0 +1,1124 @@
+{
+	"title": "Group by room name and find max seats",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"maxSeats"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"maxSeats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_name"
+			],
+			"APPLY": [
+				{
+					"maxSeats": {
+						"MAX": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"maxSeats": 503
+		},
+		{
+			"maxSeats": 442
+		},
+		{
+			"maxSeats": 426
+		},
+		{
+			"maxSeats": 375
+		},
+		{
+			"maxSeats": 350
+		},
+		{
+			"maxSeats": 350
+		},
+		{
+			"maxSeats": 350
+		},
+		{
+			"maxSeats": 325
+		},
+		{
+			"maxSeats": 299
+		},
+		{
+			"maxSeats": 299
+		},
+		{
+			"maxSeats": 299
+		},
+		{
+			"maxSeats": 280
+		},
+		{
+			"maxSeats": 275
+		},
+		{
+			"maxSeats": 265
+		},
+		{
+			"maxSeats": 260
+		},
+		{
+			"maxSeats": 257
+		},
+		{
+			"maxSeats": 250
+		},
+		{
+			"maxSeats": 240
+		},
+		{
+			"maxSeats": 236
+		},
+		{
+			"maxSeats": 228
+		},
+		{
+			"maxSeats": 225
+		},
+		{
+			"maxSeats": 224
+		},
+		{
+			"maxSeats": 205
+		},
+		{
+			"maxSeats": 200
+		},
+		{
+			"maxSeats": 200
+		},
+		{
+			"maxSeats": 190
+		},
+		{
+			"maxSeats": 190
+		},
+		{
+			"maxSeats": 188
+		},
+		{
+			"maxSeats": 187
+		},
+		{
+			"maxSeats": 183
+		},
+		{
+			"maxSeats": 181
+		},
+		{
+			"maxSeats": 181
+		},
+		{
+			"maxSeats": 167
+		},
+		{
+			"maxSeats": 160
+		},
+		{
+			"maxSeats": 160
+		},
+		{
+			"maxSeats": 155
+		},
+		{
+			"maxSeats": 154
+		},
+		{
+			"maxSeats": 150
+		},
+		{
+			"maxSeats": 150
+		},
+		{
+			"maxSeats": 150
+		},
+		{
+			"maxSeats": 150
+		},
+		{
+			"maxSeats": 144
+		},
+		{
+			"maxSeats": 136
+		},
+		{
+			"maxSeats": 131
+		},
+		{
+			"maxSeats": 125
+		},
+		{
+			"maxSeats": 123
+		},
+		{
+			"maxSeats": 120
+		},
+		{
+			"maxSeats": 120
+		},
+		{
+			"maxSeats": 120
+		},
+		{
+			"maxSeats": 120
+		},
+		{
+			"maxSeats": 114
+		},
+		{
+			"maxSeats": 114
+		},
+		{
+			"maxSeats": 112
+		},
+		{
+			"maxSeats": 108
+		},
+		{
+			"maxSeats": 108
+		},
+		{
+			"maxSeats": 106
+		},
+		{
+			"maxSeats": 102
+		},
+		{
+			"maxSeats": 100
+		},
+		{
+			"maxSeats": 100
+		},
+		{
+			"maxSeats": 100
+		},
+		{
+			"maxSeats": 99
+		},
+		{
+			"maxSeats": 99
+		},
+		{
+			"maxSeats": 94
+		},
+		{
+			"maxSeats": 94
+		},
+		{
+			"maxSeats": 94
+		},
+		{
+			"maxSeats": 90
+		},
+		{
+			"maxSeats": 90
+		},
+		{
+			"maxSeats": 90
+		},
+		{
+			"maxSeats": 88
+		},
+		{
+			"maxSeats": 84
+		},
+		{
+			"maxSeats": 80
+		},
+		{
+			"maxSeats": 80
+		},
+		{
+			"maxSeats": 80
+		},
+		{
+			"maxSeats": 80
+		},
+		{
+			"maxSeats": 78
+		},
+		{
+			"maxSeats": 78
+		},
+		{
+			"maxSeats": 78
+		},
+		{
+			"maxSeats": 78
+		},
+		{
+			"maxSeats": 76
+		},
+		{
+			"maxSeats": 75
+		},
+		{
+			"maxSeats": 74
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 70
+		},
+		{
+			"maxSeats": 70
+		},
+		{
+			"maxSeats": 70
+		},
+		{
+			"maxSeats": 68
+		},
+		{
+			"maxSeats": 68
+		},
+		{
+			"maxSeats": 68
+		},
+		{
+			"maxSeats": 68
+		},
+		{
+			"maxSeats": 66
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 65
+		},
+		{
+			"maxSeats": 63
+		},
+		{
+			"maxSeats": 62
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 60
+		},
+		{
+			"maxSeats": 58
+		},
+		{
+			"maxSeats": 56
+		},
+		{
+			"maxSeats": 55
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 54
+		},
+		{
+			"maxSeats": 53
+		},
+		{
+			"maxSeats": 51
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 48
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 47
+		},
+		{
+			"maxSeats": 45
+		},
+		{
+			"maxSeats": 44
+		},
+		{
+			"maxSeats": 44
+		},
+		{
+			"maxSeats": 44
+		},
+		{
+			"maxSeats": 44
+		},
+		{
+			"maxSeats": 43
+		},
+		{
+			"maxSeats": 42
+		},
+		{
+			"maxSeats": 42
+		},
+		{
+			"maxSeats": 42
+		},
+		{
+			"maxSeats": 41
+		},
+		{
+			"maxSeats": 41
+		},
+		{
+			"maxSeats": 41
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 39
+		},
+		{
+			"maxSeats": 39
+		},
+		{
+			"maxSeats": 38
+		},
+		{
+			"maxSeats": 37
+		},
+		{
+			"maxSeats": 37
+		},
+		{
+			"maxSeats": 36
+		},
+		{
+			"maxSeats": 36
+		},
+		{
+			"maxSeats": 35
+		},
+		{
+			"maxSeats": 35
+		},
+		{
+			"maxSeats": 34
+		},
+		{
+			"maxSeats": 34
+		},
+		{
+			"maxSeats": 33
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 32
+		},
+		{
+			"maxSeats": 31
+		},
+		{
+			"maxSeats": 31
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 30
+		},
+		{
+			"maxSeats": 29
+		},
+		{
+			"maxSeats": 29
+		},
+		{
+			"maxSeats": 28
+		},
+		{
+			"maxSeats": 28
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 27
+		},
+		{
+			"maxSeats": 26
+		},
+		{
+			"maxSeats": 26
+		},
+		{
+			"maxSeats": 26
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 25
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 24
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 22
+		},
+		{
+			"maxSeats": 21
+		},
+		{
+			"maxSeats": 21
+		},
+		{
+			"maxSeats": 21
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 20
+		},
+		{
+			"maxSeats": 18
+		},
+		{
+			"maxSeats": 18
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 16
+		},
+		{
+			"maxSeats": 14
+		},
+		{
+			"maxSeats": 14
+		},
+		{
+			"maxSeats": 14
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 12
+		},
+		{
+			"maxSeats": 10
+		},
+		{
+			"maxSeats": 10
+		},
+		{
+			"maxSeats": 10
+		},
+		{
+			"maxSeats": 10
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 8
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 7
+		},
+		{
+			"maxSeats": 6
+		},
+		{
+			"maxSeats": 6
+		}
+	]
+}
