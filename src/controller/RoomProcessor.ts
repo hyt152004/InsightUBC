@@ -68,8 +68,8 @@ export default class RoomProcessor {
 			const tdBuildingNodesForRow = findAllInstancesWithTagnameUsingChildNodes([trBuildingNode], "td");
 
 			try {
-				const [fullname, shortname, address, lat, lon, href] = await this.buildingInfo(tdBuildingNodesForRow);
-				const fileInZip = zip.file(href.replace(/^\.\//, ""));
+				const [fullname, shortname, address, lat, lon, buildingHref] = await this.buildingInfo(tdBuildingNodesForRow);
+				const fileInZip = zip.file(buildingHref.replace(/^\.\//, ""));
 
 				if (fileInZip) {
 					const validTable = await this.getValidTableFromFile(fileInZip);
@@ -79,7 +79,7 @@ export default class RoomProcessor {
 						return [];
 					}
 
-					return this.generateListOfRooms(validTable, fullname, shortname, address, lat, lon, href, id);
+					return this.generateListOfRooms(validTable, fullname, shortname, address, lat, lon, id);
 				} else {
 					return [];
 				}
@@ -149,9 +149,9 @@ export default class RoomProcessor {
 			this.validateType(typeof lat, "number", "lat is not a number");
 			this.validateType(typeof lon, "number", "lon is not a number");
 
-			const href = findAllInstancesWithTagnameUsingAttrs(fullnameA, "href")[0];
-			this.validateType(typeof href, "string", "href is not a string");
-			return [fullname, shortname, address, lat, lon, href];
+			const buildingHref = findAllInstancesWithTagnameUsingAttrs(fullnameA, "href")[0];
+			this.validateType(typeof buildingHref, "string", "href is not a string");
+			return [fullname, shortname, address, lat, lon, buildingHref];
 		} catch {
 			throw new InsightError("One of the rooms fields was invalid");
 		}
@@ -164,7 +164,6 @@ export default class RoomProcessor {
 		address: string,
 		lat: number,
 		lon: number,
-		href: string,
 		id: string
 	): Room[] {
 		const allRooms = [];
@@ -176,7 +175,7 @@ export default class RoomProcessor {
 				const tdRoomNodesForThisRow = findAllInstancesWithTagnameUsingChildNodes([trRoomNode], "td");
 
 				try {
-					const newRoom = this.generateRoom(tdRoomNodesForThisRow, fname, sname, address, lat, lon, href, id);
+					const newRoom = this.generateRoom(tdRoomNodesForThisRow, fname, sname, address, lat, lon, id);
 					allRooms.push(newRoom);
 				} catch {
 					// skip this room as it's missing keys
@@ -195,10 +194,9 @@ export default class RoomProcessor {
 		address: string,
 		lat: number,
 		lon: number,
-		href: string,
 		id: string
 	): Room {
-		const [number, seats, type, furniture] = this.extractRoomInfo(tdRoomNodesForThisRow);
+		const [number, seats, type, furniture, href] = this.extractRoomInfo(tdRoomNodesForThisRow);
 
 		const newRoom = new Room({
 			fullname: fullname,
@@ -216,7 +214,7 @@ export default class RoomProcessor {
 		return newRoom.getPrefixedFields(id) as Room;
 	}
 
-	private extractRoomInfo(tdRoomNodesForThisRow: any): [string, number, string, string] {
+	private extractRoomInfo(tdRoomNodesForThisRow: any): [string, number, string, string, string] {
 		const number = this.extractNumber(tdRoomNodesForThisRow);
 		this.validateType(typeof number, "string", "number is not a string");
 		const seats = this.extractSeats(tdRoomNodesForThisRow, "views-field-field-room-capacity");
@@ -225,8 +223,10 @@ export default class RoomProcessor {
 		this.validateType(typeof type, "string", "type is not a string");
 		const furniture = this.extractRoomStringInfo(tdRoomNodesForThisRow, "views-field-field-room-furniture");
 		this.validateType(typeof furniture, "string", "furniture is not a string");
+		const href = this.extractHref(tdRoomNodesForThisRow);
+		this.validateType(typeof href, "string", "href is not a string");
 
-		return [number, seats, type, furniture];
+		return [number, seats, type, furniture, href];
 	}
 
 	private validateType(
@@ -237,6 +237,12 @@ export default class RoomProcessor {
 		if (valueType !== wantedType) {
 			throw new InsightError(errorMessage);
 		}
+	}
+
+	private extractHref(tdRoomNodesForThisRow: object): string {
+		const numberTd = findAllInstancesThatIncludeUsingAttrs(tdRoomNodesForThisRow, "views-field-field-room-number");
+		const numberA = findAllInstancesWithTagnameUsingChildNodes(numberTd, "a");
+		return numberA[0].attrs[0].value;
 	}
 
 	private extractNumber(tdRoomNodesForThisRow: object): string {

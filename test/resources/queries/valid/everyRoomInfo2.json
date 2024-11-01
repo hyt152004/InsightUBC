@@ -1,5 +1,5 @@
 {
-	"title": "SELECT everything room info without href",
+	"title": "SELECT everything room info",
 	"input": {
 		"WHERE": {},
 		"OPTIONS": {
@@ -13,13 +13,12 @@
 				"rooms_lon",
 				"rooms_seats",
 				"rooms_type",
-				"rooms_furniture"
+				"rooms_furniture",
+				"rooms_href"
 			],
 			"ORDER": {
 				"dir": "DOWN",
-				"keys": [
-					"rooms_lat"
-				]
+				"keys": ["rooms_lat"]
 			}
 		}
 	},
@@ -35,7 +34,8 @@
 			"rooms_lon": -123.25042,
 			"rooms_seats": 100,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IONA-301"
 		},
 		{
 			"rooms_fullname": "Iona Building",
@@ -47,7 +47,8 @@
 			"rooms_lon": -123.25042,
 			"rooms_seats": 50,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IONA-633"
 		},
 		{
 			"rooms_fullname": "Allard Hall (LAW)",
@@ -59,7 +60,8 @@
 			"rooms_lon": -123.25318,
 			"rooms_seats": 94,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ALRD-105"
 		},
 		{
 			"rooms_fullname": "Allard Hall (LAW)",
@@ -71,7 +73,8 @@
 			"rooms_lon": -123.25318,
 			"rooms_seats": 20,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ALRD-112"
 		},
 		{
 			"rooms_fullname": "Allard Hall (LAW)",
@@ -83,7 +86,8 @@
 			"rooms_lon": -123.25318,
 			"rooms_seats": 20,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ALRD-113"
 		},
 		{
 			"rooms_fullname": "Allard Hall (LAW)",
@@ -95,7 +99,8 @@
 			"rooms_lon": -123.25318,
 			"rooms_seats": 50,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ALRD-121"
 		},
 		{
 			"rooms_fullname": "Allard Hall (LAW)",
@@ -107,7 +112,8 @@
 			"rooms_lon": -123.25318,
 			"rooms_seats": 44,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ALRD-B101"
 		},
 		{
 			"rooms_fullname": "Anthropology and Sociology",
@@ -119,7 +125,8 @@
 			"rooms_lon": -123.25741,
 			"rooms_seats": 26,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANSO-202"
 		},
 		{
 			"rooms_fullname": "Anthropology and Sociology",
@@ -131,7 +138,8 @@
 			"rooms_lon": -123.25741,
 			"rooms_seats": 33,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANSO-203"
 		},
 		{
 			"rooms_fullname": "Anthropology and Sociology",
@@ -143,7 +151,8 @@
 			"rooms_lon": -123.25741,
 			"rooms_seats": 37,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANSO-205"
 		},
 		{
 			"rooms_fullname": "Anthropology and Sociology",
@@ -155,7 +164,8 @@
 			"rooms_lon": -123.25741,
 			"rooms_seats": 90,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Moveable Tablets"
+			"rooms_furniture": "Classroom-Moveable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANSO-207"
 		},
 		{
 			"rooms_fullname": "The Leon and Thea Koerner University Centre",
@@ -167,7 +177,8 @@
 			"rooms_lon": -123.25692,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/UCLL-101"
 		},
 		{
 			"rooms_fullname": "The Leon and Thea Koerner University Centre",
@@ -179,7 +190,8 @@
 			"rooms_lon": -123.25692,
 			"rooms_seats": 55,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/UCLL-103"
 		},
 		{
 			"rooms_fullname": "The Leon and Thea Koerner University Centre",
@@ -191,7 +203,8 @@
 			"rooms_lon": -123.25692,
 			"rooms_seats": 48,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/UCLL-107"
 		},
 		{
 			"rooms_fullname": "The Leon and Thea Koerner University Centre",
@@ -203,7 +216,8 @@
 			"rooms_lon": -123.25692,
 			"rooms_seats": 30,
 			"rooms_type": "Studio Lab",
-			"rooms_furniture": "Classroom-Learn Lab"
+			"rooms_furniture": "Classroom-Learn Lab",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/UCLL-109"
 		},
 		{
 			"rooms_fullname": "Brock Hall Annex",
@@ -215,7 +229,8 @@
 			"rooms_lon": -123.25237,
 			"rooms_seats": 70,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BRKX-2365"
 		},
 		{
 			"rooms_fullname": "Brock Hall Annex",
@@ -227,7 +242,8 @@
 			"rooms_lon": -123.25237,
 			"rooms_seats": 24,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BRKX-2367"
 		},
 		{
 			"rooms_fullname": "Student Recreation Centre",
@@ -239,7 +255,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 299,
 			"rooms_type": "TBD",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SRC-220A"
 		},
 		{
 			"rooms_fullname": "Student Recreation Centre",
@@ -251,7 +268,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 299,
 			"rooms_type": "TBD",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SRC-220B"
 		},
 		{
 			"rooms_fullname": "Student Recreation Centre",
@@ -263,7 +281,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 299,
 			"rooms_type": "TBD",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SRC-220C"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -275,7 +294,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 275,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A101"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -287,7 +307,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 150,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A102"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -299,7 +320,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 131,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A103"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -311,7 +333,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 150,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A104"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -323,7 +346,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 181,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A201"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -335,7 +359,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 108,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A202"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -347,7 +372,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 108,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-A203"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -359,7 +385,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 42,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B141"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -371,7 +398,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 26,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B142"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -383,7 +411,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 56,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B208"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -395,7 +424,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B209"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -407,7 +437,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 48,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B210"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -419,7 +450,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B211"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -431,7 +463,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 78,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B213"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -443,7 +476,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 78,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B215"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -455,7 +489,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B216"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -467,7 +502,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B218"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -479,7 +515,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 24,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B219"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -491,7 +528,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B302"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -503,7 +541,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B303"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -515,7 +554,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B304"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -527,7 +567,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B306"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -539,7 +580,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B307"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -551,7 +593,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B308"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -563,7 +606,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B309"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -575,7 +619,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B310"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -587,7 +632,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 18,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B312"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -599,7 +645,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 78,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Moveable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B313"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -611,7 +658,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 78,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B315"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -623,7 +671,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B316"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -635,7 +684,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B318"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -647,7 +697,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-B319"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -659,7 +710,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D201"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -671,7 +723,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D204"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -683,7 +736,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D205"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -695,7 +749,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D207"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -707,7 +762,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D209"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -719,7 +775,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D213"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -731,7 +788,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D214"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -743,7 +801,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D216"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -755,7 +814,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 65,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D217"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -767,7 +827,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 65,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D218"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -779,7 +840,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 65,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D219"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -791,7 +853,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D221"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -803,7 +866,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 65,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D222"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -815,7 +879,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D228"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -827,7 +892,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D229"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -839,7 +905,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D301"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -851,7 +918,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D304"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -863,7 +931,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D306"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -875,7 +944,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D307"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -887,7 +957,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D312"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -899,7 +970,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D313"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -911,7 +983,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D314"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -923,7 +996,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D315"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -935,7 +1009,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 50,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D316"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -947,7 +1022,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 50,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D317"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -959,7 +1035,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D319"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -971,7 +1048,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 50,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D322"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -983,7 +1061,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 31,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D323"
 		},
 		{
 			"rooms_fullname": "Buchanan",
@@ -995,7 +1074,8 @@
 			"rooms_lon": -123.25468,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BUCH-D325"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1007,7 +1087,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 80,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-102"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1019,7 +1100,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 94,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-104"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1031,7 +1113,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 60,
 			"rooms_type": "",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-105"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1043,7 +1126,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 51,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-107"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1055,7 +1139,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-211"
 		},
 		{
 			"rooms_fullname": "Frederic Lasserre",
@@ -1067,7 +1152,8 @@
 			"rooms_lon": -123.25583,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LASR-5C"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1079,7 +1165,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 50,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-155"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1091,7 +1178,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-156"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1103,7 +1191,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-157"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1115,7 +1204,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-158"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1127,7 +1217,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 154,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-182"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1139,7 +1230,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-185"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1151,7 +1243,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-191"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1163,7 +1256,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-192"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1175,7 +1269,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-193"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1187,7 +1282,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-194"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1199,7 +1295,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-195"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1211,7 +1308,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 112,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-261"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1223,7 +1321,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-263"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1235,7 +1334,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-264"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1247,7 +1347,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 10,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-265"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1259,7 +1360,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-266"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1271,7 +1373,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-460"
 		},
 		{
 			"rooms_fullname": "Irving K Barber Learning Centre",
@@ -1283,7 +1386,8 @@
 			"rooms_lon": -123.2521,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/IBLC-461"
 		},
 		{
 			"rooms_fullname": "Auditorium Annex",
@@ -1295,7 +1399,8 @@
 			"rooms_lon": -123.25655,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/AUDX-142"
 		},
 		{
 			"rooms_fullname": "Auditorium Annex",
@@ -1307,7 +1412,8 @@
 			"rooms_lon": -123.25655,
 			"rooms_seats": 21,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/AUDX-157"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1319,7 +1425,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 224,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-100"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1331,7 +1438,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 60,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-102"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1343,7 +1451,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 48,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-104"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1355,7 +1464,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 30,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-105"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1367,7 +1477,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-202"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1379,7 +1490,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 48,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-203"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1391,7 +1503,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 30,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-204"
 		},
 		{
 			"rooms_fullname": "Mathematics",
@@ -1403,7 +1516,8 @@
 			"rooms_lon": -123.255534,
 			"rooms_seats": 25,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATH-225"
 		},
 		{
 			"rooms_fullname": "War Memorial Gymnasium",
@@ -1415,7 +1529,8 @@
 			"rooms_lon": -123.2466,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MGYM-206"
 		},
 		{
 			"rooms_fullname": "War Memorial Gymnasium",
@@ -1427,7 +1542,8 @@
 			"rooms_lon": -123.2466,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MGYM-208"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1439,7 +1555,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 257,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-200"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1451,7 +1568,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 155,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-201"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1463,7 +1581,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 150,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-202"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1475,7 +1594,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-301"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1487,7 +1607,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-302"
 		},
 		{
 			"rooms_fullname": "Hennings",
@@ -1499,7 +1620,8 @@
 			"rooms_lon": -123.25374,
 			"rooms_seats": 36,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HENN-304"
 		},
 		{
 			"rooms_fullname": "Hebb",
@@ -1511,7 +1633,8 @@
 			"rooms_lon": -123.25165,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HEBB-10"
 		},
 		{
 			"rooms_fullname": "Hebb",
@@ -1523,7 +1646,8 @@
 			"rooms_lon": -123.25165,
 			"rooms_seats": 375,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HEBB-100"
 		},
 		{
 			"rooms_fullname": "Hebb",
@@ -1535,7 +1659,8 @@
 			"rooms_lon": -123.25165,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HEBB-12"
 		},
 		{
 			"rooms_fullname": "Hebb",
@@ -1547,7 +1672,8 @@
 			"rooms_lon": -123.25165,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/HEBB-13"
 		},
 		{
 			"rooms_fullname": "Mathematics Annex",
@@ -1559,7 +1685,8 @@
 			"rooms_lon": -123.254816,
 			"rooms_seats": 106,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MATX-1100"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1571,7 +1698,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 225,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-100"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1583,7 +1711,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 60,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-101"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1595,7 +1724,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 60,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-147"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1607,7 +1737,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 100,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-200"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1619,7 +1750,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 42,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-201"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1631,7 +1763,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 72,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-212"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1643,7 +1776,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 39,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-214"
 		},
 		{
 			"rooms_fullname": "Geography",
@@ -1655,7 +1789,8 @@
 			"rooms_lon": -123.25623,
 			"rooms_seats": 21,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/GEOG-242"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1667,7 +1802,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 265,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-B150"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1679,7 +1815,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 240,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-B250"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1691,7 +1828,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 90,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-C124"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1703,7 +1841,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 90,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-C126"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1715,7 +1854,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 114,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-D200"
 		},
 		{
 			"rooms_fullname": "Chemistry",
@@ -1727,7 +1867,8 @@
 			"rooms_lon": -123.25308,
 			"rooms_seats": 114,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHEM-D300"
 		},
 		{
 			"rooms_fullname": "Leonard S. Klinck (also known as CSCI)",
@@ -1739,7 +1880,8 @@
 			"rooms_lon": -123.25533,
 			"rooms_seats": 205,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSK-200"
 		},
 		{
 			"rooms_fullname": "Leonard S. Klinck (also known as CSCI)",
@@ -1751,7 +1893,8 @@
 			"rooms_lon": -123.25533,
 			"rooms_seats": 183,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSK-201"
 		},
 		{
 			"rooms_fullname": "Leonard S. Klinck (also known as CSCI)",
@@ -1763,7 +1906,8 @@
 			"rooms_lon": -123.25533,
 			"rooms_seats": 75,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSK-460"
 		},
 		{
 			"rooms_fullname": "Leonard S. Klinck (also known as CSCI)",
@@ -1775,7 +1919,8 @@
 			"rooms_lon": -123.25533,
 			"rooms_seats": 42,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSK-462"
 		},
 		{
 			"rooms_fullname": "Friedman Building",
@@ -1787,7 +1932,8 @@
 			"rooms_lon": -123.24608,
 			"rooms_seats": 160,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FRDM-153"
 		},
 		{
 			"rooms_fullname": "Wesbrook",
@@ -1799,7 +1945,8 @@
 			"rooms_lon": -123.24937,
 			"rooms_seats": 325,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WESB-100"
 		},
 		{
 			"rooms_fullname": "Wesbrook",
@@ -1811,7 +1958,8 @@
 			"rooms_lon": -123.24937,
 			"rooms_seats": 102,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WESB-201"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1823,7 +1971,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 54,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-037"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1835,7 +1984,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 54,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-039"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1847,7 +1997,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 260,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-098"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1859,7 +2010,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-232"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1871,7 +2023,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 60,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-234"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1883,7 +2036,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 41,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-235"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1895,7 +2049,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 41,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-237"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1907,7 +2062,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 70,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-241"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1919,7 +2075,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 68,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-243"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1931,7 +2088,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 80,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-254"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1943,7 +2101,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-291"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1955,7 +2114,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 35,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-292"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1967,7 +2127,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 32,
 			"rooms_type": "TBD",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-293"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1979,7 +2140,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-295"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -1991,7 +2153,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 37,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-296"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2003,7 +2166,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-332"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2015,7 +2179,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 60,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-334"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2027,7 +2192,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 41,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-335"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2039,7 +2205,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-339"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2051,7 +2218,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 68,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-343"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2063,7 +2231,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 68,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-345"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2075,7 +2244,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 70,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-347"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2087,7 +2257,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 58,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-350"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2099,7 +2270,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 44,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-354"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2111,7 +2283,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 16,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-432"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2123,7 +2296,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 44,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-434"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2135,7 +2309,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 53,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-435"
 		},
 		{
 			"rooms_fullname": "Henry Angus",
@@ -2147,7 +2322,8 @@
 			"rooms_lon": -123.25364,
 			"rooms_seats": 32,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-437"
 		},
 		{
 			"rooms_fullname": "Biological Sciences",
@@ -2159,7 +2335,8 @@
 			"rooms_lon": -123.25249,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BIOL-1503"
 		},
 		{
 			"rooms_fullname": "Biological Sciences",
@@ -2171,7 +2348,8 @@
 			"rooms_lon": -123.25249,
 			"rooms_seats": 228,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BIOL-2000"
 		},
 		{
 			"rooms_fullname": "Biological Sciences",
@@ -2183,7 +2361,8 @@
 			"rooms_lon": -123.25249,
 			"rooms_seats": 76,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BIOL-2200"
 		},
 		{
 			"rooms_fullname": "Biological Sciences",
@@ -2195,7 +2374,8 @@
 			"rooms_lon": -123.25249,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/BIOL-2519"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2207,7 +2387,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 120,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-1"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2219,7 +2400,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 503,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-2"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2231,7 +2413,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 88,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-3"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2243,7 +2426,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 120,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-4"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2255,7 +2439,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 120,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-5"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2267,7 +2452,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 181,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-6"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2279,7 +2465,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-B75"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2291,7 +2478,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 21,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-B79"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2303,7 +2491,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G41"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2315,7 +2504,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 14,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G44"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2327,7 +2517,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 10,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G53"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2339,7 +2530,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 10,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G55"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2351,7 +2543,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G57"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2363,7 +2556,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 10,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G59"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2375,7 +2569,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G65"
 		},
 		{
 			"rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
@@ -2387,7 +2582,8 @@
 			"rooms_lon": -123.24673,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/WOOD-G66"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2399,7 +2595,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-122"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2411,7 +2608,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 68,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-124"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2423,7 +2621,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 29,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-222"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2435,7 +2634,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 29,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-223"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2447,7 +2647,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 31,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-224"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2459,7 +2660,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-324"
 		},
 		{
 			"rooms_fullname": "Jack Bell Building for the School of Social Work",
@@ -2471,7 +2673,8 @@
 			"rooms_lon": -123.25505,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SOWK-326"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2483,7 +2686,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 28,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-143"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2495,7 +2699,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 30,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-B108"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2507,7 +2712,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 16,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-B112"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2519,7 +2725,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-B136"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2531,7 +2738,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 14,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-B138"
 		},
 		{
 			"rooms_fullname": "School of Population and Public Health",
@@ -2543,7 +2751,8 @@
 			"rooms_lon": -123.24842,
 			"rooms_seats": 66,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SPPH-B151"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2555,7 +2764,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 12,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-20"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2567,7 +2777,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 28,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-30"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2579,7 +2790,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-320"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2591,7 +2803,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 54,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-40"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2603,7 +2816,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 43,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-50"
 		},
 		{
 			"rooms_fullname": "Food, Nutrition and Health",
@@ -2615,7 +2829,8 @@
 			"rooms_lon": -123.24959,
 			"rooms_seats": 99,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FNH-60"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2627,7 +2842,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1001"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2639,7 +2855,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1002"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2651,7 +2868,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 40,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1003"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2663,7 +2881,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1008"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2675,7 +2894,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1009"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2687,7 +2907,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1011"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2699,7 +2920,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1215"
 		},
 		{
 			"rooms_fullname": "Ponderosa Commons: Oak House",
@@ -2711,7 +2933,8 @@
 			"rooms_lon": -123.2559,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PCOH-1302"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2723,7 +2946,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 280,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-100"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2735,7 +2959,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1003"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2747,7 +2972,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1004"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2759,7 +2985,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1005"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2771,7 +2998,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1020"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2783,7 +3011,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1021"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2795,7 +3024,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1022"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2807,7 +3037,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1023"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2819,7 +3050,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1024"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2831,7 +3063,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 38,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-1328"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2843,7 +3076,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-200"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2855,7 +3089,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-201"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2867,7 +3102,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-202"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2879,7 +3115,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-203"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2891,7 +3128,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-204"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2903,7 +3141,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-204A"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2915,7 +3154,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 34,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-205"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2927,7 +3167,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-206"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2939,7 +3180,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-207"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2951,7 +3193,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-208"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2963,7 +3206,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 60,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-209"
 		},
 		{
 			"rooms_fullname": "Neville Scarfe",
@@ -2975,7 +3219,8 @@
 			"rooms_lon": -123.2531,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SCRF-210"
 		},
 		{
 			"rooms_fullname": "Aquatic Ecosystems Research Laboratory",
@@ -2987,7 +3232,8 @@
 			"rooms_lon": -123.25099,
 			"rooms_seats": 144,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/AERL-120"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -2999,7 +3245,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-105"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3011,7 +3258,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-106"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3023,7 +3271,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-107"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3035,7 +3284,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-108"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3047,7 +3297,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-109"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3059,7 +3310,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-110"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3071,7 +3323,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 187,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-121"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3083,7 +3336,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 188,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-122"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3095,7 +3349,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 190,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-221"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3107,7 +3362,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 190,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-222"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3119,7 +3375,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-305"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3131,7 +3388,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-306"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3143,7 +3401,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-307"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3155,7 +3414,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-308"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3167,7 +3427,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-309"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3179,7 +3440,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-310"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3191,7 +3453,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-405"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3203,7 +3466,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-406"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3215,7 +3479,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-407"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3227,7 +3492,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-408"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3239,7 +3505,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-409"
 		},
 		{
 			"rooms_fullname": "West Mall Swing Space",
@@ -3251,7 +3518,8 @@
 			"rooms_lon": -123.25431,
 			"rooms_seats": 27,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/SWNG-410"
 		},
 		{
 			"rooms_fullname": "Earth Sciences Building",
@@ -3263,7 +3531,8 @@
 			"rooms_lon": -123.25224,
 			"rooms_seats": 150,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ESB-1012"
 		},
 		{
 			"rooms_fullname": "Earth Sciences Building",
@@ -3275,7 +3544,8 @@
 			"rooms_lon": -123.25224,
 			"rooms_seats": 350,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ESB-1013"
 		},
 		{
 			"rooms_fullname": "Earth Sciences Building",
@@ -3287,7 +3557,8 @@
 			"rooms_lon": -123.25224,
 			"rooms_seats": 80,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ESB-2012"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3299,7 +3570,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 100,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1202"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3311,7 +3583,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 62,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1204"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3323,7 +3596,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 26,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1206"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3335,7 +3609,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 22,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1210"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3347,7 +3622,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 34,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1212"
 		},
 		{
 			"rooms_fullname": "Civil and Mechanical Engineering",
@@ -3359,7 +3635,8 @@
 			"rooms_lon": -123.24894,
 			"rooms_seats": 45,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CEME-1215"
 		},
 		{
 			"rooms_fullname": "Life Sciences Centre",
@@ -3371,7 +3648,8 @@
 			"rooms_lon": -123.24494,
 			"rooms_seats": 350,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSC-1001"
 		},
 		{
 			"rooms_fullname": "Life Sciences Centre",
@@ -3383,7 +3661,8 @@
 			"rooms_lon": -123.24494,
 			"rooms_seats": 350,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSC-1002"
 		},
 		{
 			"rooms_fullname": "Life Sciences Centre",
@@ -3395,7 +3674,8 @@
 			"rooms_lon": -123.24494,
 			"rooms_seats": 125,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/LSC-1003"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3407,7 +3687,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 236,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-1101"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3419,7 +3700,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 167,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-1201"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3431,7 +3713,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3112"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3443,7 +3726,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3114"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3455,7 +3739,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3115"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3467,7 +3752,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 14,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3116"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3479,7 +3765,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3118"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3491,7 +3778,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3120"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3503,7 +3791,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3122"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3515,7 +3804,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 7,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3124"
 		},
 		{
 			"rooms_fullname": "Pharmaceutical Sciences Building",
@@ -3527,7 +3817,8 @@
 			"rooms_lon": -123.24342,
 			"rooms_seats": 72,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/PHRM-3208"
 		},
 		{
 			"rooms_fullname": "Chemical and Biological Engineering Building",
@@ -3539,7 +3830,8 @@
 			"rooms_lon": -123.24718,
 			"rooms_seats": 200,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHBE-101"
 		},
 		{
 			"rooms_fullname": "Chemical and Biological Engineering Building",
@@ -3551,7 +3843,8 @@
 			"rooms_lon": -123.24718,
 			"rooms_seats": 94,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHBE-102"
 		},
 		{
 			"rooms_fullname": "Chemical and Biological Engineering Building",
@@ -3563,7 +3856,8 @@
 			"rooms_lon": -123.24718,
 			"rooms_seats": 60,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CHBE-103"
 		},
 		{
 			"rooms_fullname": "Earth and Ocean Sciences - Main",
@@ -3575,7 +3869,8 @@
 			"rooms_lon": -123.25198,
 			"rooms_seats": 50,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/EOSM-135"
 		},
 		{
 			"rooms_fullname": "Centre for Interactive  Research on Sustainability",
@@ -3587,7 +3882,8 @@
 			"rooms_lon": -123.25314,
 			"rooms_seats": 426,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/CIRS-1250"
 		},
 		{
 			"rooms_fullname": "Frank Forward",
@@ -3599,7 +3895,8 @@
 			"rooms_lon": -123.25179,
 			"rooms_seats": 63,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FORW-303"
 		},
 		{
 			"rooms_fullname": "Frank Forward",
@@ -3611,7 +3908,8 @@
 			"rooms_lon": -123.25179,
 			"rooms_seats": 44,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FORW-317"
 		},
 		{
 			"rooms_fullname": "Frank Forward",
@@ -3623,7 +3921,8 @@
 			"rooms_lon": -123.25179,
 			"rooms_seats": 35,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FORW-519"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3635,7 +3934,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 123,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-202"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3647,7 +3947,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 60,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-214"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3659,7 +3960,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-220"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3671,7 +3973,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 136,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-228"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3683,7 +3986,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 60,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-242"
 		},
 		{
 			"rooms_fullname": "MacLeod",
@@ -3695,7 +3999,8 @@
 			"rooms_lon": -123.24935,
 			"rooms_seats": 84,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCLD-254"
 		},
 		{
 			"rooms_fullname": "Hugh Dempster Pavilion",
@@ -3707,7 +4012,8 @@
 			"rooms_lon": -123.24807,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-101"
 		},
 		{
 			"rooms_fullname": "Hugh Dempster Pavilion",
@@ -3719,7 +4025,8 @@
 			"rooms_lon": -123.24807,
 			"rooms_seats": 120,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-110"
 		},
 		{
 			"rooms_fullname": "Hugh Dempster Pavilion",
@@ -3731,7 +4038,8 @@
 			"rooms_lon": -123.24807,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-201"
 		},
 		{
 			"rooms_fullname": "Hugh Dempster Pavilion",
@@ -3743,7 +4051,8 @@
 			"rooms_lon": -123.24807,
 			"rooms_seats": 80,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-301"
 		},
 		{
 			"rooms_fullname": "Hugh Dempster Pavilion",
@@ -3755,7 +4064,8 @@
 			"rooms_lon": -123.24807,
 			"rooms_seats": 160,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-310"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3767,7 +4077,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 47,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-154"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3779,7 +4090,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 74,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-158"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3791,7 +4103,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 72,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-160"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3803,7 +4116,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 200,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-166"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3815,7 +4129,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-256"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3827,7 +4142,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 32,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-260"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3839,7 +4155,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-358"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3851,7 +4168,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 6,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360A"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3863,7 +4181,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 6,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360B"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3875,7 +4194,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360C"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3887,7 +4207,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360D"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3899,7 +4220,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360E"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3911,7 +4233,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360F"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3923,7 +4246,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360G"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3935,7 +4259,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360H"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3947,7 +4272,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360J"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3959,7 +4285,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360K"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3971,7 +4298,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Moveable Tables & Chairs"
+			"rooms_furniture": "Classroom-Moveable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360L"
 		},
 		{
 			"rooms_fullname": "MacMillan",
@@ -3983,7 +4311,8 @@
 			"rooms_lon": -123.25027,
 			"rooms_seats": 8,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/MCML-360M"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -3995,7 +4324,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 72,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-1001"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4007,7 +4337,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3002"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4019,7 +4350,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3004"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4031,7 +4363,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3016"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4043,7 +4376,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 48,
 			"rooms_type": "Studio Lab",
-			"rooms_furniture": "Classroom-Learn Lab"
+			"rooms_furniture": "Classroom-Learn Lab",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3018"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4055,7 +4389,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3052"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4067,7 +4402,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3058"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4079,7 +4415,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 16,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3062"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4091,7 +4428,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 16,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3068"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4103,7 +4441,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 16,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3072"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4115,7 +4454,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 72,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-3074"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4127,7 +4467,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4002"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4139,7 +4480,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4004"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4151,7 +4493,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4016"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4163,7 +4506,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 48,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4018"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4175,7 +4519,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4052"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4187,7 +4532,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 25,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4058"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4199,7 +4545,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 16,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4062"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4211,7 +4558,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 16,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4068"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4223,7 +4571,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 20,
 			"rooms_type": "Active Learning",
-			"rooms_furniture": "Classroom-Hybrid Furniture"
+			"rooms_furniture": "Classroom-Hybrid Furniture",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4072"
 		},
 		{
 			"rooms_fullname": "Orchard Commons",
@@ -4235,7 +4584,8 @@
 			"rooms_lon": -123.24944,
 			"rooms_seats": 72,
 			"rooms_type": "Studio Lab",
-			"rooms_furniture": "Classroom-Learn Lab"
+			"rooms_furniture": "Classroom-Learn Lab",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ORCH-4074"
 		},
 		{
 			"rooms_fullname": "Robert F. Osborne Centre",
@@ -4247,7 +4597,8 @@
 			"rooms_lon": -123.24467,
 			"rooms_seats": 40,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/OSBO-203A"
 		},
 		{
 			"rooms_fullname": "Robert F. Osborne Centre",
@@ -4259,7 +4610,8 @@
 			"rooms_lon": -123.24467,
 			"rooms_seats": 39,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tablets"
+			"rooms_furniture": "Classroom-Movable Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/OSBO-203B"
 		},
 		{
 			"rooms_fullname": "Robert F. Osborne Centre",
@@ -4271,7 +4623,8 @@
 			"rooms_lon": -123.24467,
 			"rooms_seats": 442,
 			"rooms_type": "Open Design General Purpose",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/OSBO-A"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4283,7 +4636,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 65,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1001"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4295,7 +4649,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1002"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4307,7 +4662,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 65,
 			"rooms_type": "Case Style",
-			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+			"rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1003"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4319,7 +4675,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 250,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1005"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4331,7 +4688,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 99,
 			"rooms_type": "Tiered Large Group",
-			"rooms_furniture": "Classroom-Fixed Tablets"
+			"rooms_furniture": "Classroom-Fixed Tablets",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1221"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4343,7 +4701,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 18,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1402"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4355,7 +4714,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 24,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1611"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4367,7 +4727,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 36,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1613"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4379,7 +4740,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1615"
 		},
 		{
 			"rooms_fullname": "Forest Sciences Centre",
@@ -4391,7 +4753,8 @@
 			"rooms_lon": -123.24886,
 			"rooms_seats": 20,
 			"rooms_type": "Small Group",
-			"rooms_furniture": "Classroom-Movable Tables & Chairs"
+			"rooms_furniture": "Classroom-Movable Tables & Chairs",
+			"rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/FSC-1617"
 		}
 	]
 }
