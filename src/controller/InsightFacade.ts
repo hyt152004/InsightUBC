@@ -112,7 +112,6 @@ export default class InsightFacade implements IInsightFacade {
 			if (!queryValidator.isValidQuery(query)) {
 				throw new InsightError("Invalid Query");
 			}
-
 			const id = queryValidator.datasetID;
 
 			// Check if the dataset exists in the map, otherwise load it from disk

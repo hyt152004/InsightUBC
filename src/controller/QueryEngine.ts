@@ -11,13 +11,15 @@ export default class QueryEngine {
 	public processQuery(query: any, id: string, datasetMap: Map<string, InsightDataset>): InsightResult[] {
 		// Parse Query
 		const parsedQuery = JSON.parse(JSON.stringify(query));
-
 		// Parse Dataset
 		const dataset = datasetMap.get(id);
 		const parsedDataset = JSON.parse(JSON.stringify(dataset));
-
-		let filteredResult = parsedDataset.sections;
-
+		let filteredResult: any = [];
+		if (parsedDataset.kind === "rooms") {
+			filteredResult = parsedDataset.rooms;
+		} else {
+			filteredResult = parsedDataset.sections;
+		}
 		filteredResult = this.processWHERE(parsedQuery.WHERE, filteredResult);
 		if (parsedQuery.TRANSFORMATIONS) {
 			filteredResult = this.processTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS, filteredResult);
@@ -29,6 +31,7 @@ export default class QueryEngine {
 		if (filteredResult.length > maximumResults) {
 			throw new ResultTooLargeError("Result is greater than 5000 entries");
 		} else {
+			console.log(filteredResult)
 			return filteredResult;
 		}
 	}
@@ -316,11 +319,9 @@ export default class QueryEngine {
 		const scomparison = querySComparator[scomparator];
 		const skey = Object.keys(scomparison)[0];
 		const sfieldValue = scomparison[skey];
-
 		if (sfieldValue === "*" || sfieldValue === "**") {
 			return filteredResult;
 		}
-
 		return filteredResult.filter((section: any) => {
 			const sectionValue = section[skey];
 			if (sfieldValue.startsWith("*") && sfieldValue.endsWith("*")) {

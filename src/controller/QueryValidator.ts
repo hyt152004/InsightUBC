@@ -1,10 +1,12 @@
 export default class QueryValidator {
 	public datasetID: string;
+	public datasetKind: string;
 	private transformationsKeyList = new Set();
 	private hasTransformations = false;
 
 	constructor(id: string) {
 		this.datasetID = id;
+		this.datasetKind = "";
 	}
 
 	public isValidQuery(query: unknown): boolean {
@@ -33,16 +35,30 @@ export default class QueryValidator {
 		} else {
 			return false;
 		}
+		// set kind operation here
+		const optionsKeys = Object.keys(parsedQuery.OPTIONS);
+		// Check if OPTIONS contains COLUMNS and if its the first element
+		if (!optionsKeys.includes("COLUMNS") || optionsKeys[0] !== "COLUMNS") {
+			return false;
+		}
+		// check the validity of each column in columns
+		const columns = parsedQuery.OPTIONS[optionsKeys[0]];
 
+		if (!Array.isArray(columns) || columns.length === 0) {
+			return false;
+		}
+
+		if (this.datasetKind === "") {
+			this.setDatasetKind(columns[0]);
+		}
 		if (topLevelKeys.includes("TRANSFORMATIONS")) {
 			if (!this.isValidTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS)) {
 				return false;
 			}
 			this.hasTransformations = true;
 		}
-
 		// Check if all keys and fields are valid inside WHERE
-		if (!this.isValidWHERE(parsedQuery.WHERE) || !this.isValidOPTIONS(parsedQuery.OPTIONS)) {
+		if (!this.isValidOPTIONS(parsedQuery.OPTIONS) || !this.isValidWHERE(parsedQuery.WHERE)) {
 			return false;
 		}
 
@@ -115,8 +131,14 @@ export default class QueryValidator {
 		const mkeyText = mkey[0];
 		const mfieldValue = mcomparison[mkeyText];
 
-		if (mkey.length !== 1 || this.getValidMkey(mkeyText) === "") {
-			return false;
+		if (this.datasetKind === "sectionKind") {
+			if (mkey.length !== 1 || this.getValidSectionMkey(mkeyText) === "") {
+				return false;
+			}
+		} else {
+			if (mkey.length !== 1 || this.getValidRoomMkey(mkeyText) === "") {
+				return false;
+			}
 		}
 
 		if (typeof mfieldValue !== "number") {
@@ -131,9 +153,14 @@ export default class QueryValidator {
 		const skey = Object.keys(scomparison);
 		const skeyText = skey[0];
 		const sfieldValue = scomparison[skeyText];
-
-		if (skey.length !== 1 || this.getValidSkey(skeyText) === "") {
-			return false;
+		if (this.datasetKind === "sectionKind") {
+			if (skey.length !== 1 || this.getValidSectionSkey(skeyText) === "") {
+				return false;
+			}
+		} else {
+			if (skey.length !== 1 || this.getValidRoomSkey(skeyText) === "") {
+				return false;
+			}
 		}
 
 		if (typeof sfieldValue !== "string" || !this.isValidWildCard(sfieldValue)) {
@@ -158,11 +185,6 @@ export default class QueryValidator {
 			return false;
 		}
 
-		// Check if OPTIONS contains COLUMNS and if its the first element
-		if (!optionsKeys.includes("COLUMNS") || optionsKeys[0] !== "COLUMNS") {
-			return false;
-		}
-
 		// If there are two elements, make sure the second element is ORDER
 		if (optionsKeys.length === maxOptionsKeys && optionsKeys[1] !== "ORDER") {
 			return false;
@@ -170,17 +192,19 @@ export default class QueryValidator {
 		// check the validity of each column in columns
 		const columns = options[optionsKeys[0]];
 
-		if (!Array.isArray(columns) || columns.length === 0) {
-			return false;
-		}
-
 		for (const col of columns) {
 			if (this.hasTransformations) {
 				if (!this.transformationsKeyList.has(col)) {
 					return false;
 				}
-			} else if (this.getValidMkey(col) === "" && this.getValidSkey(col) === "") {
-				return false;
+			} else if (this.datasetKind === "sectionKind") {
+				if (this.getValidSectionMkey(col) === "" && this.getValidSectionSkey(col) === "") {
+					return false;
+				}
+			} else {
+				if (this.getValidRoomMkey(col) === "" && this.getValidRoomSkey(col) === "") {
+					return false;
+				}
 			}
 		}
 
@@ -242,7 +266,6 @@ export default class QueryValidator {
 		if (!transformationsKeys.includes("GROUP") || !transformationsKeys.includes("APPLY")) {
 			return false;
 		}
-
 		if (!this.isValidGROUP(transformations.GROUP) || !this.isValidAPPLY(transformations.APPLY)) {
 			return false;
 		}
@@ -254,10 +277,15 @@ export default class QueryValidator {
 		if (!Array.isArray(group) || group.length === 0) {
 			return false;
 		}
-
 		for (const key of group) {
-			if (this.getValidMkey(key) === "" && this.getValidSkey(key) === "") {
-				return false;
+			if (this.datasetKind === "sectionKind") {
+				if (this.getValidSectionMkey(key) === "" && this.getValidSectionSkey(key) === "") {
+					return false;
+				}
+			} else {
+				if (this.getValidRoomMkey(key) === "" && this.getValidRoomSkey(key) === "") {
+					return false;
+				}
 			}
 		}
 
@@ -265,7 +293,6 @@ export default class QueryValidator {
 		for (const key of group) {
 			this.transformationsKeyList.add(key);
 		}
-
 		return true;
 	}
 
@@ -313,7 +340,6 @@ export default class QueryValidator {
 		for (const key of applyKeys) {
 			this.transformationsKeyList.add(key);
 		}
-
 		return true;
 	}
 
@@ -326,19 +352,30 @@ export default class QueryValidator {
 		return false;
 	}
 
-	private isValidApplyToken(token: string, item: string): boolean {
+	private isValidApplyToken(token: string, key: string): boolean {
 		if (token !== "MAX" && token !== "MIN" && token !== "AVG" && token !== "COUNT" && token !== "SUM") {
 			return false;
 		}
-
 		// COUNT should accept all keys
 		if (token === "COUNT") {
-			if (this.getValidMkey(item) === "" && this.getValidSkey(item) === "") {
-				return false;
+			if (this.datasetKind === "sectionKind") {
+				if (this.getValidSectionMkey(key) === "" && this.getValidSectionSkey(key) === "") {
+					return false;
+				}
+			} else {
+				if (this.getValidRoomMkey(key) === "" && this.getValidRoomSkey(key) === "") {
+					return false;
+				}
 			}
 		} else if (token === "MAX" || token === "MIN" || token === "AVG" || token === "SUM") {
-			if (this.getValidMkey(item) === "") {
-				return false;
+			if (this.datasetKind === "sectionKind") {
+				if (this.getValidSectionMkey(key) === "") {
+					return false;
+				}
+			} else {
+				if (this.getValidRoomMkey(key) === "") {
+					return false;
+				}
 			}
 		}
 
@@ -362,7 +399,7 @@ export default class QueryValidator {
 		return true;
 	}
 
-	private getValidMkey(Mkey: string): string {
+	private getValidSectionMkey(Mkey: string): string {
 		if (!this.isValidIDKey(Mkey)) {
 			return "";
 		}
@@ -373,12 +410,37 @@ export default class QueryValidator {
 		return "";
 	}
 
-	private getValidSkey(Skey: string): string {
+	private getValidRoomMkey(Mkey: string): string {
+		if (!this.isValidIDKey(Mkey)) {
+			return "";
+		}
+		const mkey = Mkey.split("_")[1];
+		if (mkey === "lat" || mkey === "lon" || mkey === "seats") {
+			return mkey;
+		}
+		return "";
+	}
+
+	private getValidSectionSkey(Skey: string): string {
 		if (!this.isValidIDKey(Skey)) {
 			return "";
 		}
 		const skey = Skey.split("_")[1];
 		if (skey === "dept" || skey === "id" || skey === "instructor" || skey === "title" || skey === "uuid") {
+			return skey;
+		}
+		return "";
+	}
+
+	private getValidRoomSkey(Skey: string): string {
+		if (!this.isValidIDKey(Skey)) {
+			return "";
+		}
+		const skey = Skey.split("_")[1];
+		if (skey === "fullname" || skey === "shortname" || skey === "number" || skey === "name") {
+			return skey;
+		}
+		if (skey === "address" || skey === "type" || skey === "furniture" || skey === "href") {
 			return skey;
 		}
 		return "";
@@ -396,5 +458,27 @@ export default class QueryValidator {
 		}
 
 		return true;
+	}
+
+	private setDatasetKind(column: string): void {
+		if (
+			column.includes("fullname") ||
+			column.includes("shortname") ||
+			column.includes("number") ||
+			column.includes("name")
+		) {
+			this.datasetKind = "roomKind";
+		} else if (column.includes("address") || column.includes("lat") || column.includes("lon")) {
+			this.datasetKind = "roomKind";
+		} else if (
+			column.includes("seats") ||
+			column.includes("type") ||
+			column.includes("furniture") ||
+			column.includes("href")
+		) {
+			this.datasetKind = "roomKind";
+		} else {
+			this.datasetKind = "sectionKind";
+		}
 	}
 }
