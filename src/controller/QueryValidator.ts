@@ -35,14 +35,28 @@ export default class QueryValidator {
 		} else {
 			return false;
 		}
+		// set kind operation here
+		const optionsKeys = Object.keys(parsedQuery.OPTIONS);
+		// Check if OPTIONS contains COLUMNS and if its the first element
+		if (!optionsKeys.includes("COLUMNS") || optionsKeys[0] !== "COLUMNS") {
+			return false;
+		}
+		// check the validity of each column in columns
+		const columns = parsedQuery.OPTIONS[optionsKeys[0]];
 
+		if (!Array.isArray(columns) || columns.length === 0) {
+			return false;
+		}
+
+		if (this.datasetKind === "") {
+			this.setDatasetKind(columns[0]);
+		}
 		if (topLevelKeys.includes("TRANSFORMATIONS")) {
 			if (!this.isValidTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS)) {
 				return false;
 			}
 			this.hasTransformations = true;
 		}
-
 		// Check if all keys and fields are valid inside WHERE
 		if (!this.isValidOPTIONS(parsedQuery.OPTIONS) || !this.isValidWHERE(parsedQuery.WHERE)) {
 			return false;
@@ -171,11 +185,6 @@ export default class QueryValidator {
 			return false;
 		}
 
-		// Check if OPTIONS contains COLUMNS and if its the first element
-		if (!optionsKeys.includes("COLUMNS") || optionsKeys[0] !== "COLUMNS") {
-			return false;
-		}
-
 		// If there are two elements, make sure the second element is ORDER
 		if (optionsKeys.length === maxOptionsKeys && optionsKeys[1] !== "ORDER") {
 			return false;
@@ -183,13 +192,6 @@ export default class QueryValidator {
 		// check the validity of each column in columns
 		const columns = options[optionsKeys[0]];
 
-		if (!Array.isArray(columns) || columns.length === 0) {
-			return false;
-		}
-
-		if (this.datasetKind === "") {
-			this.setDatasetKind(columns[0]);
-		}
 		for (const col of columns) {
 			if (this.hasTransformations) {
 				if (!this.transformationsKeyList.has(col)) {
@@ -264,7 +266,6 @@ export default class QueryValidator {
 		if (!transformationsKeys.includes("GROUP") || !transformationsKeys.includes("APPLY")) {
 			return false;
 		}
-
 		if (!this.isValidGROUP(transformations.GROUP) || !this.isValidAPPLY(transformations.APPLY)) {
 			return false;
 		}
@@ -292,7 +293,6 @@ export default class QueryValidator {
 		for (const key of group) {
 			this.transformationsKeyList.add(key);
 		}
-
 		return true;
 	}
 
@@ -340,7 +340,6 @@ export default class QueryValidator {
 		for (const key of applyKeys) {
 			this.transformationsKeyList.add(key);
 		}
-
 		return true;
 	}
 
@@ -400,7 +399,6 @@ export default class QueryValidator {
 		return true;
 	}
 
-	// TODO: make two versions
 	private getValidSectionMkey(Mkey: string): string {
 		if (!this.isValidIDKey(Mkey)) {
 			return "";
@@ -417,10 +415,7 @@ export default class QueryValidator {
 			return "";
 		}
 		const mkey = Mkey.split("_")[1];
-		if (mkey === "fullname" || mkey === "shortname" || mkey === "number" || mkey === "name") {
-			return mkey;
-		}
-		if (mkey === "address" || mkey === "type" || mkey === "furniture" || mkey === "href") {
+		if (mkey === "lat" || mkey === "lon" || mkey === "seats") {
 			return mkey;
 		}
 		return "";
@@ -442,7 +437,10 @@ export default class QueryValidator {
 			return "";
 		}
 		const skey = Skey.split("_")[1];
-		if (skey === "lat" || skey === "lon" || skey === "seats") {
+		if (skey === "fullname" || skey === "shortname" || skey === "number" || skey === "name") {
+			return skey;
+		}
+		if (skey === "address" || skey === "type" || skey === "furniture" || skey === "href") {
 			return skey;
 		}
 		return "";
@@ -470,19 +468,17 @@ export default class QueryValidator {
 			column.includes("name")
 		) {
 			this.datasetKind = "roomKind";
-		}
-		if (column.includes("address") || column.includes("lat") || column.includes("lon")) {
+		} else if (column.includes("address") || column.includes("lat") || column.includes("lon")) {
 			this.datasetKind = "roomKind";
-		}
-		if (
+		} else if (
 			column.includes("seats") ||
 			column.includes("type") ||
 			column.includes("furniture") ||
 			column.includes("href")
 		) {
 			this.datasetKind = "roomKind";
+		} else {
+			this.datasetKind = "sectionKind";
 		}
-
-		this.datasetKind = "sectionKind";
 	}
 }
