@@ -202,8 +202,7 @@ export default class InsightFacade implements IInsightFacade {
 			const jsonObj = await fs.readJson("./data/" + file);
 
 			const id = file.replace(".json", "");
-
-			if (jsonObj[0].hasOwnProperty(id + "_address")) {
+			if (Object.prototype.hasOwnProperty.call(jsonObj[0], id + "_address")) {
 				const dataset: InsightDataset = {
 					id: id,
 					kind: InsightDatasetKind.Rooms,
