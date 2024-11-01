@@ -31,7 +31,7 @@ export default class QueryEngine {
 		if (filteredResult.length > maximumResults) {
 			throw new ResultTooLargeError("Result is greater than 5000 entries");
 		} else {
-			console.log(filteredResult)
+			console.log(filteredResult);
 			return filteredResult;
 		}
 	}
@@ -177,15 +177,11 @@ export default class QueryEngine {
 		const result: any[] = [];
 
 		for (const item of filteredResult) {
-			result.push(item);
-		}
-
-		for (const record of result) {
-			for (const key of Object.keys(record)) {
-				if (!columnKeys.includes(key)) {
-					delete record[key];
-				}
+			const orderedItem: any = {};
+			for (const key of columnKeys) {
+				orderedItem[key] = item[key];
 			}
+			result.push(orderedItem);
 		}
 
 		filteredResult = result;
@@ -213,8 +209,6 @@ export default class QueryEngine {
 				return 1;
 			} else if (a[queryORDER] < b[queryORDER]) {
 				return -1;
-			} else {
-				return 0;
 			}
 		});
 		return filteredResult;
@@ -228,10 +222,9 @@ export default class QueryEngine {
 						return 1;
 					} else if (a[key] < b[key]) {
 						return -1;
-					} else {
-						return 0;
 					}
 				}
+				return 0;
 			});
 		} else {
 			filteredResult.sort(function (a: any, b: any) {
@@ -240,10 +233,9 @@ export default class QueryEngine {
 						return -1;
 					} else if (a[key] < b[key]) {
 						return 1;
-					} else {
-						return 0;
-					}
+					} 
 				}
+				return 0;
 			});
 		}
 		return filteredResult;
