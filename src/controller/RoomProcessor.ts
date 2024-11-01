@@ -68,8 +68,8 @@ export default class RoomProcessor {
 			const tdBuildingNodesForRow = findAllInstancesWithTagnameUsingChildNodes([trBuildingNode], "td");
 
 			try {
-				const [fullname, shortname, address, lat, lon, buildingHref] = await this.buildingInfo(tdBuildingNodesForRow);
-				const fileInZip = zip.file(buildingHref.replace(/^\.\//, ""));
+				const [fullname, shortname, address, lat, lon, href] = await this.buildingInfo(tdBuildingNodesForRow);
+				const fileInZip = zip.file(href.replace(/^\.\//, ""));
 
 				if (fileInZip) {
 					const validTable = await this.getValidTableFromFile(fileInZip);
