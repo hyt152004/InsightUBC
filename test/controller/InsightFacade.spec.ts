@@ -508,6 +508,8 @@ describe("InsightFacade", function () {
 		it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
 		it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
 		it("[valid/complexRoom.json] Group and apply on Room dataset", checkQuery);
+		it("[valid/complexRoom2.json] Group and two apply on Room dataset", checkQuery);
+		it("[valid/complexRoom3.json] Group and two apply on Room dataset and order by two keys", checkQuery);
 
 		it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
 		it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);

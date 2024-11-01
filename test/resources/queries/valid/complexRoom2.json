@@ -1,0 +1,67 @@
+{
+	"title": "Group and two apply on Room dataset",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"rooms_furniture": "*Tables*"
+					}
+				},
+				{
+					"GT": {
+						"rooms_seats": 300
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"maxSeats",
+				"minLatitude"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"maxSeats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"maxSeats": {
+						"MAX": "rooms_seats"
+					}
+				},
+				{
+					"minLatitude": {
+						"MIN": "rooms_lat"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"rooms_shortname": "OSBO",
+			"maxSeats": 442,
+			"minLatitude": 49.26047
+		},
+		{
+			"rooms_shortname": "HEBB",
+			"maxSeats": 375,
+			"minLatitude": 49.2661
+		},
+		{
+			"rooms_shortname": "LSC",
+			"maxSeats": 350,
+			"minLatitude": 49.26236
+		}
+	]
+}
