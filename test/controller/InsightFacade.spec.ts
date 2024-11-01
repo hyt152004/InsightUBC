@@ -452,80 +452,81 @@ describe("InsightFacade", function () {
 
 		// Examples demonstrating how to test performQuery using the JSON Test Queries.
 		// The relative path to the query file must be given in square brackets.
-		// it("[valid/simple.json] SELECT dept, avg WHERE avg > 97", checkQuery);
-		// it("[valid/inputstring.json] SELECT inputstring", checkQuery);
-		// it("[valid/*inputstring.json] SELECT *inputstring", checkQuery);
-		// it("[valid/inputstring*.json] SELECT inputstring*", checkQuery);
-		// it("[valid/*inputstring*.json] SELECT *inputstring*", checkQuery);
-		// it("[valid/oneAsterisk.json] SELECT with one asterisk", checkQuery);
-		// it("[valid/twoAsterisks.json] SELECT with two asterisks", checkQuery);
-		// it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
-		// it("[valid/two*.json] SELECT two*", checkQuery); //
-		// it("[valid/simpleUUID.json] SELECT uuid", checkQuery); //
-		// it("[valid/simpleYEAR.json] SELECT year", checkQuery); //
+		it("[valid/simple.json] SELECT dept, avg WHERE avg > 97", checkQuery);
+		it("[valid/inputstring.json] SELECT inputstring", checkQuery);
+		it("[valid/*inputstring.json] SELECT *inputstring", checkQuery);
+		it("[valid/inputstring*.json] SELECT inputstring*", checkQuery);
+		it("[valid/*inputstring*.json] SELECT *inputstring*", checkQuery);
+		it("[valid/oneAsterisk.json] SELECT with one asterisk", checkQuery);
+		it("[valid/twoAsterisks.json] SELECT with two asterisks", checkQuery);
+		it("[valid/simpleNoOrder.json] SELECT dept, avg WHERE avg > 97, No Order", checkQuery);
+		it("[valid/two*.json] SELECT two*", checkQuery); //
+		it("[valid/simpleUUID.json] SELECT uuid", checkQuery); //
+		it("[valid/simpleYEAR.json] SELECT year", checkQuery); //
 
-		// it("[valid/simpleOR.json] SELECT with OR", checkQuery);
-		// it("[valid/complexOR.json] SELECT OR with 1 filter", checkQuery);
-		// it("[valid/complex.json] SELECT with AND and OR", checkQuery);
-		// it("[valid/complexLogic.json] SELECT with complex logic", checkQuery);
-		// it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
-		// it("[valid/noResult.json] Query with no result", checkQuery);
-		// it("[valid/doubleNegation.json] Query with double NOT", checkQuery);
+		it("[valid/simpleOR.json] SELECT with OR", checkQuery);
+		it("[valid/complexOR.json] SELECT OR with 1 filter", checkQuery);
+		it("[valid/complex.json] SELECT with AND and OR", checkQuery);
+		it("[valid/complexLogic.json] SELECT with complex logic", checkQuery);
+		it("[valid/complexNegation.json] SELECT with AND and OR and NOT", checkQuery);
+		it("[valid/noResult.json] Query with no result", checkQuery);
+		it("[valid/doubleNegation.json] Query with double NOT", checkQuery);
 
-		// it("[valid/oneCourseQuery.json] SELECT dept, one course", checkQuery);
-		// it("[valid/oneCourseNoResult.json] No result, one course", checkQuery);
-		// it("[valid/oneCourseAll.json] SELECT all, one course", checkQuery);
-		// it("[valid/year1900.json] SELECT year = 1900", checkQuery);
+		it("[valid/oneCourseQuery.json] SELECT dept, one course", checkQuery);
+		it("[valid/oneCourseNoResult.json] No result, one course", checkQuery);
+		it("[valid/oneCourseAll.json] SELECT all, one course", checkQuery);
+		it("[valid/year1900.json] SELECT year = 1900", checkQuery);
 
-		// it("[invalid/invalid.json] Query missing WHERE", checkQuery); //
-		// it("[invalid/missingInput.json] Query missing WHERE and OPTION", checkQuery); //
-		// it("[invalid/twoFields.json] Query with two fields", checkQuery); //
-		// it("[invalid/resultTooLarge2.json] SELECT large result 2", checkQuery);
-		// it("[invalid/input*string.json] SELECT input*string", checkQuery); //
-		// it("[invalid/resultTooLarge.json] SELECT large result", checkQuery);
-		// it("[invalid/twoFilterKeys.json] Query WHERE with 2 keys", checkQuery); //
-		// it("[invalid/invalidId.json] Query invalid id", checkQuery);
-		// it("[invalid/invalidMKey.json] Query invalid mkey", checkQuery); //
-		// it("[invalid/invalidSKey.json] Query invalid skey", checkQuery); //
-		// it("[invalid/invalidMField.json] Query invalid mfield", checkQuery); //
-		// it("[invalid/invalidSField.json] Query invalid sfield", checkQuery); //
-		// it("[invalid/invalidMComparator.json] Query invalid mcomparator", checkQuery); //
-		// it("[invalid/invalidSComparator.json] Query invalid scomparator", checkQuery); //
-		// it("[invalid/missingOption.json] Query missing OPTION", checkQuery); //
-		// it("[invalid/missingColumn.json] Query missing COLUMN", checkQuery); //
-		// it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery); //
-		// it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
-		// it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
-		// it("[invalid/invalidOR2.json] Query with invalid OR key", checkQuery);
+		it("[invalid/invalid.json] Query missing WHERE", checkQuery); //
+		it("[invalid/missingInput.json] Query missing WHERE and OPTION", checkQuery); //
+		it("[invalid/twoFields.json] Query with two fields", checkQuery); //
+		it("[invalid/resultTooLarge2.json] SELECT large result 2", checkQuery);
+		it("[invalid/input*string.json] SELECT input*string", checkQuery); //
+		it("[invalid/resultTooLarge.json] SELECT large result", checkQuery);
+		it("[invalid/twoFilterKeys.json] Query WHERE with 2 keys", checkQuery); //
+		it("[invalid/invalidId.json] Query invalid id", checkQuery);
+		it("[invalid/invalidMKey.json] Query invalid mkey", checkQuery); //
+		it("[invalid/invalidSKey.json] Query invalid skey", checkQuery); //
+		it("[invalid/invalidMField.json] Query invalid mfield", checkQuery); //
+		it("[invalid/invalidSField.json] Query invalid sfield", checkQuery); //
+		it("[invalid/invalidMComparator.json] Query invalid mcomparator", checkQuery); //
+		it("[invalid/invalidSComparator.json] Query invalid scomparator", checkQuery); //
+		it("[invalid/missingOption.json] Query missing OPTION", checkQuery); //
+		it("[invalid/missingColumn.json] Query missing COLUMN", checkQuery); //
+		it("[invalid/invalidOrderKey.json] Query with invalid ORDER key", checkQuery); //
+		it("[invalid/invalidColumnKey.json] Query with invalid COLUMN key", checkQuery); //
+		it("[invalid/invalidOR.json] Query with invalid COLUMN key", checkQuery);
+		it("[invalid/invalidOR2.json] Query with invalid OR key", checkQuery);
 
 		// // Group and Apply
-		// it("[valid/simpleGroup.json] Group by dept and apply AVG", checkQuery);
-		// it("[valid/twoApply.json] Group by dept and apply AVG and MAX", checkQuery);
-		// it("[valid/applyKeyNotShown.json] Only APPLY key not in COLUMNS", checkQuery);
-		// it("[valid/groupKeyNotShown.json] Only GROUP key not in COLUMNS", checkQuery);
-		// it("[valid/emptyApply.json] Empty field in APPLY", checkQuery);
-		// it("[valid/groupByTwoKeys.json] Group by two keys", checkQuery);
-		// it("[valid/validSortUp.json] valid Order with dir UP and keys", checkQuery);
-		// it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
-		// it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
-		// it("[valid/complexRoom.json] Group and apply on Room dataset", checkQuery);
-		// it("[valid/complexRoom2.json] Group and two apply on Room dataset", checkQuery);
-		// it("[valid/complexRoom3.json] Group and two apply on Room dataset and order by two keys", checkQuery);
-		it("[valid/everyRoomInfo.json] SELECT every room info", checkQuery);
+		it("[valid/simpleGroup.json] Group by dept and apply AVG", checkQuery);
+		it("[valid/twoApply.json] Group by dept and apply AVG and MAX", checkQuery);
+		it("[valid/applyKeyNotShown.json] Only APPLY key not in COLUMNS", checkQuery);
+		it("[valid/groupKeyNotShown.json] Only GROUP key not in COLUMNS", checkQuery);
+		it("[valid/emptyApply.json] Empty field in APPLY", checkQuery);
+		it("[valid/groupByTwoKeys.json] Group by two keys", checkQuery);
+		it("[valid/validSortUp.json] valid Order with dir UP and keys", checkQuery);
+		it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
+		it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
+		it("[valid/complexRoom.json] Group and apply on Room dataset", checkQuery);
+		it("[valid/complexRoom2.json] Group and two apply on Room dataset", checkQuery);
+		it("[valid/complexRoom3.json] Group and two apply on Room dataset and order by two keys", checkQuery);
+		it("[valid/everyRoomInfo2.json] SELECT every room info", checkQuery);
+		it("[valid/oneMax.json] Group by room name and find max seats", checkQuery);
 
-		// it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
-		// it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);
-		// it("[invalid/applyBodyTwoKeys.json] APPLY body has two keys in same rule", checkQuery);
-		// it("[invalid/invalidGroupKey.json] invalid Group key", checkQuery);
-		// it("[invalid/invalidApplyKey.json] invalid Apply key", checkQuery);
-		// it("[invalid/missingGROUP.json] missing GROUP", checkQuery);
-		// it("[invalid/missingAPPLY.json] missing APPLY", checkQuery);
-		// it("[invalid/duplicatedApplyKey.json] duplicated APPLY key", checkQuery);
-		// it("[invalid/applyAndGroupNotShown.json] GROUP and APPLY keys not in COLUMNS", checkQuery);
-		// it("[invalid/invalidColumn.json] invalid COLUMNS", checkQuery);
-		// it("[invalid/invalidApplyToken.json] invalid APPLY token", checkQuery);
-		// it("[invalid/invalidOrderDir.json] invalid Order Dir", checkQuery);
-		// it("[invalid/invalidOrderKeys.json] invalid Order key in key list", checkQuery);
-		// it("[invalid/missingOrderDir.json] missing Order Dir", checkQuery);
+		it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
+		it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);
+		it("[invalid/applyBodyTwoKeys.json] APPLY body has two keys in same rule", checkQuery);
+		it("[invalid/invalidGroupKey.json] invalid Group key", checkQuery);
+		it("[invalid/invalidApplyKey.json] invalid Apply key", checkQuery);
+		it("[invalid/missingGROUP.json] missing GROUP", checkQuery);
+		it("[invalid/missingAPPLY.json] missing APPLY", checkQuery);
+		it("[invalid/duplicatedApplyKey.json] duplicated APPLY key", checkQuery);
+		it("[invalid/applyAndGroupNotShown.json] GROUP and APPLY keys not in COLUMNS", checkQuery);
+		it("[invalid/invalidColumn.json] invalid COLUMNS", checkQuery);
+		it("[invalid/invalidApplyToken.json] invalid APPLY token", checkQuery);
+		it("[invalid/invalidOrderDir.json] invalid Order Dir", checkQuery);
+		it("[invalid/invalidOrderKeys.json] invalid Order key in key list", checkQuery);
+		it("[invalid/missingOrderDir.json] missing Order Dir", checkQuery);
 	});
 });
