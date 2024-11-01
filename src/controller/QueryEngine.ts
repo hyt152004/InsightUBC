@@ -1,5 +1,5 @@
 import { InsightDataset, InsightError, InsightResult, ResultTooLargeError } from "./IInsightFacade";
-import Section from "../model/Section";
+import Decimal from "decimal.js";
 
 export default class QueryEngine {
 	public datasetID: string;
@@ -19,6 +19,9 @@ export default class QueryEngine {
 		let filteredResult = parsedDataset.sections;
 
 		filteredResult = this.processWHERE(parsedQuery.WHERE, filteredResult);
+		if (parsedQuery.TRANSFORMATIONS) {
+			filteredResult = this.processTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS, filteredResult);
+		}
 		filteredResult = this.processOPTION(parsedQuery.OPTIONS, filteredResult);
 
 		// AFTER RESULTS HAS BEEN PROCESSED: If the result is greater than 5000, Reject with ResultTooLarge error
@@ -30,7 +33,7 @@ export default class QueryEngine {
 		}
 	}
 
-	private processWHERE(queryWHERE: any, filteredResult: any): Section[] {
+	private processWHERE(queryWHERE: any, filteredResult: any): any[] {
 		// If WHERE is empty, return all entries
 		if (Object.keys(queryWHERE).length === 0) {
 			return filteredResult;
@@ -52,47 +55,201 @@ export default class QueryEngine {
 		throw new InsightError(`filter, ${filter}, is NOT valid`);
 	}
 
-	private processOPTION(queryOPTION: any, filteredResult: any): Section[] {
-		const columnKeys = queryOPTION.COLUMNS;
-		const result: Section[] = [];
+	private processTRANSFORMATIONS(queryTRANSFORMATIONS: any, filteredResult: any): any[] {
+		const groupKeys = queryTRANSFORMATIONS.GROUP;
+		const applyRules = queryTRANSFORMATIONS.APPLY;
+		const groupedData = new Map<string, any[]>();
 
-		for (const section of filteredResult) {
-			const reorderedSection: Section = {} as Section;
-			for (const key of columnKeys) {
-				reorderedSection[key as keyof Section] = section[key];
+		// Transform result into groups of data
+		for (const item of filteredResult) {
+			const groupName = groupKeys.map((key: string) => item[key]).join("|");
+			if (!groupedData.has(groupName)) {
+				groupedData.set(groupName, []);
 			}
-			result.push(reorderedSection);
+			groupedData.get(groupName)!.push(item);
 		}
+
+		const allGroups = Array.from(groupedData.values());
+		const result = [];
+
+		for (const group of allGroups) {
+			let transformedGroup = group[0];
+
+			if (applyRules.length > 0) {
+				transformedGroup = this.processAPPLY(applyRules, group);
+			}
+
+			result.push(transformedGroup);
+		}
+
 		filteredResult = result;
 
-		if (queryOPTION.ORDER !== null) {
+		return filteredResult;
+	}
+
+	private processAPPLY(apply: any, group: any): any[] {
+		const result = group[0];
+		for (const applyRule of apply) {
+			const applyKey = Object.keys(applyRule)[0];
+			const applyBody = applyRule[applyKey];
+			const applyToken = Object.keys(applyBody)[0];
+			const applyItem = applyBody[applyToken];
+
+			if (applyToken === "MAX") {
+				result[applyKey] = this.handleMAX(applyItem, group);
+			}
+
+			if (applyToken === "MIN") {
+				result[applyKey] = this.handleMIN(applyItem, group);
+			}
+
+			if (applyToken === "AVG") {
+				result[applyKey] = this.handleAVG(applyItem, group);
+			}
+
+			if (applyToken === "SUM") {
+				result[applyKey] = this.handleSUM(applyItem, group);
+			}
+
+			if (applyToken === "COUNT") {
+				result[applyKey] = this.handleCOUNT(applyItem, group);
+			}
+		}
+
+		return result;
+	}
+
+	private handleMAX(applyItem: any, group: any): number {
+		let max = group[0][applyItem];
+		for (const item of group) {
+			if (item[applyItem] > max) {
+				max = item[applyItem];
+			}
+		}
+		return max;
+	}
+
+	private handleMIN(applyItem: any, group: any): number {
+		let min = group[0][applyItem];
+		for (const item of group) {
+			if (item[applyItem] < min) {
+				min = item[applyItem];
+			}
+		}
+		return min;
+	}
+
+	private handleAVG(applyItem: any, group: any): number {
+		let total = new Decimal(0);
+		for (const item of group) {
+			total = Decimal.add(total, new Decimal(item[applyItem]));
+		}
+		const numRows = group.length;
+		const avg = total.toNumber() / numRows;
+		const decimalPlace = 2;
+		return Number(avg.toFixed(decimalPlace));
+	}
+
+	private handleSUM(applyItem: any, group: any): number {
+		let sum = 0;
+		for (const item of group) {
+			sum += item[applyItem];
+		}
+		const decimalPlace = 2;
+		return Number(sum.toFixed(decimalPlace));
+	}
+
+	private handleCOUNT(applyItem: any, group: any): number {
+		const uniqueList: any[] = [];
+		for (const item of group) {
+			if (!uniqueList.includes(item[applyItem])) {
+				uniqueList.push(item[applyItem]);
+			}
+		}
+		return uniqueList.length;
+	}
+
+	private processOPTION(queryOPTION: any, filteredResult: any): any[] {
+		const columnKeys = queryOPTION.COLUMNS;
+		const result: any[] = [];
+
+		for (const item of filteredResult) {
+			result.push(item);
+		}
+
+		for (const record of result) {
+			for (const key of Object.keys(record)) {
+				if (!columnKeys.includes(key)) {
+					delete record[key];
+				}
+			}
+		}
+
+		filteredResult = result;
+
+		if (queryOPTION.ORDER !== null && queryOPTION.ORDER !== undefined) {
 			filteredResult = this.processORDER(queryOPTION.ORDER, filteredResult);
 		}
 
 		return filteredResult;
 	}
 
-	private processORDER(queryORDER: any, filteredResult: any): Section[] {
+	private processORDER(queryORDER: any, filteredResult: any): any[] {
+		if (typeof queryORDER === "string") {
+			filteredResult = this.handleSort(queryORDER, filteredResult);
+		} else {
+			filteredResult = this.handleSortDir(queryORDER, filteredResult);
+		}
+
+		return filteredResult;
+	}
+
+	private handleSort(queryORDER: any, filteredResult: any): any[] {
 		filteredResult.sort(function (a: any, b: any) {
-			if (typeof queryORDER === "string") {
-				if (a[queryORDER] < b[queryORDER]) {
-					return -1;
-				} else if (a[queryORDER] > b[queryORDER]) {
-					return 1;
-				} else {
-					return 0;
-				}
-			} else if (typeof queryORDER === "number") {
-				return a[queryORDER] - b[queryORDER];
+			if (a[queryORDER] > b[queryORDER]) {
+				return 1;
+			} else if (a[queryORDER] < b[queryORDER]) {
+				return -1;
+			} else {
+				return 0;
 			}
 		});
 		return filteredResult;
 	}
 
-	private handleLogic(queryLOGIC: any, filteredResult: any): Section[] {
+	private handleSortDir(queryORDER: any, filteredResult: any): any[] {
+		if (queryORDER.dir === "UP") {
+			filteredResult.sort(function (a: any, b: any) {
+				for (const key of queryORDER.keys) {
+					if (a[key] > b[key]) {
+						return 1;
+					} else if (a[key] < b[key]) {
+						return -1;
+					} else {
+						return 0;
+					}
+				}
+			});
+		} else {
+			filteredResult.sort(function (a: any, b: any) {
+				for (const key of queryORDER.keys) {
+					if (a[key] > b[key]) {
+						return -1;
+					} else if (a[key] < b[key]) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			});
+		}
+		return filteredResult;
+	}
+
+	private handleLogic(queryLOGIC: any, filteredResult: any): any[] {
 		const logic = Object.keys(queryLOGIC)[0];
 		const filterList = queryLOGIC[logic];
-		let result: Section[] = [];
+		let result: any[] = [];
 
 		// Case AND
 		if (logic === "AND") {
@@ -105,7 +262,7 @@ export default class QueryEngine {
 		// Case OR
 		else {
 			// create a huge list of all sections that match each filter
-			let filteredOR: Section[] = [];
+			let filteredOR: any[] = [];
 
 			for (const filter of filterList) {
 				filteredOR = filteredOR.concat(this.processWHERE(filter, filteredResult));
@@ -117,7 +274,7 @@ export default class QueryEngine {
 		return result;
 	}
 
-	private handleMComparison(queryMComparator: any, filteredResult: any): Section[] {
+	private handleMComparison(queryMComparator: any, filteredResult: any): any[] {
 		const mcomparator = Object.keys(queryMComparator)[0];
 		const mcomparison = queryMComparator[mcomparator];
 		const mkey = Object.keys(mcomparison);
@@ -154,7 +311,7 @@ export default class QueryEngine {
 		return result;
 	}
 
-	private handleSComparison(querySComparator: any, filteredResult: any): Section[] {
+	private handleSComparison(querySComparator: any, filteredResult: any): any[] {
 		const scomparator = Object.keys(querySComparator)[0];
 		const scomparison = querySComparator[scomparator];
 		const skey = Object.keys(scomparison)[0];
@@ -178,7 +335,7 @@ export default class QueryEngine {
 		});
 	}
 
-	private handleNegation(queryNegation: any, filteredResult: any): Section[] {
+	private handleNegation(queryNegation: any, filteredResult: any): any[] {
 		const result = [];
 		const negatedResult = this.processWHERE(queryNegation.NOT, filteredResult);
 
