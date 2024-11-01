@@ -1,5 +1,4 @@
 import { InsightDataset, InsightError, InsightResult, ResultTooLargeError } from "./IInsightFacade";
-import Section from "../model/Section";
 import Decimal from "decimal.js";
 
 export default class QueryEngine {
@@ -89,7 +88,7 @@ export default class QueryEngine {
 	}
 
 	private processAPPLY(apply: any, group: any): any[] {
-		let result = group[0];
+		const result = group[0];
 		for (const applyRule of apply) {
 			const applyKey = Object.keys(applyRule)[0];
 			const applyBody = applyRule[applyKey];
@@ -147,7 +146,8 @@ export default class QueryEngine {
 		}
 		const numRows = group.length;
 		const avg = total.toNumber() / numRows;
-		return Number(avg.toFixed(2));
+		const decimalPlace = 2;
+		return Number(avg.toFixed(decimalPlace));
 	}
 
 	private handleSUM(applyItem: any, group: any): number {
@@ -155,7 +155,8 @@ export default class QueryEngine {
 		for (const item of group) {
 			sum += item[applyItem];
 		}
-		return Number(sum.toFixed(2));
+		const decimalPlace = 2;
+		return Number(sum.toFixed(decimalPlace));
 	}
 
 	private handleCOUNT(applyItem: any, group: any): number {
@@ -186,7 +187,7 @@ export default class QueryEngine {
 
 		filteredResult = result;
 
-		if (queryOPTION.ORDER !== null) {
+		if (queryOPTION.ORDER !== null && queryOPTION.ORDER !== undefined) {
 			filteredResult = this.processORDER(queryOPTION.ORDER, filteredResult);
 		}
 
@@ -219,7 +220,7 @@ export default class QueryEngine {
 	private handleSortDir(queryORDER: any, filteredResult: any): any[] {
 		if (queryORDER.dir === "UP") {
 			filteredResult.sort(function (a: any, b: any) {
-				for (const key of queryORDER.keys)
+				for (const key of queryORDER.keys) {
 					if (a[key] > b[key]) {
 						return 1;
 					} else if (a[key] < b[key]) {
@@ -227,10 +228,11 @@ export default class QueryEngine {
 					} else {
 						return 0;
 					}
+				}
 			});
 		} else {
 			filteredResult.sort(function (a: any, b: any) {
-				for (const key of queryORDER.keys)
+				for (const key of queryORDER.keys) {
 					if (a[key] > b[key]) {
 						return -1;
 					} else if (a[key] < b[key]) {
@@ -238,6 +240,7 @@ export default class QueryEngine {
 					} else {
 						return 0;
 					}
+				}
 			});
 		}
 		return filteredResult;

@@ -153,14 +153,14 @@ describe("InsightFacade", function () {
 			}
 		});
 
-		// it("should reject dataset with invalid key", async function () {
-		// 	try {
-		// 		await facade.addDataset("ubc", invalidKey, InsightDatasetKind.Sections);
-		// 		expect.fail("Should have thrown!");
-		// 	} catch (err) {
-		// 		expect(err).to.be.instanceOf(InsightError);
-		// 	}
-		// });
+		it("should reject dataset with invalid key", async function () {
+			try {
+				await facade.addDataset("ubc", invalidKey, InsightDatasetKind.Sections);
+				expect.fail("Should have thrown!");
+			} catch (err) {
+				expect(err).to.be.instanceOf(InsightError);
+			}
+		});
 
 		it("should reject dataset with missing fields", async function () {
 			try {
@@ -489,6 +489,7 @@ describe("InsightFacade", function () {
 		it("[valid/validSortUp.json] valid Order with dir UP and keys", checkQuery);
 		it("[valid/validSortDown.json] valid Order with dir DOWN and keys", checkQuery);
 		it("[valid/simpleSUM.json] Group by dept and apply SUM", checkQuery);
+		it("[valid/complexRoom.json] Group and apply on Room dataset", checkQuery);
 
 		it("[invalid/emptyGroup.json] Empty field in GROUP", checkQuery);
 		it("[invalid/applyBodyTwoTokens.json] APPLY body has two tokens", checkQuery);
