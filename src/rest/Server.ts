@@ -81,6 +81,7 @@ export default class Server {
 		// JSON parser must be place before raw parser because of wildcard matching done by raw parser below
 		this.express.use(express.json());
 		this.express.use(express.raw({ type: "application/*", limit: "10mb" }));
+		this.express.use("/data", express.static("data"));
 
 		// enable cors in request headers to allow cross-origin HTTP requests
 		this.express.use(cors());
@@ -124,7 +125,7 @@ export default class Server {
 		try {
 			const id = req.params.id;
 			const kind = req.params.kind;
-			const zipContent = Buffer.from(req.body).toString("base64");
+			const zipContent = req.body.toString("base64");
 			const response = await this.facade.addDataset(id, zipContent, kind as InsightDatasetKind);
 			return res.status(StatusCodes.OK).json({ result: response });
 		} catch (err: any) {
