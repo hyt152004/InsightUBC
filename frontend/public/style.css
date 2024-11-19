@@ -12,3 +12,9 @@
 .button:hover {
     cursor: pointer;
 }
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 100vh; /* Use 100vh to make the height equal to 100% of the viewport */
+    width: 100vw; /* Use 100vw to make the width equal to 100% of the viewport */
+}
