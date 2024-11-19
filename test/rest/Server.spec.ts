@@ -17,7 +17,6 @@ describe("Facade C3", function () {
 	let simpleQuery: Buffer;
 	let simpleQueryResult: Buffer;
 
-
 	before(async function () {
 		// TODO: start server here once and handle errors properly
 		oneCourse = await fs.readFile("./test/resources/archives/oneValidCourse.zip");
@@ -29,11 +28,11 @@ describe("Facade C3", function () {
 
 		facade = new InsightFacade();
 		server = new Server(4321);
-        try {
-            await server.start();
-        } catch (err) {
-            Log.trace("Error starting server");
-        }
+		try {
+			await server.start();
+		} catch (err) {
+			Log.trace("Error starting server");
+		}
 	});
 
 	after(async function () {
@@ -198,8 +197,6 @@ describe("Facade C3", function () {
 					// some logging here please!
 					expect.fail();
 				});
-
-		
 		} catch (err) {
 			Log.error(err);
 			// and some more logging here!
@@ -214,15 +211,15 @@ describe("Facade C3", function () {
 
 		try {
 			return request(SERVER_URL)
-						.delete(ENDPOINT_URL_DELETE)
-						.then(function (res: Response) {
-							// some logging here please!
-							expect(res.status).to.be.equal(StatusCodes.NOT_FOUND);
-						})
-						.catch(function () {
-							// some logging here please!
-							expect.fail();
-						});
+				.delete(ENDPOINT_URL_DELETE)
+				.then(function (res: Response) {
+					// some logging here please!
+					expect(res.status).to.be.equal(StatusCodes.NOT_FOUND);
+				})
+				.catch(function () {
+					// some logging here please!
+					expect.fail();
+				});
 		} catch (err) {
 			Log.error(err);
 			// and some more logging here!
@@ -237,47 +234,50 @@ describe("Facade C3", function () {
 
 		try {
 			return request(SERVER_URL)
-						.delete(ENDPOINT_URL_DELETE)
-						.then(function (res: Response) {
-							// some logging here please!
-							expect(res.status).to.be.equal(StatusCodes.BAD_REQUEST);
-						})
-						.catch(function () {
-							// some logging here please!
-							expect.fail();
-						});
+				.delete(ENDPOINT_URL_DELETE)
+				.then(function (res: Response) {
+					// some logging here please!
+					expect(res.status).to.be.equal(StatusCodes.BAD_REQUEST);
+				})
+				.catch(function () {
+					// some logging here please!
+					expect.fail();
+				});
 		} catch (err) {
 			Log.error(err);
 			// and some more logging here!
 		}
 	});
 
-	// it("POST test for valid query", function () {
-	// 	const expected = JSON.parse(JSON.stringify(simpleQueryResult));
+	it("POST test for valid query", function () {
+		const query = JSON.parse(Buffer.from(simpleQuery).toString());
+		const expected = JSON.parse(Buffer.from(simpleQueryResult).toString());
 
-	// 	const SERVER_URL = "http://localhost:4321";
-	// 	const ENDPOINT_URL = "/query";
+		const SERVER_URL = "http://localhost:4321";
+		const ENDPOINT_URL = "/query";
 
-	// 	try {
-	// 		return request(SERVER_URL)
-	// 			.post(ENDPOINT_URL)
-	// 			.type("json")
-	// 			.send(simpleQuery)
-	// 			.then(function (res: Response) {
-	// 				// some logging here please!
-	// 				expect(res.status).to.be.equal(StatusCodes.OK);
-	// 				expect(res.body).to.deep.members(expected);
-	// 			})
-	// 			.catch(function () {
-	// 				// some logging here please!
-	// 				expect.fail();
-	// 			});
-	// 	} catch (err) {
-	// 		Log.error(err);
-	// 		// and some more logging here!
-	// 	}
-	// });
-	
+		console.log(query);
+		console.log(expected);
+
+		try {
+			return request(SERVER_URL)
+				.post(ENDPOINT_URL)
+				.type("json")
+				.send(query)
+				.then(function (res: Response) {
+					// some logging here please!
+					expect(res.status).to.be.equal(StatusCodes.OK);
+					expect(res.body).to.deep.members(expected);
+				})
+				.catch(function () {
+					// some logging here please!
+					expect.fail();
+				});
+		} catch (err) {
+			Log.error(err);
+			// and some more logging here!
+		}
+	});
 
 	// The other endpoints work similarly. You should be able to find all instructions in the supertest documentation
 });
