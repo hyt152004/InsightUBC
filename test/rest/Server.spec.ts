@@ -95,6 +95,7 @@ describe("Facade C3", function () {
 				.then(function (res: Response) {
 					// some logging here please!
 					expect(res.status).to.be.equal(StatusCodes.BAD_REQUEST);
+					expect(res.body.error).to.be.a("string");
 				})
 				.catch(function () {
 					// some logging here please!
@@ -150,6 +151,7 @@ describe("Facade C3", function () {
 				.then(function (res: Response) {
 					// some logging here please!
 					expect(res.status).to.be.equal(StatusCodes.BAD_REQUEST);
+					expect(res.body.error).to.be.a("string");
 				})
 				.catch(function () {
 					// some logging here please!
@@ -213,6 +215,7 @@ describe("Facade C3", function () {
 				.then(function (res: Response) {
 					// some logging here please!
 					expect(res.status).to.be.equal(StatusCodes.NOT_FOUND);
+					expect(res.body.error).to.be.a("string");
 				})
 				.catch(function () {
 					// some logging here please!
@@ -246,6 +249,49 @@ describe("Facade C3", function () {
 			// and some more logging here!
 		}
 	});
+
+	// it("GET test for one valid course dataset", function () {
+	// 	const id = "david";
+	// 	const kind = "sections";
+
+	// 	const SERVER_URL = "http://localhost:4321";
+	// 	const ENDPOINT_URL = "/dataset/" + id + "/" + kind;
+	// 	const ZIP_FILE_DATA = oneCourse;
+
+	// 	const ENDPOINT_URL_GET = "/datasets";
+
+	// 	try {
+	// 		return request(SERVER_URL)
+	// 			.put(ENDPOINT_URL)
+	// 			.send(ZIP_FILE_DATA)
+	// 			.set("Content-Type", "application/x-zip-compressed")
+	// 			.then(async function (res: Response) {
+	// 				// some logging here please!
+	// 				expect(res.status).to.be.equal(StatusCodes.OK);
+	// 				expect(res.body.result).to.have.members([id]);
+
+	// 				return request(SERVER_URL)
+	// 					.get(ENDPOINT_URL_GET)
+	// 					.then(function (res: Response) {
+	// 						// some logging here please!
+	// 						console.log(res.body.result);
+	// 						expect(res.status).to.be.equal(StatusCodes.OK);
+	// 						expect(res.body.result).to.deep.equal([{ id: "david", kind: "sections", numRows: 2 }]);
+	// 					})
+	// 					.catch(function () {
+	// 						// some logging here please!
+	// 						expect.fail();
+	// 					});
+	// 			})
+	// 			.catch(function () {
+	// 				// some logging here please!
+	// 				expect.fail();
+	// 			});
+	// 	} catch (err) {
+	// 		Log.error(err);
+	// 		// and some more logging here!
+	// 	}
+	// });
 
 	it("POST test for valid query", function () {
 		const id = "sections";
