@@ -120,10 +120,10 @@ export default class Server {
 		}
 	}
 
-	private async putDataset(req: Request, res: Response) {
+	private async putDataset(req: Request, res: Response): Promise<any> {
 		try {
 			const id = req.params.id;
-			let kind = req.params.kind;
+			const kind = req.params.kind;
 			const zipContent = Buffer.from(req.body).toString("base64");
 			const response = await this.facade.addDataset(id, zipContent, kind as InsightDatasetKind);
 			return res.status(StatusCodes.OK).json({ result: response });
@@ -132,7 +132,7 @@ export default class Server {
 		}
 	}
 
-	private async deleteDataset(req: Request, res: Response) {
+	private async deleteDataset(req: Request, res: Response): Promise<any> {
 		try {
 			const id = req.params.id;
 			const response = await this.facade.removeDataset(id);
@@ -146,7 +146,7 @@ export default class Server {
 		}
 	}
 
-	private async postQuery(req: Request, res: Response) {
+	private async postQuery(req: Request, res: Response): Promise<any> {
 		try {
 			const response = await this.facade.performQuery(req.body);
 			return res.status(StatusCodes.OK).json({ result: response });
@@ -155,7 +155,7 @@ export default class Server {
 		}
 	}
 
-	private async getDataset(req: Request, res: Response) {
+	private async getDataset(_req: Request, res: Response): Promise<any> {
 		try {
 			const response = await this.facade.listDatasets();
 			return res.status(StatusCodes.OK).json({ result: response });
