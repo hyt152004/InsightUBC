@@ -10,7 +10,6 @@ import {
 } from "./IInsightFacade";
 import QueryValidator from "./QueryValidator";
 import QueryEngine from "./QueryEngine";
-import Log from "@ubccpsc310/folder-test/build/Log";
 // import Log from "../../util/Log";
 
 /**

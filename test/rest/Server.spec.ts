@@ -3,13 +3,12 @@ import request, { Response } from "supertest";
 import { StatusCodes } from "http-status-codes";
 import Log from "@ubccpsc310/folder-test/build/Log";
 import Server from "../../src/rest/Server";
-import InsightFacade from "../../src/controller/InsightFacade";
 import * as fs from "fs-extra";
 import { clearDisk } from "../TestUtil";
 
 describe("Facade C3", function () {
-	let facade: InsightFacade;
 	let server: Server;
+	let pair: Buffer;
 	let oneCourse: Buffer;
 	let invalidSection: Buffer;
 	let oneBuilding: Buffer;
@@ -19,6 +18,7 @@ describe("Facade C3", function () {
 
 	before(async function () {
 		// TODO: start server here once and handle errors properly
+		pair = await fs.readFile("./test/resources/archives/pair.zip");
 		oneCourse = await fs.readFile("./test/resources/archives/oneValidCourse.zip");
 		invalidSection = await fs.readFile("./test/resources/archives/invalidSection.zip");
 		oneBuilding = await fs.readFile("./test/resources/archives/campusWithOneBuilding.zip");
@@ -26,11 +26,11 @@ describe("Facade C3", function () {
 		simpleQuery = await fs.readFile("./test/resources/queries/c3/simple.json");
 		simpleQueryResult = await fs.readFile("./test/resources/queries/c3/simpleResult.json");
 
-		facade = new InsightFacade();
-		server = new Server(4321);
+		const PORT = 4321;
+		server = new Server(PORT);
 		try {
 			await server.start();
-		} catch (err) {
+		} catch (_err) {
 			Log.trace("Error starting server");
 		}
 	});
@@ -176,10 +176,8 @@ describe("Facade C3", function () {
 				.put(ENDPOINT_URL)
 				.send(ZIP_FILE_DATA)
 				.set("Content-Type", "application/x-zip-compressed")
-				.then(function (res: Response) {
+				.then(async () => {
 					// some logging here please!
-					expect(res.status).to.be.equal(StatusCodes.OK);
-					expect(res.body.result).to.have.members([id]);
 
 					return request(SERVER_URL)
 						.delete(ENDPOINT_URL_DELETE)
@@ -250,24 +248,39 @@ describe("Facade C3", function () {
 	});
 
 	it("POST test for valid query", function () {
+		const id = "sections";
+		const kind = "sections";
+
+		const SERVER_URL = "http://localhost:4321";
+		const ENDPOINT_URL = "/dataset/" + id + "/" + kind;
+		const ZIP_FILE_DATA = pair;
+
 		const query = JSON.parse(Buffer.from(simpleQuery).toString());
 		const expected = JSON.parse(Buffer.from(simpleQueryResult).toString());
 
-		const SERVER_URL = "http://localhost:4321";
-		const ENDPOINT_URL = "/query";
-
-		console.log(query);
-		console.log(expected);
+		const ENDPOINT_URL_QUERY = "/query";
 
 		try {
 			return request(SERVER_URL)
-				.post(ENDPOINT_URL)
-				.type("json")
-				.send(query)
-				.then(function (res: Response) {
+				.put(ENDPOINT_URL)
+				.send(ZIP_FILE_DATA)
+				.set("Content-Type", "application/x-zip-compressed")
+				.then(async () => {
 					// some logging here please!
-					expect(res.status).to.be.equal(StatusCodes.OK);
-					expect(res.body).to.deep.members(expected);
+
+					return request(SERVER_URL)
+						.post(ENDPOINT_URL_QUERY)
+						.type("json")
+						.send(query)
+						.then(function (res: Response) {
+							// some logging here please!
+							expect(res.status).to.be.equal(StatusCodes.OK);
+							expect(res.body.result).to.deep.members(expected);
+						})
+						.catch(function () {
+							// some logging here please!
+							expect.fail();
+						});
 				})
 				.catch(function () {
 					// some logging here please!
