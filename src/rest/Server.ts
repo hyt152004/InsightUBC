@@ -3,16 +3,20 @@ import { StatusCodes } from "http-status-codes";
 import Log from "@ubccpsc310/folder-test/build/Log";
 import * as http from "http";
 import cors from "cors";
+import InsightFacade from "../controller/InsightFacade";
+import { InsightDatasetKind, InsightError, NotFoundError } from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private facade: InsightFacade;
 
 	constructor(port: number) {
 		Log.info(`Server::<init>( ${port} )`);
 		this.port = port;
 		this.express = express();
+		this.facade = new InsightFacade();
 
 		this.registerMiddleware();
 		this.registerRoutes();
@@ -20,7 +24,7 @@ export default class Server {
 		// NOTE: you can serve static frontend files in from your express server
 		// by uncommenting the line below. This makes files in ./frontend/public
 		// accessible at http://localhost:<port>/
-		// this.express.use(express.static("./frontend/public"))
+		this.express.use(express.static("./frontend/public"));
 	}
 
 	/**
@@ -89,6 +93,9 @@ export default class Server {
 		this.express.get("/echo/:msg", Server.echo);
 
 		// TODO: your other endpoints should go here
+		this.express.put("/dataset/:id/:kind", this.putDataset.bind(this));
+		this.express.delete("/dataset/:id", this.deleteDataset.bind(this));
+		// this.express.post("/query", this.postQuery.bind(this));
 	}
 
 	// The next two methods handle the echo service.
@@ -109,6 +116,41 @@ export default class Server {
 			return `${msg}...${msg}`;
 		} else {
 			return "Message not provided";
+		}
+	}
+
+	private async putDataset(req: Request, res: Response) {
+		try {
+			const id = req.params.id;
+			let kind = req.params.kind;
+			const zipContent = Buffer.from(req.body).toString("base64");
+			const response = await this.facade.addDataset(id, zipContent, kind as InsightDatasetKind);
+			return res.status(StatusCodes.OK).json({ result: response });
+		} catch (err){
+			return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+		}
+	}
+
+	private async deleteDataset(req: Request, res: Response) {
+		try {
+			const id = req.params.id;
+			const response = await this.facade.removeDataset(id);
+			return res.status(StatusCodes.OK).json({ result: response });
+		} catch (err){
+			if (err instanceof InsightError) {
+				return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+			} else if (err instanceof NotFoundError) {
+				return res.status(StatusCodes.NOT_FOUND).json({ error: err });
+			}
+		}
+	}
+
+	private async postQuery(req: Request, res: Response) {
+		try {
+			const response = await this.facade.performQuery(req.body);
+			return res.status(StatusCodes.OK).json({ result: response });
+		} catch (err){
+			return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
 		}
 	}
 }
