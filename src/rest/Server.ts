@@ -127,8 +127,8 @@ export default class Server {
 			const zipContent = Buffer.from(req.body).toString("base64");
 			const response = await this.facade.addDataset(id, zipContent, kind as InsightDatasetKind);
 			return res.status(StatusCodes.OK).json({ result: response });
-		} catch (err) {
-			return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+		} catch (err: any) {
+			return res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
 		}
 	}
 
@@ -139,9 +139,9 @@ export default class Server {
 			return res.status(StatusCodes.OK).json({ result: response });
 		} catch (err) {
 			if (err instanceof InsightError) {
-				return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+				return res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
 			} else if (err instanceof NotFoundError) {
-				return res.status(StatusCodes.NOT_FOUND).json({ error: err });
+				return res.status(StatusCodes.NOT_FOUND).json({ error: err.message });
 			}
 		}
 	}
@@ -150,8 +150,8 @@ export default class Server {
 		try {
 			const response = await this.facade.performQuery(req.body);
 			return res.status(StatusCodes.OK).json({ result: response });
-		} catch (err) {
-			return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+		} catch (err: any) {
+			return res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
 		}
 	}
 
@@ -159,8 +159,8 @@ export default class Server {
 		try {
 			const response = await this.facade.listDatasets();
 			return res.status(StatusCodes.OK).json({ result: response });
-		} catch (err) {
-			return res.status(StatusCodes.BAD_REQUEST).json({ error: err });
+		} catch (err: any) {
+			return res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
 		}
 	}
 }
