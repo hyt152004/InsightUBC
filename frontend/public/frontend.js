@@ -24,24 +24,63 @@ async function initMap() {
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
-			const { campus_lat, campus_lon, campus_shortname, campus_address } = room;
+			const { campus_lat, campus_lon, campus_fullname, campus_shortname, campus_address } = room;
 
 			const marker = new AdvancedMarkerElement({
 				map: map,
 				position: { lat: campus_lat, lng: campus_lon },
-				title: campus_shortname,
+				title: campus_fullname,
 			});
 
 			const infoWindow = new google.maps.InfoWindow({
 				content: `
-			      <h3>${campus_shortname}</h3>
+			      <h3>${campus_fullname} (${campus_shortname})</h3>
 			      <p>${campus_address}</p>
 			    `,
 			});
 
+			// Open rooms pop up panel
+			const roomPopup = document.getElementById("room-popup");
+			const roomPopupContent = document.querySelector(".room-popup-content");
+
 			marker.addListener("click", () => {
+				// Clear existing content
+				roomPopupContent.innerHTML = `
+					<button id="exit"><i class="fa fa-close"></i></button>
+					<h4>${campus_fullname} (${campus_shortname})</h4>
+					<ul id="room-list"></ul>
+				`;
+
+				// Populate the list of rooms for this building
+				const roomList = document.getElementById("room-list");
+				if (buildingRooms[campus_shortname]) {
+					buildingRooms[campus_shortname].forEach((room) => {
+						const listItem = document.createElement("li");
+						listItem.textContent = room.campus_number || "Unknown Room";
+						roomList.appendChild(listItem);
+					});
+				} else {
+					roomList.innerHTML = "<li>No rooms available</li>";
+				}
+
+				// Open the popup
+				roomPopup.classList.add("open");
+
+				// Add event listener for the exit button
+				document.getElementById("exit").addEventListener("click", () => {
+					roomPopup.classList.remove("open");
+				});
+			});
+
+			// Hover over marker for building info
+			marker.content.addEventListener('mouseenter', function(){
 				infoWindow.open(map, marker);
 			});
+			
+			marker.content.addEventListener('mouseleave', function(){
+				infoWindow.close(map, marker);
+			});
+
 		});
 	} catch (error) {
 		console.error("Error loading campus data:", error);
