@@ -18,9 +18,12 @@ async function initMap() {
 		title: "UBC",
 	});
 
+	const selectedRoomList = [...new Set(array)];
+
 	try {
 		const response = await fetch("data/campus.json");
 		const data = await response.json();
+					const selectedRoomList = [...new Set(array)];
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
@@ -38,8 +41,6 @@ async function initMap() {
 			      <p>${campus_address}</p>
 			    `,
 			});
-
-			const selectedRoomList = new Array();
 
 			// Open rooms pop up panel
 			const roomPopup = document.getElementById("room-popup");
