@@ -39,6 +39,8 @@ async function initMap() {
 			    `,
 			});
 
+			const selectedRoomList = new Array();
+
 			// Open rooms pop up panel
 			const roomPopup = document.getElementById("room-popup");
 			const roomPopupContent = document.querySelector(".room-popup-content");
@@ -57,6 +59,36 @@ async function initMap() {
 					buildingRooms[campus_shortname].forEach((room) => {
 						const listItem = document.createElement("li");
 						listItem.textContent = room.campus_number || "Unknown Room";
+						const selectButton = document.createElement("button");
+						selectButton.textContent = "Select";
+						selectButton.classList.add("select-room-button");
+
+						const sidePanel = document.getElementById("side-panel");
+						const roomTable = document.getElementById("room-table");
+						const tableRow = document.createElement("tr");
+						const fullname = document.createElement("td");
+						fullname.textContent = room.campus_fullname;
+						const shortname = document.createElement("td");
+						shortname.textContent = room.campus_shortname;
+						const number = document.createElement("td");
+						number.textContent = room.campus_number;
+						const address = document.createElement("td");
+						address.textContent = room.campus_address;
+						const seats = document.createElement("td");
+						seats.textContent = room.campus_seats;
+
+						selectButton.addEventListener("click", () => {
+							selectedRoomList.push(room);
+							roomTable.appendChild(tableRow);
+							tableRow.appendChild(fullname);
+							tableRow.appendChild(shortname);
+							tableRow.appendChild(number);
+							tableRow.appendChild(address);
+							tableRow.appendChild(seats);
+							console.log(selectedRoomList);
+						});
+
+						listItem.prepend(selectButton);
 						roomList.appendChild(listItem);
 					});
 				} else {
@@ -119,4 +151,7 @@ async function getWalkingDistance(lat1, lng1, lat2, lng2) {
 
 (async () => {
 	await initMap();
+	getWalkingDistance(49.2606, -123.246, 49.262, -123.248);
 })();
+
+
