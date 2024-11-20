@@ -1,72 +1,96 @@
-// Initialize and add the map
+let buildingRooms = {};
 
 async function initMap() {
-	// The location of UBC (default center)
 	const position = { lat: 49.2606, lng: -123.246 };
 
-	// Request needed libraries.
-	//@ts-ignore
 	const { Map } = await google.maps.importLibrary("maps");
 	const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-	// The map, centered at Uluru
 	const map = new Map(document.getElementById("map"), {
-		zoom: 14, // Adjusted zoom for a closer view
+		zoom: 14,
 		center: position,
 		mapId: "DEMO_MAP_ID",
 	});
 
-	const marker = new AdvancedMarkerElement({
+	new AdvancedMarkerElement({
 		map: map,
 		position: { lat: 49.2606, lng: -123.246 },
 		title: "UBC",
 	});
-	// Fetch the campus data from the JSON file
-	fetch("data/campus.json")
-		.then((response) => response.json())
-		.then((data) => {
-			// Loop through each room object in the JSON data
-			data.forEach((room) => {
-				console.log(room);
-				const { campus_lat, campus_lon, campus_name, campus_address } = room;
 
-				// Create a marker for each room
-				const marker = new AdvancedMarkerElement({
-					map: map,
-					position: { lat: campus_lat, lng: campus_lon },
-					title: campus_name,
-				});
+	try {
+		const response = await fetch("data/campus.json");
+		const data = await response.json();
 
-				// Optional: Add info window to display campus details
-				const infoWindow = new google.maps.InfoWindow({
-					content: `
-			      <h3>${campus_name}</h3>
+		data.forEach((room) => {
+			addRoomToHashmap(room);
+			const { campus_lat, campus_lon, campus_shortname, campus_address } = room;
+
+			const marker = new AdvancedMarkerElement({
+				map: map,
+				position: { lat: campus_lat, lng: campus_lon },
+				title: campus_shortname,
+			});
+
+			const infoWindow = new google.maps.InfoWindow({
+				content: `
+			      <h3>${campus_shortname}</h3>
 			      <p>${campus_address}</p>
 			    `,
-				});
-
-				// Open the info window when the marker is clicked
-				marker.addListener("click", () => {
-					infoWindow.open(map, marker);
-				});
 			});
-			console.log(data);
-		})
-		.catch((error) => console.error("Error loading campus data:", error));
+
+			marker.addListener("click", () => {
+				infoWindow.open(map, marker);
+			});
+		});
+	} catch (error) {
+		console.error("Error loading campus data:", error);
+	}
 }
 
-// Path to the JSON file (ensure it's publicly accessible from the browser)
-const filePath = "./data.json"; // Adjust path based on your project structure
+function addRoomToHashmap(room) {
+	const { campus_shortname } = room;
+	if (!buildingRooms[campus_shortname]) {
+		buildingRooms[campus_shortname] = [];
+	}
+	buildingRooms[campus_shortname].push(room);
+}
 
-// Fetch the JSON file
-fetch(filePath)
-	.then((response) => response.json()) // Parse the JSON from the response
-	.then((data) => {
-		// Handle the data from the JSON file
-		console.log(data);
-	})
-	.catch((error) => {
-		console.error("Error loading the JSON file:", error);
-	});
+// function findDistanceBetweenRooms() {
+// 	const room1 = buildingRooms["BUCH"][0];
+// 	const room2 = buildingRooms["BUCH"][1];
+// 	console.log(room1);
+// 	console.log(room2);
+// }
 
-initMap();
+(async () => {
+	await initMap();
+	console.log(buildingRooms);
+	// findDistanceBetweenRooms();
+})();
+
+// async function getWalkingDistance(lat1, lng1, lat2, lng2) {
+// 	const apiKey = "AIzaSyB4ofkRUl0baRe9oK0g5LwelMxy2MIpggE";
+// 	const proxyUrl = "https://cors-anywhere.herokuapp.com/"; // or another CORS proxy
+// 	const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${lat1},${lng1}&destinations=${lat2},${lng2}&mode=walking&key=${apiKey}`;
+
+// 	try {
+// 		const response = await fetch(proxyUrl + url);
+// 		const data = await response.json();
+
+// 		if (data.rows[0].elements[0].status === "OK") {
+// 			const distance = data.rows[0].elements[0].distance.text;
+// 			const duration = data.rows[0].elements[0].duration.text;
+// 			console.log(`Walking distance: ${distance}`);
+// 			console.log(`Walking duration: ${duration}`);
+// 			return { distance, duration };
+// 		} else {
+// 			console.error("Error getting walking distance:", data.rows[0].elements[0].status);
+// 		}
+// 	} catch (error) {
+// 		console.error("Error making the request:", error);
+// 	}
+// }
+
+// // Example usage
+// getWalkingDistance(49.2606, -123.246, 49.262, -123.248);
