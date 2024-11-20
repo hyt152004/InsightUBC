@@ -103,7 +103,7 @@ describe("Facade C3", function () {
 				});
 		} catch (err) {
 			Log.error(err);
-			// and some more logging here!
+			// and some more logging here!!
 		}
 	});
 
