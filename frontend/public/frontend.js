@@ -57,6 +57,10 @@ async function initMap() {
 					buildingRooms[campus_shortname].forEach((room) => {
 						const listItem = document.createElement("li");
 						listItem.textContent = room.campus_number || "Unknown Room";
+						const selectButton = document.createElement("button");
+						selectButton.textContent = "Select";
+						selectButton.classList.add("select-room-button");
+						listItem.prepend(selectButton);
 						roomList.appendChild(listItem);
 					});
 				} else {
