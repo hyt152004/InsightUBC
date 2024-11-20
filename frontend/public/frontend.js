@@ -18,6 +18,8 @@ async function initMap() {
 		title: "UBC",
 	});
 
+	const selectedRoomList = new Array();
+
 	try {
 		const response = await fetch("data/campus.json");
 		const data = await response.json();
@@ -38,8 +40,6 @@ async function initMap() {
 			      <p>${campus_address}</p>
 			    `,
 			});
-
-			const selectedRoomList = new Array();
 
 			// Open rooms pop up panel
 			const roomPopup = document.getElementById("room-popup");
@@ -85,7 +85,7 @@ async function initMap() {
 							tableRow.appendChild(number);
 							tableRow.appendChild(address);
 							tableRow.appendChild(seats);
-							console.log(selectedRoomList);
+							generateListOfWalkingDistance(selectedRoomList);
 						});
 
 						listItem.prepend(selectButton);
@@ -138,8 +138,6 @@ async function getWalkingDistance(lat1, lng1, lat2, lng2) {
 		if (data.rows[0].elements[0].status === "OK") {
 			const distance = data.rows[0].elements[0].distance.text;
 			const duration = data.rows[0].elements[0].duration.text;
-			console.log(`Walking distance: ${distance}`);
-			console.log(`Walking duration: ${duration}`);
 			return { distance, duration };
 		} else {
 			console.error("Error getting walking distance:", data.rows[0].elements[0].status);
@@ -149,9 +147,43 @@ async function getWalkingDistance(lat1, lng1, lat2, lng2) {
 	}
 }
 
+function findAllPair(selectedRooms) {
+	const pairs = [];
+
+	for (let i = 0; i < selectedRooms.length; i++) {
+		for (let j = i + 1; j < selectedRooms.length; j++) {
+			pairs.push([selectedRooms[i], selectedRooms[j]]);
+		}
+	}
+	return pairs;
+}
+
+async function generateListOfWalkingDistance(selectedRooms) {
+	const listOfWalkingDistance = [];
+
+	const pairs = findAllPair(selectedRooms);
+
+	for (let pair of pairs) {
+		const roomOneName = pair[0].campus_shortname;
+		const roomOneLat = pair[0].campus_lat;
+		const roomOneLon = pair[0].campus_lon;
+
+		const roomTwoName = pair[1].campus_shortname;
+		const roomTwoLat = pair[1].campus_lat;
+		const roomTwoLon = pair[1].campus_lon;
+
+		try {
+			const result = await getWalkingDistance(roomOneLat, roomOneLon, roomTwoLat, roomTwoLon);
+			listOfWalkingDistance.push(
+				roomOneName + " - " + roomTwoName + ": [Distance: " + result.distance + ", Walking Time: " + result.duration
+			);
+		} catch (err) {
+			console.error("Error getting walking distance: " + err);
+		}
+	}
+	return listOfWalkingDistance;
+}
+
 (async () => {
 	await initMap();
-	getWalkingDistance(49.2606, -123.246, 49.262, -123.248);
 })();
-
-
