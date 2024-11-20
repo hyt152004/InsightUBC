@@ -117,6 +117,46 @@ async function getWalkingDistance(lat1, lng1, lat2, lng2) {
 	}
 }
 
+function findAllPair(selectedRooms) {
+	const pairs = [];
+
+	for (let i = 0; i < selectedRooms.length; i++) {
+		for (let j = i + 1; j < selectedRooms.length; j++) {
+			pairs.push([selectedRooms[i], selectedRooms[j]]);
+		}
+	}
+
+	return pairs;
+}
+
+async function generateListOfWalkingDistance(selectedRooms) {
+	const listOfWalkingDistance = [];
+
+	const pairs = findAllPair(selectedRooms);
+
+	pairs.forEach(function (pair) {
+		const roomOneName = pair[0].campus_shortname;
+		const roomOneLat = pair[0].campus_lat;
+		const roomOneLon = pair[0].campus_lon;
+
+		const roomTwoName = pair[1].campus_shortname;
+		const roomTwoLat = pair[1].campus_lat;
+		const roomTwoLon = pair[1].campus_lon;
+
+		try {
+			const result = getWalkingDistance(roomOneLat, roomOneLon, roomTwoLat, roomTwoLon);
+			console.log(result);
+			listOfWalkingDistance.add(
+				roomOneName + " - " + roomTwoName + ": [Distance: " + result.distance + ", Walking Time: " + result.duration
+			);
+		} catch {
+			console.error("Error getting walking distance");
+		}
+	});
+
+	return listOfWalkingDistance;
+}
+
 (async () => {
 	await initMap();
 })();
