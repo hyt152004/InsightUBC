@@ -18,12 +18,11 @@ async function initMap() {
 		title: "UBC",
 	});
 
-	const selectedRoomList = [...new Set(array)];
+	const selectedRoomList = new Array();
 
 	try {
 		const response = await fetch("data/campus.json");
 		const data = await response.json();
-					const selectedRoomList = [...new Set(array)];
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
@@ -78,15 +77,29 @@ async function initMap() {
 						const seats = document.createElement("td");
 						seats.textContent = room.campus_seats;
 
-						selectButton.addEventListener("click", () => {
-							selectedRoomList.push(room);
+						selectButton.addEventListener("click", async() => {
+							if (!selectedRoomList.includes(room)) {
+								selectedRoomList.push(room);
+							}
 							roomTable.appendChild(tableRow);
 							tableRow.appendChild(fullname);
 							tableRow.appendChild(shortname);
 							tableRow.appendChild(number);
 							tableRow.appendChild(address);
 							tableRow.appendChild(seats);
-							generateListOfWalkingDistance(selectedRoomList);
+							const distanceList = await generateListOfWalkingDistance(selectedRoomList);
+
+							// Clear previous distances from the side panel
+							const distanceContainer = document.getElementById("distance-container");
+							distanceContainer.innerHTML = "";
+
+							// Populate the distance container with new distances
+							distanceList.forEach((distance) => {
+								const distanceItem = document.createElement("div");
+								distanceItem.textContent = distance;
+								distanceItem.classList.add("distance-item");
+								distanceContainer.appendChild(distanceItem);
+							});
 						});
 
 						listItem.prepend(selectButton);
