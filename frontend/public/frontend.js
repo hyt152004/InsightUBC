@@ -102,6 +102,7 @@ async function initMap() {
 								roomTable.appendChild(tableRow);
 
 								const distanceList = await generateListOfWalkingDistance(selectedRoomList);
+								groupByType(selectedRoomList);
 								await updateWalkingDistances(distanceList);
 							}
 						});
@@ -236,6 +237,38 @@ async function deselectRoom(room) {
 
 	const distanceList = await generateListOfWalkingDistance(selectedRoomList);
 	await updateWalkingDistances(distanceList);
+}
+
+function ascendingSeatSort(listOfRooms) {
+	return listOfRooms.sort((a, b) => a.campus_seats - b.campus_seats);
+}
+
+function descendingSeatSort(listOfRooms) {
+	return listOfRooms.sort((a, b) => b.campus_seats - a.campus_seats);
+}
+
+function groupByType(listOfRooms) {
+	const groups = listOfRooms.reduce((acc, room) => {
+		if (!acc[room.campus_type]) {
+			acc[room.campus_type] = [];
+		}
+		acc[room.campus_type].push(room);
+		return acc;
+	}, {});
+	console.log(Object.values(groups).flat());
+	return Object.values(groups).flat();
+}
+
+function groupByFurniture(listOfRooms) {
+	const groups = listOfRooms.reduce((acc, room) => {
+		if (!acc[room.campus_furniture]) {
+			acc[room.campus_furniture] = [];
+		}
+		acc[room.campus_furniture].push(room);
+		return acc;
+	}, {});
+
+	return Object.values(groups).flat();
 }
 
 (async () => {
