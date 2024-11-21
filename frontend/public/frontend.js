@@ -1,4 +1,5 @@
 let buildingRooms = {};
+const selectedRoomList = new Array();
 
 async function initMap() {
 	const position = { lat: 49.2606, lng: -123.246 };
@@ -17,8 +18,6 @@ async function initMap() {
 		position: { lat: 49.2606, lng: -123.246 },
 		title: "UBC",
 	});
-
-	const selectedRoomList = new Array();
 
 	try {
 		const response = await fetch("data/campus.json");
@@ -63,43 +62,48 @@ async function initMap() {
 						selectButton.textContent = "Select";
 						selectButton.classList.add("select-room-button");
 
-						const sidePanel = document.getElementById("side-panel");
 						const roomTable = document.getElementById("room-table");
-						const tableRow = document.createElement("tr");
-						const fullname = document.createElement("td");
-						fullname.textContent = room.campus_fullname;
-						const shortname = document.createElement("td");
-						shortname.textContent = room.campus_shortname;
-						const number = document.createElement("td");
-						number.textContent = room.campus_number;
-						const address = document.createElement("td");
-						address.textContent = room.campus_address;
-						const seats = document.createElement("td");
-						seats.textContent = room.campus_seats;
-
+					
 						selectButton.addEventListener("click", async() => {
+							if (selectedRoomList.length >= 5) {
+								alert("You can only select up to 5 rooms.");
+								return;
+							}
+							
 							if (!selectedRoomList.includes(room)) {
 								selectedRoomList.push(room);
+
+								const tableRow = document.createElement("tr");
+								tableRow.setAttribute("data-room-name", room.campus_name);
+
+								const fullname = document.createElement("td");
+								fullname.textContent = room.campus_fullname;
+
+								const shortname = document.createElement("td");
+								shortname.textContent = room.campus_shortname;
+
+								const number = document.createElement("td");
+								number.textContent = room.campus_number;
+
+								const address = document.createElement("td");
+								address.textContent = room.campus_address;
+
+								const seats = document.createElement("td");
+								seats.textContent = room.campus_seats;
+
+								const deselectButton = document.createElement("button");
+								deselectButton.textContent = "Deselect";
+								deselectButton.classList.add("deselect-room-button");
+								deselectButton.addEventListener("click", async () => {
+									await deselectRoom(room);
+								});
+
+								tableRow.append(fullname, shortname, number, address, seats, deselectButton);
+								roomTable.appendChild(tableRow);
+
+								const distanceList = await generateListOfWalkingDistance(selectedRoomList);
+								await updateWalkingDistances(distanceList);
 							}
-							roomTable.appendChild(tableRow);
-							tableRow.appendChild(fullname);
-							tableRow.appendChild(shortname);
-							tableRow.appendChild(number);
-							tableRow.appendChild(address);
-							tableRow.appendChild(seats);
-							const distanceList = await generateListOfWalkingDistance(selectedRoomList);
-
-							// Clear previous distances from the side panel
-							const distanceContainer = document.getElementById("distance-container");
-							distanceContainer.innerHTML = "";
-
-							// Populate the distance container with new distances
-							distanceList.forEach((distance) => {
-								const distanceItem = document.createElement("div");
-								distanceItem.textContent = distance;
-								distanceItem.classList.add("distance-item");
-								distanceContainer.appendChild(distanceItem);
-							});
 						});
 
 						listItem.prepend(selectButton);
@@ -108,11 +112,8 @@ async function initMap() {
 				} else {
 					roomList.innerHTML = "<li>No rooms available</li>";
 				}
-
-				// Open the popup
 				roomPopup.classList.add("open");
 
-				// Add event listener for the exit button
 				document.getElementById("exit").addEventListener("click", () => {
 					roomPopup.classList.remove("open");
 				});
@@ -189,7 +190,7 @@ async function generateListOfWalkingDistance(selectedRooms) {
 		try {
 			const result = await getWalkingDistance(roomOneLat, roomOneLon, roomTwoLat, roomTwoLon);
 			listOfWalkingDistance.push(
-				roomOneName + " - " + roomTwoName + ": [Distance: " + result.distance + ", Walking Time: " + result.duration
+				roomOneName + " - " + roomTwoName + ": Distance: " + result.distance + ", Walking Time: " + result.duration
 			);
 		} catch (err) {
 			console.error("Error getting walking distance: " + err);
@@ -197,6 +198,34 @@ async function generateListOfWalkingDistance(selectedRooms) {
 	}
 	return listOfWalkingDistance;
 }
+
+async function updateWalkingDistances(distanceList) {
+	const distanceContainer = document.getElementById("distance-container");
+	distanceContainer.innerHTML = ""; // Clear existing distances
+  
+	// Populate the distance container with updated distances
+	distanceList.forEach((distance) => {
+	  const distanceItem = document.createElement("div");
+	  distanceItem.textContent = distance;
+	  distanceItem.classList.add("distance-item");
+	  distanceContainer.appendChild(distanceItem);
+	});
+}
+
+async function deselectRoom(room) {
+	const roomIndex = selectedRoomList.indexOf(room);
+	if (roomIndex !== -1) {
+	  selectedRoomList.splice(roomIndex, 1);
+	}
+  
+	const rowToRemove = document.querySelector(`[data-room-name="${room.campus_name}"]`);
+	if (rowToRemove) {
+	  rowToRemove.remove();
+	}
+  
+	const distanceList = await generateListOfWalkingDistance(selectedRoomList);
+	await updateWalkingDistances(distanceList);
+  }
 
 (async () => {
 	await initMap();
