@@ -25,7 +25,7 @@ async function initMap() {
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
-			const { campus_lat, campus_lon, campus_fullname, campus_shortname, campus_address } = room;
+			const { campus_lat, campus_lon, campus_fullname, campus_shortname, campus_address, campus_furniture, campus_type} = room;
 
 			const marker = new AdvancedMarkerElement({
 				map: map,
@@ -76,17 +76,20 @@ async function initMap() {
 								const tableRow = document.createElement("tr");
 								tableRow.setAttribute("data-room-name", room.campus_name);
 
-								const fullname = document.createElement("td");
-								fullname.textContent = room.campus_fullname;
+								const building = document.createElement("td");
+								building.textContent = room.campus_fullname;
 
-								const shortname = document.createElement("td");
-								shortname.textContent = room.campus_shortname;
-
-								const number = document.createElement("td");
-								number.textContent = room.campus_number;
+								const roomNumber = document.createElement("td");
+								roomNumber.textContent = room.campus_shortname + " " + room.campus_number;
 
 								const address = document.createElement("td");
 								address.textContent = room.campus_address;
+
+								const furniture = document.createElement("td");
+								furniture.textContent = room.campus_furniture;
+
+								const roomType = document.createElement("td");
+								roomType.textContent = room.campus_type;
 
 								const seats = document.createElement("td");
 								seats.textContent = room.campus_seats;
@@ -98,7 +101,7 @@ async function initMap() {
 									await deselectRoom(room);
 								});
 
-								tableRow.append(fullname, shortname, number, address, seats, deselectButton);
+								tableRow.append(building, roomNumber, address, furniture, roomType, seats, deselectButton);
 								roomTable.appendChild(tableRow);
 
 								const distanceList = await generateListOfWalkingDistance(selectedRoomList);
