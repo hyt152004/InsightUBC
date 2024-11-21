@@ -63,13 +63,13 @@ async function initMap() {
 						selectButton.classList.add("select-room-button");
 
 						const roomTable = document.getElementById("room-table");
-					
-						selectButton.addEventListener("click", async() => {
+
+						selectButton.addEventListener("click", async () => {
 							if (selectedRoomList.length >= 5) {
 								alert("You can only select up to 5 rooms.");
 								return;
 							}
-							
+
 							if (!selectedRoomList.includes(room)) {
 								selectedRoomList.push(room);
 
@@ -179,18 +179,29 @@ async function generateListOfWalkingDistance(selectedRooms) {
 	const pairs = findAllPair(selectedRooms);
 
 	for (let pair of pairs) {
-		const roomOneName = pair[0].campus_shortname;
-		const roomOneLat = pair[0].campus_lat;
-		const roomOneLon = pair[0].campus_lon;
-
-		const roomTwoName = pair[1].campus_shortname;
-		const roomTwoLat = pair[1].campus_lat;
-		const roomTwoLon = pair[1].campus_lon;
+		const roomOne = pair[0];
+		const roomTwo = pair[1];
 
 		try {
-			const result = await getWalkingDistance(roomOneLat, roomOneLon, roomTwoLat, roomTwoLon);
+			const result = await getWalkingDistance(
+				roomOne.campus_lat,
+				roomOne.campus_lon,
+				roomTwo.campus_lat,
+				roomTwo.campus_lon
+			);
 			listOfWalkingDistance.push(
-				roomOneName + " - " + roomTwoName + ": Distance: " + result.distance + ", Walking Time: " + result.duration
+				roomOne.campus_shortname +
+					"_" +
+					roomOne.campus_number +
+					" - " +
+					roomTwo.campus_shortname +
+					"_" +
+					roomTwo.campus_number +
+					": [Distance: " +
+					result.distance +
+					", Walking Time: " +
+					result.duration +
+					"]"
 			);
 		} catch (err) {
 			console.error("Error getting walking distance: " + err);
@@ -202,30 +213,30 @@ async function generateListOfWalkingDistance(selectedRooms) {
 async function updateWalkingDistances(distanceList) {
 	const distanceContainer = document.getElementById("distance-container");
 	distanceContainer.innerHTML = ""; // Clear existing distances
-  
+
 	// Populate the distance container with updated distances
 	distanceList.forEach((distance) => {
-	  const distanceItem = document.createElement("div");
-	  distanceItem.textContent = distance;
-	  distanceItem.classList.add("distance-item");
-	  distanceContainer.appendChild(distanceItem);
+		const distanceItem = document.createElement("div");
+		distanceItem.textContent = distance;
+		distanceItem.classList.add("distance-item");
+		distanceContainer.appendChild(distanceItem);
 	});
 }
 
 async function deselectRoom(room) {
 	const roomIndex = selectedRoomList.indexOf(room);
 	if (roomIndex !== -1) {
-	  selectedRoomList.splice(roomIndex, 1);
+		selectedRoomList.splice(roomIndex, 1);
 	}
-  
+
 	const rowToRemove = document.querySelector(`[data-room-name="${room.campus_name}"]`);
 	if (rowToRemove) {
-	  rowToRemove.remove();
+		rowToRemove.remove();
 	}
-  
+
 	const distanceList = await generateListOfWalkingDistance(selectedRoomList);
 	await updateWalkingDistances(distanceList);
-  }
+}
 
 (async () => {
 	await initMap();
