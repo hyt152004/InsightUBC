@@ -1,214 +1,212 @@
-html, body {
-    padding:0;
-    margin:0;
+html,
+body {
+	padding: 0;
+	margin: 0;
 }
 
 /* Font class*/
 .sour-gummy-regular {
-    font-family: "Sour Gummy", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
+	font-family: "Sour Gummy", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	font-variation-settings: "wdth" 100;
 }
 
 .outfit-regular {
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  
+	font-family: "Outfit", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+}
 
 .button {
-    background-color: #3f51b5;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+	background-color: #3f51b5;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
 }
 
 .button:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .flex-container {
-    display:flex;
-    height: 100vh; /* Use 100vh to make the height equal to 100% of the viewport */
-    width: 100vw; /* Use 100vw to make the width equal to 100% of the viewport */
+	display: flex;
+	height: 100vh; /* Use 100vh to make the height equal to 100% of the viewport */
+	width: 100vw; /* Use 100vw to make the width equal to 100% of the viewport */
 }
 
 #side-panel {
-    width:35%;
-    background-color: #18181b;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    box-sizing: border-box;
+	width: 35%;
+	background-color: #18181b;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	box-sizing: border-box;
 }
 
 #header {
-    margin: 20px 0 0 25px;
-    color:white;
-    font-size: 28px;
+	margin: 20px 0 0 25px;
+	color: white;
+	font-size: 28px;
 }
 
 /* Set the size of the div element that contains the map */
 #map {
-    width:65%;
+	width: 65%;
 }
 
 .GMAMP-maps-pin-view {
-    transition: all 0.25s linear; 
+	transition: all 0.25s linear;
 }
 
-.GMAMP-maps-pin-view:hover{ 
-    transform: scale(1.4);
+.GMAMP-maps-pin-view:hover {
+	transform: scale(1.4);
 }
 
 .room-popup {
-    background-color: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: all 0.3s ease-in-out;
-    z-index: -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	background-color: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: all 0.3s ease-in-out;
+	z-index: -1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .room-popup.open {
-    opacity: 1;
-    z-index: 999;
+	opacity: 1;
+	z-index: 999;
 }
 
 .room-popup-content {
-    background-color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    width:400px;
-    position: relative;
-    height:300px;
-    overflow-y: auto;
+	background-color: white;
+	padding: 15px 20px;
+	border-radius: 8px;
+	width: 400px;
+	position: relative;
+	height: 300px;
+	overflow-y: auto;
 }
 
 .room-popup-content h4 {
-    padding: 0;
-    margin: 0 0 10px 0;
+	padding: 0;
+	margin: 0 0 10px 0;
 }
 
 .room-popup-content ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .room-popup-content li {
-    padding: 5px 0;
+	padding: 5px 0;
 }
 
 #exit {
-    background: none;
-    border: none;
-    color: black;
-    font-size: 16px;
-    cursor: pointer;
+	background: none;
+	border: none;
+	color: black;
+	font-size: 16px;
+	cursor: pointer;
 
-    position: absolute;
-    padding: 0;
-    top: 10px;
-    right: 10px;
-    transition: all 0.2s;
+	position: absolute;
+	padding: 0;
+	top: 10px;
+	right: 10px;
+	transition: all 0.2s;
 }
 
 #exit:hover {
-    color: #196eb2;
+	color: #196eb2;
 }
 
 .select-room-button {
-  margin-right: 10px;
-  padding: 4px 8px;
-  background-color: #196eb2;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+	margin-right: 10px;
+	padding: 4px 8px;
+	background-color: #196eb2;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
 }
-
 
 #room-table-container {
-    margin: 10px;
-    flex-grow: 1;
-    overflow-y: auto;
+	margin: 10px;
+	flex-grow: 1;
+	overflow-y: auto;
 }
 
-#room-table-container::-webkit-scrollbar{
-    width:12px;
+#room-table-container::-webkit-scrollbar {
+	width: 12px;
 }
 
-#room-table-container::-webkit-scrollbar-track{
-    background-color: #18181b;
+#room-table-container::-webkit-scrollbar-track {
+	background-color: #18181b;
 }
 
-#room-table-container::-webkit-scrollbar-thumb{
-    background-color: #37393b;
-    border-radius: 20px;
-    border: 3px solid #18181b;
+#room-table-container::-webkit-scrollbar-thumb {
+	background-color: #37393b;
+	border-radius: 20px;
+	border: 3px solid #18181b;
 }
 
-#room-table{
-    color: white;
-    font-size: 15px;
+#room-table {
+	color: white;
+	font-size: 15px;
 }
 
-#room-table th, td {
-    padding: 10px 15px 0 15px;;
-    text-align: left;
+#room-table th,
+td {
+	padding: 10px 15px 0 15px;
+	text-align: left;
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #37393b;
-    margin: 1em 25px 1em 25px;
-    padding: 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #37393b;
+	margin: 1em 25px 1em 25px;
+	padding: 0;
 }
 
 #distance-container {
-    color: white;
-    font-size: 15px;
-    margin: auto 10px 20px 10px;
-    flex-shrink: 0;
-    height: 250px;
-    overflow-y: auto;
+	color: white;
+	font-size: 15px;
+	margin: auto 10px 20px 10px;
+	flex-shrink: 0;
+	height: 250px;
+	overflow-y: auto;
 }
 
 .distance-item {
-    padding: 8px 15px;
+	padding: 8px 15px;
 }
 
-#distance-container::-webkit-scrollbar{
-    width:12px;
+#distance-container::-webkit-scrollbar {
+	width: 12px;
 }
 
-#distance-container::-webkit-scrollbar-track{
-    background-color: #18181b;
+#distance-container::-webkit-scrollbar-track {
+	background-color: #18181b;
 }
 
-#distance-container::-webkit-scrollbar-thumb{
-    background-color: #37393b;
-    border-radius: 20px;
-    border: 3px solid #18181b;
+#distance-container::-webkit-scrollbar-thumb {
+	background-color: #37393b;
+	border-radius: 20px;
+	border: 3px solid #18181b;
 }
