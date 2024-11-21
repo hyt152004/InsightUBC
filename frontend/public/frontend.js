@@ -13,20 +13,60 @@ async function initMap() {
 		mapId: "DEMO_MAP_ID",
 	});
 
-	new AdvancedMarkerElement({
-		map: map,
-		position: { lat: 49.2606, lng: -123.246 },
-		title: "UBC",
-	});
-
 	try {
-		const response = await fetch("data/campus.json");
+		const listOfDataset = await fetch("http://localhost:4321/datasets");
+		const listOfDatasetJson = await listOfDataset.json();
+		if (listOfDatasetJson.result.length === 0) {
+			return;
+		}
+		const id = listOfDatasetJson.result[0].id;
+		// const response = await fetch("/data/" + id + ".json");
+		// const data = await response.json();
+		const query = {
+			query: {
+				// Example query structure based on the requirement
+				WHERE: {},
+				OPTIONS: {
+					COLUMNS: [
+						id + "_fullname",
+						id + "_shortname",
+						id + "_number",
+						id + "_name",
+						id + "_address",
+						id + "_lat",
+						id + "_lon",
+						id + "_seats",
+						id + "_type",
+						id + "_furniture",
+					],
+				},
+			},
+		};
+
+		console.log(JSON.stringify(query));
+
+		const response = await fetch("http://localhost:4321/query", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(query),
+		});
 		const data = await response.json();
+
 		let isSeatsAscending = true;
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
-			const { campus_lat, campus_lon, campus_fullname, campus_shortname, campus_address, campus_furniture, campus_type} = room;
+			const {
+				campus_lat,
+				campus_lon,
+				campus_fullname,
+				campus_shortname,
+				campus_address,
+				campus_furniture,
+				campus_type,
+			} = room;
 
 			const marker = new AdvancedMarkerElement({
 				map: map,
@@ -52,7 +92,6 @@ async function initMap() {
 					<h4>${campus_fullname} (${campus_shortname})</h4>
 					<ul id="room-list"></ul>
 				`;
-				
 
 				// Populate the list of rooms for this building
 				const roomList = document.getElementById("room-list");
@@ -75,7 +114,7 @@ async function initMap() {
 								updateRoomTable(room);
 								togglePlaceholderMessage();
 								const distanceList = await generateListOfWalkingDistance(selectedRoomList);
-								await updateWalkingDistances(distanceList);			
+								await updateWalkingDistances(distanceList);
 							}
 						});
 
@@ -89,7 +128,7 @@ async function initMap() {
 
 				document.getElementById("exit").addEventListener("click", () => {
 					roomPopup.classList.remove("open");
-				});	  
+				});
 			});
 
 			// Hover over marker for building info
@@ -105,8 +144,8 @@ async function initMap() {
 		const roomTable = document.getElementById("room-table");
 
 		document.getElementById("sort-seats").addEventListener("click", () => {
-			console.log('Sort button clicked');
-			console.log('Toggling sorting state:', isSeatsAscending);
+			console.log("Sort button clicked");
+			console.log("Toggling sorting state:", isSeatsAscending);
 			const sortedSeats = isSeatsAscending
 				? ascendingSeatSort([...selectedRoomList])
 				: descendingSeatSort([...selectedRoomList]);
@@ -116,7 +155,7 @@ async function initMap() {
 			});
 			isSeatsAscending = !isSeatsAscending;
 		});
-		  
+
 		document.getElementById("sort-type").addEventListener("click", () => {
 			const sortedRoomType = groupByType([...selectedRoomList]);
 			roomTable.innerHTML = "";
@@ -124,7 +163,7 @@ async function initMap() {
 				updateRoomTable(room);
 			});
 		});
-		  
+
 		document.getElementById("sort-furniture").addEventListener("click", () => {
 			const sortedFurniture = groupByFurniture([...selectedRoomList]);
 			roomTable.innerHTML = "";
@@ -132,7 +171,6 @@ async function initMap() {
 				updateRoomTable(room);
 			});
 		});
-
 	} catch (error) {
 		console.error("Error loading campus data:", error);
 	}
@@ -278,7 +316,7 @@ function groupByFurniture(listOfRooms) {
 
 function updateRoomTable(room) {
 	const roomTable = document.getElementById("room-table");
-  
+
 	const tableRow = document.createElement("tr");
 	tableRow.setAttribute("data-room-name", room.campus_name);
 
@@ -314,19 +352,18 @@ function updateRoomTable(room) {
 }
 
 function togglePlaceholderMessage() {
-    const placeholderMessage = document.getElementById("placeholder-message");
-    const roomTableContainer = document.getElementById("room-table-container");
+	const placeholderMessage = document.getElementById("placeholder-message");
+	const roomTableContainer = document.getElementById("room-table-container");
 
-    if (selectedRoomList.length === 0) {
-        placeholderMessage.style.display = "block";
-        roomTableContainer.style.display = "none";
-    } else {
-        placeholderMessage.style.display = "none";
-        roomTableContainer.style.display = "block";
-    }
+	if (selectedRoomList.length === 0) {
+		placeholderMessage.style.display = "block";
+		roomTableContainer.style.display = "none";
+	} else {
+		placeholderMessage.style.display = "none";
+		roomTableContainer.style.display = "block";
+	}
 }
-  
-  
+
 (async () => {
 	await initMap();
 })();

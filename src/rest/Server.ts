@@ -161,7 +161,7 @@ export default class Server {
 			const response = await this.facade.listDatasets();
 			return res.status(StatusCodes.OK).json({ result: response });
 		} catch (err: any) {
-			return res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
+			return res.status(StatusCodes.OK).json({ result: [] });
 		}
 	}
 }
