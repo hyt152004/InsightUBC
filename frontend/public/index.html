@@ -28,16 +28,20 @@
     <div class="flex-container">
         <div id="side-panel">
             <div class="sour-gummy-regular" , id="header">Campus Explorer</div>
+            <div id="placeholder-message" class="outfit-regular">Select rooms to get started</div>
             <div id="room-table-container">
                 <table>
-                    <tbody id="room-table" class="outfit-regular">
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Short Name</th>
-                            <th>Number</th>
+                    <thead class="outfit-regular">
+                        <tr id = "header-row">
+                            <th>Building</th>
+                            <th>Room</th>
                             <th>Address</th>
-                            <th>Seats</th>
+                            <th id = "sort-furniture" class = "sort-btn">Furniture</th>
+                            <th id = "sort-type" class = "sort-btn">Type</th>
+                            <th id = "sort-seats" class = "sort-btn">Seats</th>
                         </tr>
+                    </thead>
+                    <tbody id="room-table" class="outfit-regular">
                     </tbody>
                 </table>
             </div>
