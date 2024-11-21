@@ -42,7 +42,7 @@ body {
 }
 
 #side-panel {
-	width: 38%;
+	width: 40%;
 	background-color: #18181b;
 	display: flex;
 	flex-direction: column;
@@ -52,14 +52,14 @@ body {
 }
 
 #header {
-	margin: 20px 0 0 22px;
+	margin: 20px 0 0 20px;
 	color: white;
 	font-size: 28px;
 }
 
 /* Set the size of the div element that contains the map */
 #map {
-	width: 62%;
+	width: 60%;
 }
 
 .GMAMP-maps-pin-view {
@@ -144,10 +144,18 @@ body {
 	font-size: 14px;
 }
 
+#placeholder-message {
+	color:white;
+	flex-grow: 1;
+	font-size: 14px;
+	margin:20px 0 0 20px;
+}
+
 #room-table-container {
-	margin: 10px;
+	margin: 20px 10px 10px 10px;
 	flex-grow: 1;
 	overflow-y: auto;
+	display:none;
 }
 
 #room-table-container::-webkit-scrollbar {
@@ -164,23 +172,97 @@ body {
 	border: 3px solid #18181b;
 }
 
-#room-table {
+#room-table-container table {
 	color: white;
 	font-size: 14px;
+	border-collapse: collapse;
 }
 
-#room-table th,
-td {
-	padding: 10px 12px 0 12px;
+#room-table-container th {
+	padding: 5px 10px 5px 10px;
 	text-align: left;
 }
+
+
+#room-table tr{
+	transition: all 0.1s ease-in;
+}
+
+#room-table tr:nth-of-type(even) {
+    background-color: #232222;
+}
+
+#room-table tr:hover{
+	cursor:default;
+	color:#8ab2d0;
+}
+
+#room-table td {
+	padding: 5px 10px 5px 10px;
+	text-align: left;
+	max-width: min-content;
+}
+
+/* From Uiverse.io by Kabak */ 
+.deselect-room-button{
+	height: 28px;
+	width: 28px;
+	background: #333;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	cursor: pointer;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	font-family: Consolas, Courier New, monospace;
+	border: solid #404c5d 1px;
+	font-size: 16px;
+	color: rgb(161, 161, 161);
+	-webkit-transition: 500ms;
+	transition: 500ms;
+	border-radius: 5px;
+	background: linear-gradient(145deg, #2e2d2d, #212121);
+	-webkit-box-shadow: 0px 0px 3px #41465b, 0px 0px 3px #41465b,
+	  inset 0px 0px 3px #212121, inset 0px 0px 3px #212121;
+	box-shadow: 0px 0px 2px #41465b, 0px 0px 3px #41465b,
+	inset 0px 0px 3px #212121, inset 0px 0px 3px #212121;
+}
+  
+.deselect-room-button:hover {
+	-webkit-box-shadow: 0px 0px 6px #20232e, 0px 0px 9px #545b78;
+	box-shadow: 0px 0px 6px #20232e, 0px 0px 9px #545b78;
+	color: #d6d6d6;
+	-webkit-transition: 500ms;
+	transition: 500ms;
+}
+  
+.deselect-room-button:active {
+	-webkit-box-shadow: 0px 0px 2px #20232e, 0px 0px 3px #545b78;
+	box-shadow: 0px 0px 2px #20232e, 0px 0px 3px #545b78;
+	color: #d6d6d6;
+	-webkit-transition: 100ms;
+	transition: 100ms;
+}
+
+.sort-btn {
+	cursor:pointer;
+	transition:all 0.2s ease-in-out
+}
+
+.sort-btn:hover {
+	cursor:pointer;
+	color:#8ab2d0;
+}
+  
+  
 
 hr {
 	display: block;
 	height: 1px;
 	border: 0;
 	border-top: 1px solid #37393b;
-	margin: 1em 22px 1em 22px;
+	margin: 1em 20px 1em 20px;
 	padding: 0;
 }
 

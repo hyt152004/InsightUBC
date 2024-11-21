@@ -22,6 +22,7 @@ async function initMap() {
 	try {
 		const response = await fetch("data/campus.json");
 		const data = await response.json();
+		let isSeatsAscending = true;
 
 		data.forEach((room) => {
 			addRoomToHashmap(room);
@@ -51,6 +52,7 @@ async function initMap() {
 					<h4>${campus_fullname} (${campus_shortname})</h4>
 					<ul id="room-list"></ul>
 				`;
+				
 
 				// Populate the list of rooms for this building
 				const roomList = document.getElementById("room-list");
@@ -62,8 +64,6 @@ async function initMap() {
 						selectButton.textContent = "Select";
 						selectButton.classList.add("select-room-button");
 
-						const roomTable = document.getElementById("room-table");
-
 						selectButton.addEventListener("click", async () => {
 							if (selectedRoomList.length >= 5) {
 								alert("You can only select up to 5 rooms.");
@@ -72,41 +72,10 @@ async function initMap() {
 
 							if (!selectedRoomList.includes(room)) {
 								selectedRoomList.push(room);
-
-								const tableRow = document.createElement("tr");
-								tableRow.setAttribute("data-room-name", room.campus_name);
-
-								const building = document.createElement("td");
-								building.textContent = room.campus_fullname;
-
-								const roomNumber = document.createElement("td");
-								roomNumber.textContent = room.campus_shortname + " " + room.campus_number;
-
-								const address = document.createElement("td");
-								address.textContent = room.campus_address;
-
-								const furniture = document.createElement("td");
-								furniture.textContent = room.campus_furniture;
-
-								const roomType = document.createElement("td");
-								roomType.textContent = room.campus_type;
-
-								const seats = document.createElement("td");
-								seats.textContent = room.campus_seats;
-
-								const deselectButton = document.createElement("button");
-								deselectButton.textContent = "Deselect";
-								deselectButton.classList.add("deselect-room-button");
-								deselectButton.addEventListener("click", async () => {
-									await deselectRoom(room);
-								});
-
-								tableRow.append(building, roomNumber, address, furniture, roomType, seats, deselectButton);
-								roomTable.appendChild(tableRow);
-
+								updateRoomTable(room);
+								togglePlaceholderMessage();
 								const distanceList = await generateListOfWalkingDistance(selectedRoomList);
-								groupByType(selectedRoomList);
-								await updateWalkingDistances(distanceList);
+								await updateWalkingDistances(distanceList);			
 							}
 						});
 
@@ -120,7 +89,7 @@ async function initMap() {
 
 				document.getElementById("exit").addEventListener("click", () => {
 					roomPopup.classList.remove("open");
-				});
+				});	  
 			});
 
 			// Hover over marker for building info
@@ -132,6 +101,38 @@ async function initMap() {
 				infoWindow.close(map, marker);
 			});
 		});
+
+		const roomTable = document.getElementById("room-table");
+
+		document.getElementById("sort-seats").addEventListener("click", () => {
+			console.log('Sort button clicked');
+			console.log('Toggling sorting state:', isSeatsAscending);
+			const sortedSeats = isSeatsAscending
+				? ascendingSeatSort([...selectedRoomList])
+				: descendingSeatSort([...selectedRoomList]);
+			roomTable.innerHTML = "";
+			sortedSeats.forEach((room) => {
+				updateRoomTable(room);
+			});
+			isSeatsAscending = !isSeatsAscending;
+		});
+		  
+		document.getElementById("sort-type").addEventListener("click", () => {
+			const sortedRoomType = groupByType([...selectedRoomList]);
+			roomTable.innerHTML = "";
+			sortedRoomType.forEach((room) => {
+				updateRoomTable(room);
+			});
+		});
+		  
+		document.getElementById("sort-furniture").addEventListener("click", () => {
+			const sortedFurniture = groupByFurniture([...selectedRoomList]);
+			roomTable.innerHTML = "";
+			sortedFurniture.forEach((room) => {
+				updateRoomTable(room);
+			});
+		});
+
 	} catch (error) {
 		console.error("Error loading campus data:", error);
 	}
@@ -238,6 +239,7 @@ async function deselectRoom(room) {
 		rowToRemove.remove();
 	}
 
+	togglePlaceholderMessage();
 	const distanceList = await generateListOfWalkingDistance(selectedRoomList);
 	await updateWalkingDistances(distanceList);
 }
@@ -274,6 +276,57 @@ function groupByFurniture(listOfRooms) {
 	return Object.values(groups).flat();
 }
 
+function updateRoomTable(room) {
+	const roomTable = document.getElementById("room-table");
+  
+	const tableRow = document.createElement("tr");
+	tableRow.setAttribute("data-room-name", room.campus_name);
+
+	const building = document.createElement("td");
+	building.textContent = room.campus_fullname;
+
+	const roomNumber = document.createElement("td");
+	roomNumber.textContent = room.campus_shortname + " " + room.campus_number;
+
+	const address = document.createElement("td");
+	address.textContent = room.campus_address;
+
+	const furniture = document.createElement("td");
+	furniture.textContent = room.campus_furniture;
+
+	const roomType = document.createElement("td");
+	roomType.textContent = room.campus_type;
+
+	const seats = document.createElement("td");
+	seats.textContent = room.campus_seats;
+
+	const deselectCell = document.createElement("td");
+	const deselectButton = document.createElement("button");
+	deselectButton.textContent = "-";
+	deselectButton.classList.add("deselect-room-button");
+	deselectCell.appendChild(deselectButton);
+	deselectButton.addEventListener("click", async () => {
+		await deselectRoom(room);
+	});
+
+	tableRow.append(building, roomNumber, address, furniture, roomType, seats, deselectCell);
+	roomTable.appendChild(tableRow);
+}
+
+function togglePlaceholderMessage() {
+    const placeholderMessage = document.getElementById("placeholder-message");
+    const roomTableContainer = document.getElementById("room-table-container");
+
+    if (selectedRoomList.length === 0) {
+        placeholderMessage.style.display = "block";
+        roomTableContainer.style.display = "none";
+    } else {
+        placeholderMessage.style.display = "none";
+        roomTableContainer.style.display = "block";
+    }
+}
+  
+  
 (async () => {
 	await initMap();
 })();
