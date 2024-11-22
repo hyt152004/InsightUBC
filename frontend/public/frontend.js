@@ -23,27 +23,22 @@ async function initMap() {
 		// const response = await fetch("/data/" + id + ".json");
 		// const data = await response.json();
 		const query = {
-			query: {
-				// Example query structure based on the requirement
-				WHERE: {},
-				OPTIONS: {
-					COLUMNS: [
-						id + "_fullname",
-						id + "_shortname",
-						id + "_number",
-						id + "_name",
-						id + "_address",
-						id + "_lat",
-						id + "_lon",
-						id + "_seats",
-						id + "_type",
-						id + "_furniture",
-					],
-				},
+			WHERE: {},
+			OPTIONS: {
+				COLUMNS: [
+					id + "_fullname",
+					id + "_shortname",
+					id + "_number",
+					id + "_name",
+					id + "_address",
+					id + "_lat",
+					id + "_lon",
+					id + "_seats",
+					id + "_type",
+					id + "_furniture",
+				],
 			},
 		};
-
-		console.log(JSON.stringify(query));
 
 		const response = await fetch("http://localhost:4321/query", {
 			method: "POST",
@@ -56,7 +51,7 @@ async function initMap() {
 
 		let isSeatsAscending = true;
 
-		data.forEach((room) => {
+		data.result.forEach((room) => {
 			addRoomToHashmap(room);
 			const {
 				campus_lat,
