@@ -10,6 +10,7 @@ import {
 } from "./IInsightFacade";
 import QueryValidator from "./QueryValidator";
 import QueryEngine from "./QueryEngine";
+import Dataset from "../model/Dataset";
 // import Log from "../../util/Log";
 
 /**
@@ -18,7 +19,7 @@ import QueryEngine from "./QueryEngine";
  *
  */
 export default class InsightFacade implements IInsightFacade {
-	public datasetMap: Map<string, InsightDataset> = new Map<string, InsightDataset>();
+	public datasetMap: Map<string, Dataset> = new Map<string, Dataset>();
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const fs = require("fs-extra");
@@ -44,7 +45,7 @@ export default class InsightFacade implements IInsightFacade {
 			}
 
 			// Process the dataset
-			let ds;
+			let ds: Dataset | undefined;  
 			if (kind === InsightDatasetKind.Sections) {
 				ds = await sectionsProcessor.addSectionsDataset(id, content, kind);
 			} else if (kind === InsightDatasetKind.Rooms) {
@@ -107,7 +108,6 @@ export default class InsightFacade implements IInsightFacade {
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			const queryValidator = new QueryValidator("");
-
 			// Validate the query
 			if (!queryValidator.isValidQuery(query)) {
 				throw new InsightError("Invalid Query");
@@ -146,7 +146,14 @@ export default class InsightFacade implements IInsightFacade {
 						this.datasetMap.set(ds.id, ds);
 					});
 
-					return resolve(Array.from(this.datasetMap.values()));
+					const insightDatasets: InsightDataset[] = Array.from(this.datasetMap.values()).map((ds) => {
+						return {
+							id: ds.id,
+							kind: ds.kind,
+							numRows: ds.numRows,
+						};
+					});
+					return resolve(insightDatasets);
 				})
 				.catch(() => {
 					return reject("Error listing datasets from disk");
@@ -168,7 +175,7 @@ export default class InsightFacade implements IInsightFacade {
 		return false;
 	}
 
-	private async readFromDisk(): Promise<InsightDataset[]> {
+	private async readFromDisk(): Promise<Dataset[]> {
 		await this.checkDirectoryExists("./data/");
 		const files = await this.readDirectory("./data/");
 
@@ -193,26 +200,29 @@ export default class InsightFacade implements IInsightFacade {
 		return await fs.readdir(dirPath);
 	}
 
-	private async readJsonFiles(files: string[]): Promise<InsightDataset[]> {
+	private async readJsonFiles(files: string[]): Promise<Dataset[]> {
 		const fs = require("fs-extra");
-		const result: InsightDataset[] = [];
+		const result: Dataset[] = [];
 
 		const readJsonPromises = files.map(async (file) => {
 			const jsonObj = await fs.readJson("./data/" + file);
 
+
 			const id = file.replace(".json", "");
 			if (Object.prototype.hasOwnProperty.call(jsonObj[0], id + "_address")) {
-				const dataset: InsightDataset = {
+				const dataset: Dataset = {
 					id: id,
 					kind: InsightDatasetKind.Rooms,
 					numRows: jsonObj.length,
+					data: jsonObj
 				};
 				result.push(dataset);
 			} else {
-				const dataset: InsightDataset = {
+				const dataset: Dataset = {
 					id: id,
 					kind: InsightDatasetKind.Sections,
 					numRows: jsonObj.length,
+					data: jsonObj
 				};
 				result.push(dataset);
 			}

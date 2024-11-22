@@ -3,12 +3,13 @@ import JSZip from "jszip";
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
 import Section from "../model/Section";
 import SectionsDataset from "../model/SectionsDataset";
+import Dataset from "../model/Dataset";
 
 export default class SectionProcessor {
-	public async addSectionsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
+	public async addSectionsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<Dataset> {
 		const jszip = new JSZip();
 
-		return new Promise<InsightDataset>((resolve, reject) => {
+		return new Promise<Dataset>((resolve, reject) => {
 			// Load zip content
 			jszip
 				.loadAsync(content, { base64: true })

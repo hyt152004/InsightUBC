@@ -12,12 +12,13 @@ import {
 } from "./RoomProcessorHelper";
 
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
+import Dataset from "../model/Dataset";
 
 export default class RoomProcessor {
-	public async addRoomsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightDataset> {
+	public async addRoomsDataset(id: string, content: string, kind: InsightDatasetKind): Promise<Dataset> {
 		const jszip = new JSZip();
 
-		return new Promise<InsightDataset>((resolve, reject) => {
+		return new Promise<Dataset>((resolve, reject) => {
 			// Load zip content
 			jszip
 				.loadAsync(content, { base64: true })

@@ -1,3 +1,4 @@
+import Dataset from "../model/Dataset";
 import { InsightDataset, InsightError, InsightResult, ResultTooLargeError } from "./IInsightFacade";
 import Decimal from "decimal.js";
 
@@ -8,18 +9,14 @@ export default class QueryEngine {
 		this.datasetID = id;
 	}
 
-	public processQuery(query: any, id: string, datasetMap: Map<string, InsightDataset>): InsightResult[] {
+	public processQuery(query: any, id: string, datasetMap: Map<string, Dataset>): InsightResult[] {
 		// Parse Query
 		const parsedQuery = JSON.parse(JSON.stringify(query));
 		// Parse Dataset
 		const dataset = datasetMap.get(id);
 		const parsedDataset = JSON.parse(JSON.stringify(dataset));
 		let filteredResult: any = [];
-		if (parsedDataset.kind === "rooms") {
-			filteredResult = parsedDataset.rooms;
-		} else {
-			filteredResult = parsedDataset.sections;
-		}
+		filteredResult = parsedDataset.data;
 		filteredResult = this.processWHERE(parsedQuery.WHERE, filteredResult);
 		if (parsedQuery.TRANSFORMATIONS) {
 			filteredResult = this.processTRANSFORMATIONS(parsedQuery.TRANSFORMATIONS, filteredResult);
