@@ -49,6 +49,8 @@ While the readings for this course are licensed using [CC-by-SA](https://creativ
 
 # InsightUBC
 
+Watch the demo on YouTube: [https://www.youtube.com/watch?v=6TAe6qqaj_g](https://www.youtube.com/watch?v=6TAe6qqaj_g)
+
 This project is basically my attempt at building a real-ish data query engine for UBC course and room information. The whole idea is that you upload a dataset, validate it, store it locally, and then run structured queries against it using a JSON-based query language that feels a bit like SQL, but in a much more annoying and very course-project-specific way.
 
 The app is written in TypeScript and runs on Node 18. It has a REST API, a dataset processing layer, custom validation logic, and a query engine that supports filtering, grouping, aggregation, and sorting. It is the kind of project where every little edge case ends up making you question your life choices, but also teaches you a lot about backend architecture and data processing.
